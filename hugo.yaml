@@ -43,66 +43,65 @@ languages:
         - name: WiKi
           url: https://github.com/adityatelange/hugo-PaperMod/wiki/
 
-  fr:
-    languageName: ":fr:"
+  ja:
+    languageName: "日本語"
     weight: 2
-    title: PaperModL2
+    title: Duzui'sブログ
     taxonomies:
-      category: FRcategories
-      tag: FRtags
-      series: FRseries
+      category: カテゴリ
+      tag: タグ
+      series: シリーズ
     menu:
       main:
-        - name: Archive
+        - name: アーカイブ
           url: archives/
           weight: 5
-        - name: FRTags
-          url: frtags
+        - name: タグ
+          url: tags/
           weight: 10
-        - name: FRCategories
-          url: frcategories
+        - name: 検索
+          url: search/
           weight: 10
-        - name: FRSeries
-          url: frseries
-          weight: 10
-        - name: NullLink
-          url: "#"
-
-    # custom params for each language should be under [langcode].parms - hugo v0.120.0
+        - name: Wiki
+          url: https://github.com/adityatelange/hugo-PaperMod/wiki/
     params:
-      languageAltTitle: French
+      languageAltTitle: Japanese
+      # 这里放日语专属的PaperMod参数覆盖（比如描述、按钮等）
       profileMode:
         enabled: true
-        title: PaperMod
-        imageUrl: "https://raw.githubusercontent.com/googlefonts/noto-emoji/master/svg/emoji_u1f9d1_1f3fb_200d_1f4bb.svg"
-        imageTitle: ProfileMode image
-        # imageWidth: 120
-        # imageHeight: 120
-        subtitle: "☄️ Fast | ☁️ Fluent | 🌙 Smooth | 📱 Responsive"
-        buttons:
-          - name: Blog
-            url: posts
-          - name: Profile Mode
-            url: https://github.com/adityatelange/hugo-PaperMod/wiki/Features#profile-mode
+        title: プロフィール
+        subtitle: "✨ 滑らか | 🌸 反応が良い | 📱 モバイル対応"
 
-  fa:
-    languagedirection: rtl
+
+  zh-hans:
+    languageName: "中文"
     weight: 3
-    title: PaperMod RTL
+    title: Duzui的博客
     taxonomies:
-      category: FAcategories
-      tag: FAtags
-      series: FAseries
+      category: 分类
+      tag: 标签
+      series: 系列
     menu:
       main:
-        - name: FATags
-          url: fatags
+        - name: 归档
+          url: archives/
+          weight: 5
+        - name: 标签
+          url: tags/
           weight: 10
-    # custom params for each language should be under [langcode].parms - hugo v0.120.0
+        - name: 搜索
+          url: search/
+          weight: 10
+        - name: Wiki
+          url: https://github.com/adityatelange/hugo-PaperMod/wiki/
     params:
-      homeInfoParams:
-        Title: "Hi there \U0001F44B"
-        Content: Welcome to RTL layout
+      languageAltTitle: Chinese
+      # 这里放中文专属的PaperMod参数覆盖
+      profileMode:
+        enabled: true
+        title: 欢迎
+        subtitle: "✨ 快速 | 🧠 响应 | 📱 适配各设备"
+
 
 outputs:
   home:
@@ -164,7 +163,7 @@ params:
       title: My X/Twitter
       url: "https://x.com/duzuiphy"
     - name: vrchat
-      title: Talk with me here!
+      title: Talk with me in Vrchat!
       url: "https://vrchat.com/home/user/usr_8797cedd-72ed-41f5-b20b-bd0458fb0148"
 
 

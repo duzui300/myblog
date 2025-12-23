@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://localhost:1313/ja/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="http://localhost:1313/zh-hans/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="http://localhost:1313/ja/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/ja/%E3%82%AB%E3%83%86%E3%82%B4%E3%83%AA/</loc>
+  </url><url>
+    <loc>http://localhost:1313/ja/%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA/</loc>
+  </url><url>
+    <loc>http://localhost:1313/ja/%E3%82%BF%E3%82%B0/</loc>
+  </url>
+</urlset>
