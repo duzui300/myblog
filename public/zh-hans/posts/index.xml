@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Posts on Duzui的博客</title>
+    <title>文章目录 on Duzui的博客</title>
     <link>http://localhost:1313/zh-hans/posts/</link>
-    <description>Recent content in Posts on Duzui的博客</description>
+    <description>Recent content in 文章目录 on Duzui的博客</description>
     <image>
       <title>Duzui的博客</title>
       <url>http://localhost:1313/images/papermod-cover.png</url>
@@ -14,7 +14,7 @@
     <lastBuildDate>Tue, 23 Dec 2025 09:49:54 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/zh-hans/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Test</title>
+      <title>cnTest</title>
       <link>http://localhost:1313/zh-hans/posts/test/</link>
       <pubDate>Tue, 23 Dec 2025 09:49:54 +0800</pubDate>
       <guid>http://localhost:1313/zh-hans/posts/test/</guid>

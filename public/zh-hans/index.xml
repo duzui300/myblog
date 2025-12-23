@@ -14,7 +14,7 @@
     <lastBuildDate>Tue, 23 Dec 2025 09:49:54 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/zh-hans/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Test</title>
+      <title>cnTest</title>
       <link>http://localhost:1313/zh-hans/posts/test/</link>
       <pubDate>Tue, 23 Dec 2025 09:49:54 +0800</pubDate>
       <guid>http://localhost:1313/zh-hans/posts/test/</guid>

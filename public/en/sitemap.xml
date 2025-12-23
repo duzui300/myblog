@@ -20,19 +20,6 @@
                 href="http://localhost:1313/"
                 />
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2025-12-23T09:50:43+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-hans"
-                href="http://localhost:1313/zh-hans/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/posts/"
-                />
-  </url><url>
     <loc>http://localhost:1313/posts/test/</loc>
     <lastmod>2025-12-23T09:50:43+08:00</lastmod>
     <xhtml:link
@@ -44,6 +31,24 @@
                 rel="alternate"
                 hreflang="en"
                 href="http://localhost:1313/posts/test/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2025-12-23T09:50:43+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="http://localhost:1313/ja/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="http://localhost:1313/zh-hans/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/posts/"
                 />
   </url><url>
     <loc>http://localhost:1313/categories/</loc>

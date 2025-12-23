@@ -53,15 +53,18 @@ languages:
       series: シリーズ
     menu:
       main:
+        - name: "ブログ"
+          url: posts/
+          weight: 1
         - name: アーカイブ
           url: archives/
-          weight: 5
+          weight: 2
         - name: タグ
           url: tags/
-          weight: 10
+          weight: 3
         - name: 検索
           url: search/
-          weight: 10
+          weight: 4
         - name: Wiki
           url: https://github.com/adityatelange/hugo-PaperMod/wiki/
     params:
@@ -70,7 +73,14 @@ languages:
       profileMode:
         enabled: true
         title: プロフィール
-        subtitle: "✨ 滑らか | 🌸 反応が良い | 📱 モバイル対応"
+        subtitle: "Duzuiだよ"
+        imageUrl: "/images/myicon.jpg"
+        imageTitle: "アイコン"
+        imageWidth: 120
+        imageHeight: 120
+        buttons:
+          - name: ブログ
+            url: posts/
 
 
   zh-hans:
@@ -83,15 +93,18 @@ languages:
       series: 系列
     menu:
       main:
-        - name: 归档
+        - name: "博客"
+          url: posts/
+          weight: 1
+        - name: "归档"
           url: archives/
-          weight: 5
-        - name: 标签
-          url: tags/
-          weight: 10
-        - name: 搜索
+          weight: 2
+        - name: "搜索"
           url: search/
-          weight: 10
+          weight: 3
+        - name: "标签"
+          url: tags/
+          weight: 4
         - name: Wiki
           url: https://github.com/adityatelange/hugo-PaperMod/wiki/
     params:
@@ -100,7 +113,15 @@ languages:
       profileMode:
         enabled: true
         title: 欢迎
-        subtitle: "✨ 快速 | 🧠 响应 | 📱 适配各设备"
+        subtitle: "Duzui"
+        imageUrl: "/images/myicon.jpg"
+        imageTitle: "我的头像"
+        imageWidth: 120
+        imageHeight: 120
+        buttons:
+          - name: 博客
+            url: posts/
+
 
 
 outputs:
@@ -132,28 +153,31 @@ params:
   images: ["images/papermod-cover.png"]
 
   profileMode:
-    enabled: false
-    title: PaperMod
-    imageUrl: "#"
-    imageTitle: my image
-    # imageWidth: 120
-    # imageHeight: 120
-    buttons:
-      - name: Archives
-        url: archives
-      - name: Tags
-        url: tags
-
-  homeInfoParams:
-    Title: "Introduction"
-    Content: >
+    enabled: true           # 启用个人资料主页
+    title: "Duzui"      # 主标题（通常是你的名字）
+    subtitle: |
       👋 Welcome to my blog!
 
-      - I'm Duzui or duzui9039/duzuictx sometimes. I speak and write in english|普通话|日本語. Estoy aprendiendo español.
+      ⭐I'm Duzui or duzui9039/duzuictx sometimes. I speak and write in english|普通话|日本語. 
+      I'll post some casual passages here, mainly about the books I've read, projects I've done and my language learning experience. 
+      También estoy aprendiendo español.
+  # 副标题
+    imageUrl: "/images/myicon.jpg"  # 头像图片 URL
+    imageTitle: "icon"    # 头像的 alt 文本（无障碍/SEO）
+    imageWidth: 120         # 可选：头像显示宽度
+    imageHeight: 120        # 可选：头像显示高度
+    buttons:
+      - name: Blog
+        url: posts/
+  
+# homeInfoParams:
+#   Title: "Introduction"
+#   Content: >
+#     👋 Welcome to my blog!
 
-      - I'll post some casual passages here, mainly about the books I've read, projects I've done and my language learning experience.
+#     - I'm Duzui or duzui9039/duzuictx sometimes. I speak and write in english|普通话|日本語. Estoy aprendiendo español.
 
-      - 
+#     - I'll post some casual passages here, mainly about the books I've read, projects I've done and my language learning experience. 
 
   socialIcons:
     - name: Discord
