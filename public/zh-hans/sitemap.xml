@@ -3,6 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/zh-hans/</loc>
+    <lastmod>2025-12-23T09:49:54+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -18,6 +19,35 @@
                 hreflang="zh-hans"
                 href="http://localhost:1313/zh-hans/"
                 />
+  </url><url>
+    <loc>http://localhost:1313/zh-hans/posts/</loc>
+    <lastmod>2025-12-23T09:49:54+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="http://localhost:1313/zh-hans/posts/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/zh-hans/posts/test/</loc>
+    <lastmod>2025-12-23T09:49:54+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/posts/test/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-hans"
+                href="http://localhost:1313/zh-hans/posts/test/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/zh-hans/posts/test1/</loc>
+    <lastmod>2025-12-23T09:45:49+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/zh-hans/%E6%A0%87%E7%AD%BE/</loc>
   </url><url>
