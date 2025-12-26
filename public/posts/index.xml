@@ -11,8 +11,18 @@
     </image>
     <generator>Hugo -- 0.153.1</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 23 Dec 2025 09:50:43 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 26 Dec 2025 17:48:31 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Language Learning Record</title>
+      <link>http://localhost:1313/posts/language-learning-record/</link>
+      <pubDate>Fri, 26 Dec 2025 17:48:31 +0800</pubDate>
+      <guid>http://localhost:1313/posts/language-learning-record/</guid>
+      <description>&lt;h1 id=&#34;my-experience-with-language-learning&#34;&gt;My Experience with Language Learning&lt;/h1&gt;
+&lt;p&gt;firstly let me introduce my strategy I used before and my experience learning Japanese and English.&lt;/p&gt;
+&lt;h2 id=&#34;japanese&#34;&gt;Japanese&lt;/h2&gt;
+&lt;p&gt;For japanese, ive learned it for over 3 years. firstly ive read &lt;a href=&#34;https://guidetojapanese.org/learn/grammar&#34;&gt;Japanese Grammar Guide&lt;/a&gt; to grasp a basic framework of the grammar. and then for the first year i mainly focused on studying textbooks, averagely 3 hours a day I think, which supplemented the details of grammar and got me a solid vocabulary. At the end of the first half year I passed JLPT N2 and the first year JLPT N1. its kind of surprising but because my mother tongue is chinese which gives me some advantages in kanji and also due to watching animes for years aquantanted me with Japanese pronunciation so its not imagineable. Still the problem is i could barely speak it or communicate in japanese though i could read much.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>enTest</title>
       <link>http://localhost:1313/posts/test/</link>
