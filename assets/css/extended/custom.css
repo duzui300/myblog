@@ -11,6 +11,12 @@ html {
     background-repeat: no-repeat;
 }
 
+/* PaperMod's .list sets an opaque body background that hides the html canvas.
+   Make body transparent so the background image shows through everywhere. */
+body {
+    background: transparent !important;
+}
+
 /* Profile page: semi-transparent card so the image shows through */
 .profile_inner {
     background: rgba(255, 255, 255, 0.75);
