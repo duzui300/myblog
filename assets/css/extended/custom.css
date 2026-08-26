@@ -1,0 +1,32 @@
+/* Custom overrides - loaded after theme styles via PaperMod's extended CSS hook */
+
+/* Background image + subtle dark overlay so text stays readable in both themes.
+   Set on html (canvas) because body inherits an opaque canvas color from the theme reset. */
+html {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+        url("/bg.webp");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+/* Profile page: semi-transparent card so the image shows through */
+.profile_inner {
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: var(--radius);
+    padding: 2rem;
+}
+[data-theme="dark"] .profile_inner {
+    background: rgba(29, 30, 32, 0.75);
+}
+
+/* Keep header/nav readable over the image */
+.header,
+footer {
+    background: rgba(255, 255, 255, 0.85);
+}
+[data-theme="dark"] .header,
+[data-theme="dark"] footer {
+    background: rgba(29, 30, 32, 0.85);
+}
