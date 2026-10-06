@@ -1,0 +1,9 @@
+{{- $index := slice -}}
+{{- range site.Sites -}}
+    {{- range .RegularPages -}}
+        {{- if and (not .Params.searchHidden) (ne .Layout `archives`) (ne .Layout `search`) -}}
+            {{- $index = $index | append (dict "title" .Title "content" .Plain "permalink" .Permalink "summary" .Summary) -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+{{- $index | jsonify -}}

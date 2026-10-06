@@ -57,13 +57,13 @@ languages:
           url: posts/
           weight: 1
         - name: アーカイブ
-          url: archives/
+          url: /archives/
           weight: 2
         - name: タグ
           url: tags/
           weight: 3
         - name: 検索
-          url: search/
+          url: /search/
           weight: 4
         - name: Wiki
           url: https://github.com/adityatelange/hugo-PaperMod/wiki/
@@ -97,10 +97,10 @@ languages:
           url: posts/
           weight: 1
         - name: "归档"
-          url: archives/
+          url: /archives/
           weight: 2
         - name: "搜索"
-          url: search/
+          url: /search/
           weight: 3
         - name: "标签"
           url: tags/
