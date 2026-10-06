@@ -1,0 +1,37 @@
+{{- /* Override of themes/PaperMod/layouts/partials/post_meta.html (pinned 7d061d5).
+       Only change: appends the post's language as a chip, picked out of its tags by
+       intersecting with site.Params.languageTags. Rendered in list entries, archive
+       entries and single pages, since all three call this partial. */ -}}
+{{- $scratch := newScratch }}
+
+{{- if not .Date.IsZero -}}
+{{- $scratch.Add "meta" (slice (printf "<span title='%s'>%s</span>" (.Date) (.Date | time.Format (default ":date_long" site.Params.DateFormat)))) }}
+{{- end }}
+
+{{- if (.Param "ShowReadingTime") -}}
+{{- $scratch.Add "meta" (slice (printf "<span>%s</span>" (i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime)))) }}
+{{- end }}
+
+{{- if (.Param "ShowWordCount") -}}
+{{- $scratch.Add "meta" (slice (printf "<span>%s</span>" (i18n "words" .WordCount | default (printf "%d words" .WordCount)))) }}
+{{- end }}
+
+{{- if not (.Param "hideAuthor") -}}
+{{- with (partial "author.html" .) }}
+{{- $scratch.Add "meta" (slice (printf "<span>%s</span>" .)) }}
+{{- end }}
+{{- end }}
+
+{{- $language := "" }}
+{{- range .Params.tags }}
+{{- if in (site.Params.languageTags | default slice) . }}
+{{- $language = . }}
+{{- end }}
+{{- end }}
+{{- if $language }}
+{{- $scratch.Add "meta" (slice (printf "<span class='post-language'>%s</span>" $language)) }}
+{{- end }}
+
+{{- with ($scratch.Get "meta") }}
+{{- delimit . "&nbsp;·&nbsp;" | safeHTML -}}
+{{- end -}}

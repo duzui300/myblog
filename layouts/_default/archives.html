@@ -28,11 +28,9 @@
 </header>
 
 {{- $pages := slice }}
-{{- range site.Sites }}
-{{- range .RegularPages }}
+{{- range site.RegularPages }}
 {{- if and (ne .Layout `archives`) (ne .Layout `search`) }}
 {{- $pages = $pages | append . }}
-{{- end }}
 {{- end }}
 {{- end }}
 
@@ -71,7 +69,6 @@
         </h3>
         <div class="archive-meta">
           {{- partial "post_meta.html" . -}}
-          &nbsp;·&nbsp;{{ .Lang | upper }}
         </div>
         <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
       </div>

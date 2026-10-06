@@ -21,108 +21,31 @@ pagination:
   disableAliases: false
   pagerSize: 5
 
-languages:
-  en:
-    languageName: "English"
-    weight: 1
-    taxonomies:
-      category: categories
-      tag: tags
-      series: series
-    menu:
-      main:
-        - name: Archive
-          url: archives
-          weight: 5
-        - name: Search
-          url: search/
-          weight: 10
-        - name: Tags
-          url: tags/
-          weight: 10
-        - name: WiKi
-          url: https://github.com/adityatelange/hugo-PaperMod/wiki/
+# One site, one URL tree. Language is not a site structure — every post lives in /posts/
+# and carries a language tag (中文 / 日本語 / English), so /tags/中文/ is the per-language
+# view. Adding a language means writing a post and tagging it, not building a new tree.
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
 
-  ja:
-    languageName: "日本語"
-    weight: 2
-    title: Duzui'sブログ
-    taxonomies:
-      category: カテゴリ
-      tag: タグ
-      series: シリーズ
-    menu:
-      main:
-        - name: "ブログ"
-          url: posts/
-          weight: 1
-        - name: アーカイブ
-          url: /archives/
-          weight: 2
-        - name: タグ
-          url: tags/
-          weight: 3
-        - name: 検索
-          url: /search/
-          weight: 4
-        - name: Wiki
-          url: https://github.com/adityatelange/hugo-PaperMod/wiki/
-    params:
-      languageAltTitle: Japanese
-      # 这里放日语专属的PaperMod参数覆盖（比如描述、按钮等）
-      profileMode:
-        enabled: true
-        title: プロフィール
-        subtitle: "Duzuiだよ"
-        imageUrl: "/images/myicon.jpg"
-        imageTitle: "アイコン"
-        imageWidth: 120
-        imageHeight: 120
-        buttons:
-          - name: ブログ
-            url: posts/
-
-
-  zh-hans:
-    languageName: "中文"
-    weight: 3
-    title: Duzui的博客
-    taxonomies:
-      category: 分类
-      tag: 标签
-      series: 系列
-    menu:
-      main:
-        - name: "博客"
-          url: posts/
-          weight: 1
-        - name: "归档"
-          url: /archives/
-          weight: 2
-        - name: "搜索"
-          url: /search/
-          weight: 3
-        - name: "标签"
-          url: tags/
-          weight: 4
-        - name: Wiki
-          url: https://github.com/adityatelange/hugo-PaperMod/wiki/
-    params:
-      languageAltTitle: Chinese
-      # 这里放中文专属的PaperMod参数覆盖
-      profileMode:
-        enabled: true
-        title: 欢迎
-        subtitle: "Duzui"
-        imageUrl: "/images/myicon.jpg"
-        imageTitle: "我的头像"
-        imageWidth: 120
-        imageHeight: 120
-        buttons:
-          - name: 博客
-            url: posts/
-
-
+menu:
+  main:
+    - name: Posts
+      url: posts/
+      weight: 1
+    - name: Archive
+      url: archives/
+      weight: 2
+    - name: Tags
+      url: tags/
+      weight: 3
+    - name: Search
+      url: search/
+      weight: 4
+    - name: WiKi
+      url: https://github.com/adityatelange/hugo-PaperMod/wiki/
+      weight: 5
 
 outputs:
   home:
@@ -141,7 +64,9 @@ params:
   ShowShareButtons: true
   ShowReadingTime: true
   # disableSpecial1stPost: true
-  displayFullLangName: true
+  # Tags that denote a language, rendered as a chip by partials/post_meta.html. A language
+  # tag missing from this list still filters correctly on /tags/, it just shows no chip.
+  languageTags: ["English", "中文", "日本語"]
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
