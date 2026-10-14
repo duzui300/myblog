@@ -35,6 +35,8 @@ ShowToc: false
 
 ## English
 
+*translated by Gemini*
+
 Modern work feels genuinely terrifying. There has long been a narrative that people detached from production—like shut-ins or students—only engage in keyboard politics or care about international affairs and social crises because they have "nothing better to do," and that they are overly idealistic simply because they haven't stepped into society to take its beatings. While I never agreed with that view, I didn't feel it particularly acutely either.
 
 Recently, however, as I've been swallowed up by interview rounds and internship hunting, I noticed a creeping numbness when reading about tragedies in underdeveloped nations and broader social crises. A thought quietly surfaces: What does this have to do with me? I have my own battles to fight. Work has always been legitimized under the banner of "socialization." On the one hand, it does integrate individuals into productive social labor, forging new ties between the person and their country, community, employer, family, and immediate circle. Yet these ties are inherently localized. Paradoxically, by chaining us to workplace duties and personal interests, it weakens—or even severs—a much broader, more expansive connection: our concern for universal social struggles and a transnational sense of shared human solidarity.
@@ -56,6 +58,8 @@ I once lived in those copy-pasted residential high-rises in Beijing and Nantong.
 It seems so many of my recent thoughts circle back to critiques of modernity and capitalism. I've stockpiled a massive reading list again—truly a blessing and a curse. 🫤
 
 ## 日本語
+
+*Geminiによる翻訳*
 
 現代の「労働」というものの恐ろしさを痛感している。「引きこもりや学生のような（生産現場から離れた）非労働者がネット上で政治を論じたり、国際情勢や社会問題に関心を寄せたりするのは、単に暇を持て余しているからであり、社会に出てその厳しさに揉まれていないから理想論ばかり語るのだ」という言説がずっとある。自分も同意してはいなかったが、これまではそこまで切実には実感していなかった。
 
