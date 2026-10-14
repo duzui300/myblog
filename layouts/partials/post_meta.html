@@ -1,5 +1,5 @@
 {{- /* Override of themes/PaperMod/layouts/partials/post_meta.html (pinned 7d061d5).
-       Only change: appends the post's language as a chip, picked out of its tags by
+       Only change: appends the post's language(s) as chips, picked out of its tags by
        intersecting with site.Params.languageTags. Rendered in list entries, archive
        entries and single pages, since all three call this partial. */ -}}
 {{- $scratch := newScratch }}
@@ -22,14 +22,14 @@
 {{- end }}
 {{- end }}
 
-{{- $language := "" }}
-{{- range .Params.tags }}
-{{- if in (site.Params.languageTags | default slice) . }}
-{{- $language = . }}
+{{- /* Walk the configured list rather than the post's own tags, so chips come out in a
+       stable order, and add one per match — a single page can carry several languages at
+       once (one post holding its own translations). */ -}}
+{{- $tags := .Params.tags | default slice }}
+{{- range (site.Params.languageTags | default slice) }}
+{{- if in $tags . }}
+{{- $scratch.Add "meta" (slice (printf "<span class='post-language'>%s</span>" .)) }}
 {{- end }}
-{{- end }}
-{{- if $language }}
-{{- $scratch.Add "meta" (slice (printf "<span class='post-language'>%s</span>" $language)) }}
 {{- end }}
 
 {{- with ($scratch.Get "meta") }}
