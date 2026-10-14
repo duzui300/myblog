@@ -28,6 +28,16 @@ Renamed the post during review: it was created as `一点迷思.md` (title `一�
 to `some-random-thoughts.md` with an English title. Free at this point — nothing had been
 published, so no redirect stub was needed.
 
+**Added the 图一 screenshot** (`1e873ca`, follow-up) at the top of the post —
+`static/images/1in8b.png`, 1268×2756, in a `<figure>` whose caption names it 图一 / Figure 1,
+since the text refers to it by number in all three languages. Sits above the index line, so
+at content width it renders ~1520px tall and pushes the index down a scroll. Raw HTML passes
+through because `markup.goldmark.renderer.unsafe` is `true`.
+
+**Credited the translations** (`ad8f49c`, follow-up): an italic `translated by Gemini` opens
+the English section, `Geminiによる翻訳` the Japanese one. The Chinese section is the original
+and gets neither.
+
 **Verified** locally: `hugo --gc --minify --cleanDestinationDir` clean; the index anchors
 resolve (`id=中文` / `id=english` / `id=日本語`); chips correct on the single page, `/posts/`
 and `/archives/`, with no regression on the single-language posts; `/tags/中文/` 4→5,

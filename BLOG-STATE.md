@@ -74,7 +74,10 @@ shows no chip. So the list is cosmetic, not load-bearing.
 
 `some-random-thoughts.md` is the odd one out: a single post holding its own Chinese, English
 and Japanese text, with an `索引 / Index` line at the top linking to the three `##` sections.
-It carries all three language tags so it surfaces in all three language views.
+It carries all three language tags so it surfaces in all three language views. A `<figure>`
+above the index carries the screenshot the text refers to as 图一 (`static/images/1in8b.png`),
+and the two translated sections open with an italic credit — `translated by Gemini` and
+`Geminiによる翻訳` — since the Chinese section is the original.
 
 `random-thoughts-1.md` is still `draft: true`, so it appears nowhere on the live site.
 
@@ -162,5 +165,11 @@ Things that cost real time here, so they don't cost it twice:
 - `random-thoughts-1.md` is still `draft: true`.
 - A stale `public/` copy from before the gitignore may still be sitting on disk. Harmless —
   it's ignored, and CI builds fresh.
-- `some-random-thoughts.md` references 图一 / "the first image" but no image is attached; the
-  original text was preserved verbatim, so the reference dangles.
+- **`some-random-thoughts.md` has a junk `og:description`.** Hugo derives its auto summary
+  from the opening content and PaperMod feeds that to `og:description`, so link previews read
+  `图一 / Figure 1 索引 / Index: 中文 · English · 日本語 中文 感觉现代...`. A `description:` in
+  that post's front matter fixes it. Any post that opens with a figure or nav line has the
+  same problem.
+- The same post's `索引` index sits below the screenshot, which at content width renders
+  ~1520px tall — so the language jump links are a scroll away. Deliberate (the image was
+  asked for "at the top"), but easy to swap if it annoys.
