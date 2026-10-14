@@ -6,6 +6,11 @@ tags: ["中文", "日本語", "English"]
 ShowToc: false
 ---
 
+<figure>
+<img src="/images/1in8b.png" alt="80億分の1 (1in8b.life) — 無料の人生シミュレーション">
+<figcaption><p>图一 / Figure 1</p></figcaption>
+</figure>
+
 索引 / Index: [中文](#中文) · [English](#english) · [日本語](#日本語)
 
 ## 中文
