@@ -1,5 +1,5 @@
 ---
-title: "出门随记"
+title: "出发前"
 date: 2024-09-15
 lang: 中文
 tags:
