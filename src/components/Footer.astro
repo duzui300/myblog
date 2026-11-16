@@ -1,0 +1,11 @@
+---
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="site-foot">
+  <div class="wrap">
+    <div>A personal archive / Est. {site.established} — {year}</div>
+    <div class="mid">{site.title} / {site.volume}</div>
+    <div class="end"><a href="/search/">Search</a> / <a href="/about/#colophon">Colophon</a></div>
+  </div>
+</footer>

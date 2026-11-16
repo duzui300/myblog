@@ -1,0 +1,15 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PageHead from '../components/PageHead.astro';
+---
+<MainLayout title="404">
+  <PageHead
+    kicker="404 / Not found"
+    title="404"
+    deck="The page you are looking for is not here. The archive is still open."
+    asideLines={['Lost', 'Return home']}
+  />
+  <div class="wrap section-body">
+    <a class="home-link" href="/">Return to the index</a>
+  </div>
+</MainLayout>

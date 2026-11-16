@@ -1,0 +1,67 @@
+---
+interface Props {
+  folio: string;
+  lang?: string;
+  tone?: string;
+}
+
+const { folio, lang, tone } = Astro.props;
+---
+<aside class={`running-folio tone-${tone ?? 'paper'}`} aria-hidden="true" data-running-folio>
+  <div class="wrap folio-grid">
+    <span class="folio-colophon">{folio}</span>
+    <span class="folio-chapter" lang={lang} data-folio-chapter>§ 01. Opening</span>
+    <span class="folio-metric" data-folio-metric>p. 01 · 0%</span>
+  </div>
+  <div class="folio-rule" data-folio-rule></div>
+</aside>
+
+<script>
+  const folio = document.querySelector<HTMLElement>('[data-running-folio]');
+  const chapter = document.querySelector<HTMLElement>('[data-folio-chapter]');
+  const metric = document.querySelector<HTMLElement>('[data-folio-metric]');
+  const rule = document.querySelector<HTMLElement>('[data-folio-rule]');
+  const article = document.querySelector<HTMLElement>('.entry-main');
+  const trigger = document.getElementById('entry-title');
+  const title = trigger?.textContent?.trim() ?? '';
+  const headings = Array.from(document.querySelectorAll<HTMLElement>('.prose h2, .prose h3'));
+  const openingLabel = title ? `§ 01. ${title}` : '§ 01. Opening';
+
+  function chapterLabel(text: string): string {
+    const numbered = text.match(/^\s*(\d+(?:\.\d+)?)\s*[./·:]\s*(.*)$/);
+    if (numbered) return `§ ${numbered[1].padStart(2, '0')}. ${numbered[2]}`;
+    return text.trim();
+  }
+
+  function update() {
+    if (!folio) return;
+    const active = trigger ? trigger.getBoundingClientRect().bottom < 8 : false;
+    folio.classList.toggle('active', active);
+
+    const mark = window.scrollY + 140;
+    let current = -1;
+    headings.forEach((heading, index) => {
+      if (heading.getBoundingClientRect().top + window.scrollY <= mark) current = index;
+    });
+    if (chapter) {
+      chapter.textContent =
+        current >= 0
+          ? chapterLabel(headings[current].textContent ?? '')
+          : openingLabel;
+    }
+
+    const rect = article?.getBoundingClientRect();
+    const total = rect ? Math.max(0, rect.height - window.innerHeight) : 0;
+    const value = total > 0 ? Math.min(1, Math.max(0, -rect!.top / total)) : 1;
+    const pages = Math.max(1, Math.ceil(document.documentElement.scrollHeight / window.innerHeight));
+    const page = Math.min(pages, Math.floor(window.scrollY / window.innerHeight) + 1);
+    if (metric) {
+      metric.textContent = `p. ${String(page).padStart(2, '0')} · ${Math.round(value * 100)}%`;
+    }
+    if (rule) rule.style.width = `${value * 100}%`;
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+</script>

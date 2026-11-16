@@ -1,0 +1,37 @@
+---
+import type { EntrySummary } from '../lib/content';
+import { formatDate, langCode } from '../lib/content';
+
+interface Props {
+  entries: EntrySummary[];
+}
+
+const { entries } = Astro.props;
+---
+{
+  entries.length > 0 ? (
+    <div class="entry-list">
+      {entries.map((entry) => (
+        <a class="entry-row" href={entry.href}>
+          <span class="entry-kind">{entry.category}</span>
+          <span class="entry-body">
+            <span class="entry-row-title" lang={langCode(entry.langs[0])}>{entry.title}</span>
+            <span class="entry-desc" lang={langCode(entry.langs[0])}>{entry.description}</span>
+          </span>
+          <span class="entry-meta">
+            {formatDate(entry.date)}
+            <br />
+            {entry.reading ?? entry.kind}
+          </span>
+          <span class="entry-langs">
+            {entry.langs.map((language) => (
+              <span class="lang-chip" lang={langCode(language)}>{language}</span>
+            ))}
+          </span>
+        </a>
+      ))}
+    </div>
+  ) : (
+    <p class="section-note">Nothing here yet.</p>
+  )
+}

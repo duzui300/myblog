@@ -1,0 +1,47 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import PageHead from '../../components/PageHead.astro';
+import CategoryList from '../../components/CategoryList.astro';
+import EntryList from '../../components/EntryList.astro';
+import { getSectionSummaries } from '../../lib/content';
+
+const [research, projects] = await Promise.all([
+  getSectionSummaries('research'),
+  getSectionSummaries('projects'),
+]);
+const entries = [...research, ...projects].sort((a, b) => b.date.getTime() - a.date.getTime());
+---
+<MainLayout
+  title="Work"
+  description="Theoretical investigations and research notes alongside the software systems, prototypes, and tools built to support them."
+>
+  <PageHead
+    kicker="02 Work / 02 categories"
+    title="Work"
+    deck="Theoretical investigations and research notes alongside the software systems, prototypes, and tools built to support them."
+    asideLines={[
+      `${entries.length} ${entries.length === 1 ? 'entry' : 'entries'}`,
+      'Research · Projects',
+      'The Work',
+    ]}
+    glyph="observatory"
+  />
+  <section class="group-page">
+    <div class="wrap">
+      <div class="group-head">
+        <p class="smallcaps">Categories</p>
+        <h2>Two kinds of work</h2>
+      </div>
+      <CategoryList group="Work" entries={entries} />
+      <div class="group-recent">
+        <div class="recent-head">
+          <div>
+            <p class="smallcaps">Recent / In this group</p>
+            <h2>Recently added</h2>
+          </div>
+        </div>
+        <EntryList entries={entries.slice(0, 4)} />
+      </div>
+    </div>
+  </section>
+</MainLayout>

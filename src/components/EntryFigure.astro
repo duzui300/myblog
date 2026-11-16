@@ -1,0 +1,20 @@
+---
+import ThermalCircle from './ThermalCircle.astro';
+import FoldedPlane from './FoldedPlane.astro';
+import DiglotFigure from './DiglotFigure.astro';
+import AnnotationFigure from './AnnotationFigure.astro';
+
+interface Props {
+  figure?: 'thermal' | 'folded' | 'diglot' | 'annotation';
+}
+
+const { figure = 'folded' } = Astro.props;
+const figures = {
+  thermal: ThermalCircle,
+  folded: FoldedPlane,
+  diglot: DiglotFigure,
+  annotation: AnnotationFigure,
+} as const;
+const Figure = figures[figure] ?? FoldedPlane;
+---
+<Figure />

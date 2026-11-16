@@ -1,0 +1,61 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import StarMap from '../components/StarMap.astro';
+import EntryList from '../components/EntryList.astro';
+import { getRecent } from '../lib/content';
+
+const recent = await getRecent(4);
+---
+<MainLayout title="A Catalogue of Curiosities">
+  <section class="home-hero" aria-labelledby="home-title">
+    <div class="wrap home-hero-grid">
+      <div class="hero-copy">
+        <p class="hero-imprint">Personal publication / Vol. I / 2026</p>
+        <h1 class="display-title" id="home-title">
+          <span>A Catalogue</span><span class="line-2">of Curiosities</span>
+        </h1>
+        <p class="epigraph">To understand the universe, and the place of humanity within it.</p>
+        <p class="hero-about">
+          I am Duzui, also known online as duzui9039 or duzuictx. I read and write across{' '}
+          <span lang="en">English</span>, <span lang="zh-Hans">普通话</span>, and{' '}
+          <span lang="ja">日本語</span>, while currently studying <span lang="es">español</span>. My
+          background began in physics before shifting toward computer science and intelligence. Alongside
+          building quiet software for reading and language study, this archive serves to trace what I come
+          to understand, and what remains unresolved.
+        </p>
+        <div class="hero-id-row">
+          <div class="hero-id-card">
+            <a class="hero-link" href="/about/">About the author</a>
+            <div class="hero-bookplate"><span class="mark">EX LIBRIS</span>Duzui / Vol. I</div>
+          </div>
+          <img
+            class="hero-avatar"
+            src="/images/avatar.jpg"
+            alt="Duzui avatar"
+            width="88"
+            height="88"
+            decoding="async"
+          />
+        </div>
+        <p class="hero-index-note">
+          The sky as a table of contents. Five fields. Hover or focus a star to read its entry.
+        </p>
+      </div>
+      <StarMap variant="hero" />
+    </div>
+  </section>
+
+  <section class="recent" aria-labelledby="recent-title">
+    <div class="wrap">
+      <div class="recent-head">
+        <div>
+          <p class="smallcaps">Recent / New in the archive</p>
+          <h2 id="recent-title">Recently added</h2>
+        </div>
+        <a class="recent-link" href="/search/">The archive</a>
+      </div>
+      <EntryList entries={recent} />
+      <p class="section-note">The archive is just beginning. New entries will appear here.</p>
+    </div>
+  </section>
+</MainLayout>

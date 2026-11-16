@@ -1,0 +1,138 @@
+---
+const widthCycle = [24, 16, 32, 20, 14, 28, 18, 34, 16, 26, 22, 30];
+const lineSpecs = [
+  { y: 100, count: 10, es: [3, 4] },
+  { y: 122, count: 11, es: [6, 7] },
+  { y: 144, count: 9, es: [2, 3] },
+  { y: 166, count: 12, es: [] },
+  { y: 188, count: 10, es: [4, 5] },
+  { y: 210, count: 11, es: [7] },
+  { y: 232, count: 8, es: [] },
+];
+
+let cycleIndex = 0;
+const lines = lineSpecs.map(({ y, count, es }) => {
+  const parts: { x: number; w: number; es: boolean }[] = [];
+  let x = 66;
+  for (let index = 0; index < count; index += 1) {
+    const w = widthCycle[cycleIndex % widthCycle.length];
+    parts.push({ x, w, es: es.includes(index) });
+    x += w + 8;
+    cycleIndex += 1;
+  }
+  return { y, parts };
+});
+
+const glossRuns = lines.flatMap(({ y, parts }) => {
+  const runs: { x1: number; x2: number; y: number }[] = [];
+  let run: { x1: number; x2: number; y: number } | null = null;
+  for (const part of parts) {
+    if (part.es) {
+      if (!run) run = { x1: part.x, x2: part.x + part.w, y };
+      else run.x2 = part.x + part.w;
+    } else if (run) {
+      runs.push(run);
+      run = null;
+    }
+  }
+  if (run) runs.push(run);
+  return runs;
+});
+---
+<figure class="mode-figure">
+  <svg viewBox="0 0 520 380" role="img" aria-labelledby="diglot-title diglot-desc">
+    <title id="diglot-title">The diglot weave: Spanish phrases set into English prose</title>
+    <desc id="diglot-desc">
+      A page of ruled text lines. A few short runs of Spanish are picked out in oxide, each under a
+      small gloss bracket, with a coverage bar below.
+    </desc>
+    <defs>
+      <clipPath id="diglot-clip">
+        <rect x="18" y="18" width="484" height="344" />
+      </clipPath>
+      <pattern id="diglot-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <line x1="0" y1="0" x2="0" y2="5" stroke="var(--brass)" stroke-width=".8" opacity=".7" />
+      </pattern>
+    </defs>
+
+    <g stroke="rgba(243,239,229,.28)" fill="none" stroke-width="1">
+      <rect x="18" y="18" width="484" height="344" />
+      <line x1="18" y1="32" x2="32" y2="32" /><line x1="18" y1="32" x2="18" y2="46" />
+      <line x1="502" y1="32" x2="488" y2="32" /><line x1="502" y1="32" x2="502" y2="46" />
+      <line x1="18" y1="348" x2="32" y2="348" /><line x1="18" y1="348" x2="18" y2="334" />
+      <line x1="502" y1="348" x2="488" y2="348" /><line x1="502" y1="348" x2="502" y2="334" />
+    </g>
+
+    <g stroke="rgba(243,239,229,.05)" stroke-width=".7" clip-path="url(#diglot-clip)">
+      {Array.from({ length: 9 }, (_, index) => (
+        <line x1={40 + index * 56} y1={68} x2={104 + index * 56} y2={288} />
+      ))}
+      {Array.from({ length: 9 }, (_, index) => (
+        <line x1={40 + index * 56} y1={288} x2={104 + index * 56} y2={68} />
+      ))}
+    </g>
+
+    <g stroke="var(--brass)" stroke-width=".8" opacity=".55">
+      <line x1="56" y1="86" x2="56" y2="248" />
+      <line x1="56" y1="86" x2="466" y2="86" />
+      <line x1="56" y1="248" x2="466" y2="248" />
+    </g>
+
+    <g stroke-linecap="butt">
+      {
+        lines.map(({ y, parts }) => (
+          <g>
+            {parts.map((part) => (
+              <line
+                x1={part.x}
+                y1={y}
+                x2={part.x + part.w}
+                y2={y}
+                stroke={part.es ? 'var(--oxide)' : 'rgba(243,239,229,.34)'}
+                stroke-width={part.es ? 4.6 : 4}
+              />
+            ))}
+          </g>
+        ))
+      }
+    </g>
+
+    <g stroke="var(--brass)" fill="none" stroke-width=".7" opacity=".8">
+      {
+        glossRuns.map((run) => (
+          <>
+            <path d={`M ${run.x1} ${run.y - 11} V ${run.y - 15} H ${run.x2} V ${run.y - 11}`} />
+            <circle cx={(run.x1 + run.x2) / 2} cy={run.y - 15} r="1.1" fill="var(--brass)" stroke="none" />
+          </>
+        ))
+      }
+    </g>
+
+    <g font-family="'IBM Plex Mono', monospace" font-size="8.5" letter-spacing=".08em">
+      <text x="56" y="62" fill="rgba(243,239,229,.6)">THE DIGLOT WEAVE</text>
+      <text x="466" y="62" text-anchor="end">
+        <tspan fill="rgba(243,239,229,.55)">EN</tspan>
+        <tspan fill="rgba(243,239,229,.35)"> / </tspan>
+        <tspan fill="var(--oxide)">ES</tspan>
+      </text>
+      <text x="56" y="286" fill="rgba(243,239,229,.5)">COVERAGE</text>
+      <text x="298" y="302" fill="var(--brass)">72%</text>
+    </g>
+
+    <g stroke="rgba(243,239,229,.35)" fill="none" stroke-width=".8">
+      <rect x="56" y="294" width="220" height="7" />
+      <line x1="111" y1="294" x2="111" y2="301" />
+      <line x1="166" y1="294" x2="166" y2="301" />
+      <line x1="221" y1="294" x2="221" y2="301" />
+    </g>
+    <rect x="56" y="294" width="158" height="7" fill="url(#diglot-hatch)" opacity=".8" />
+
+    <g font-family="'IBM Plex Mono', monospace" font-size="8.5" fill="rgba(243,239,229,.5)" letter-spacing=".08em">
+      <text x="466" y="334" text-anchor="end">FIG. 01 / THE WEAVE</text>
+    </g>
+  </svg>
+  <figcaption class="mode-caption">
+    Spanish phrases enter an English sentence with a short gloss. The weave thickens as the reader
+    advances, and the page keeps its momentum.
+  </figcaption>
+</figure>

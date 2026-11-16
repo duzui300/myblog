@@ -1,0 +1,16 @@
+---
+import SectionLayout from '../../layouts/SectionLayout.astro';
+import EntryList from '../../components/EntryList.astro';
+import SpectrumFigure from '../../components/SpectrumFigure.astro';
+import { getSectionSummaries } from '../../lib/content';
+
+const entries = await getSectionSummaries('research');
+---
+<SectionLayout
+  sectionKey="research"
+  entries={entries}
+  note="The thesis abstract and its working note are kept as one entry. New investigations will appear here."
+>
+  <SpectrumFigure slot="hero" />
+  <EntryList entries={entries} />
+</SectionLayout>

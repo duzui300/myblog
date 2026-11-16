@@ -1,0 +1,37 @@
+---
+import { render } from 'astro:content';
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import EntryFigure from '../../components/EntryFigure.astro';
+import { getAdjacent, getProjectEntries } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const entries = await getProjectEntries();
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const { prev, next } = await getAdjacent('projects', entry.id);
+const meta = [
+  { label: 'Year', value: entry.data.year },
+  { label: 'Status', value: entry.data.status },
+  ...(entry.data.role ? [{ label: 'Role', value: entry.data.role }] : []),
+  ...(entry.data.stack ? [{ label: 'Stack', value: entry.data.stack }] : []),
+];
+const actions = entry.data.link
+  ? [{ label: 'Visit the repository', href: entry.data.link }]
+  : [];
+---
+<ContentLayout
+  entry={entry}
+  sectionKey="projects"
+  kind="Case"
+  headings={headings}
+  prev={prev}
+  next={next}
+  meta={meta}
+  actions={actions}
+>
+  <EntryFigure slot="hero" figure={entry.data.figure} />
+  <Content />
+</ContentLayout>

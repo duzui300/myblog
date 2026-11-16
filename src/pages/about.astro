@@ -1,0 +1,125 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PageHead from '../components/PageHead.astro';
+import { site } from '../data/site';
+import logoMark from '../assets/logo.svg?raw';
+---
+<MainLayout
+  title="About"
+  description="Personal background, language learning turning points, structural overview of the archive, and the typographic design principles of this publication."
+>
+  <PageHead
+    kicker="About / 03"
+    title="About"
+    deck="The author, the method, and the modes of this publication."
+    asideLines={['The author', 'Est. 2024', 'Vol. I / 2026']}
+    glyph="about"
+  />
+
+  <section class="about" aria-labelledby="about-title">
+    <div class="wrap about-grid">
+      <div class="about-main">
+        <h2 class="about-title" id="about-title">A record of what I am trying to understand</h2>
+
+        <p class="about-copy">
+          I am Duzui, also known as duzui9039 or duzuictx. I read, write, and think across three
+          languages—<span lang="en">English</span>, <span lang="zh-Hans">普通话</span>, and{' '}
+          <span lang="ja">日本語</span>—and am currently exploring <span lang="es">español</span>.
+          I began my university studies in theoretical physics, which trained me to value mathematical
+          rigor and first principles. Looking to connect abstract models with tangible systems, I spent
+          several years independently studying computer science and artificial intelligence, eventually
+          securing admission to graduate school in computer science. Outside of computation, my long-term
+          interests center on linguistics, classical texts, and building quiet software tools for reading
+          and study.
+        </p>
+
+        <p class="about-copy">
+          My experience with language taught me to distrust purely mechanical practice. When standard drills
+          and grammar rulebooks failed to turn into genuine communication, I stepped away from test prep and
+          began engaging with living material: reading original non-fiction, digging through shelves in
+          secondhand bookstores, and having unscripted conversations with native speakers in VRChat. Later,
+          living in Japan for half a year as an exchange student reinforced that language only becomes real
+          when it is lived daily rather than studied for an exam. More importantly, speaking directly with
+          concrete individuals quietly dissolved the abstract labels and distant assumptions I had once held.
+        </p>
+
+        <p class="about-copy">
+          This site is organized into four separate sections: Notes, Thoughts, Research, and Projects.
+          Notes hold reading fragments, citations, and working records. Thoughts gather personal reflections
+          and cultural essays that are allowed to remain unfinished and imperfect. Research contains formal
+          notes and technical writing in physics and computation. Projects document the small tools I build
+          for myself—such as reading workstations for foreign and classical languages—crafted around personal
+          study habits rather than commercial metrics. Keeping them distinct keeps the record honest: study
+          notes do not pretend to be polished essays, and private tools do not pretend to be commercial
+          products.
+        </p>
+      </div>
+      <aside class="about-side" id="colophon">
+        <figure class="logo-plate" role="img" aria-label="Duzui, Cosmo in Me" set:html={logoMark}></figure>
+        <p class="colophon">
+          <strong>Colophon</strong><br />
+          Set in Cormorant Garamond, EB Garamond, Source Serif 4, IBM Plex Sans, and IBM Plex Mono. Built
+          with Astro. The design sources are classical humanism, mathematical geometry, astronomical
+          romanticism, and modern science fiction.
+        </p>
+        <div class="elsewhere">
+          <p class="smallcaps">Elsewhere</p>
+          <ul>
+            {
+              site.social.map((item) => (
+                <li>
+                  <a href={item.href} target="_blank" rel="noreferrer">
+                    {item.label}
+                    <span>↗</span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="modes-legend">
+          <p class="smallcaps">A note on the modes</p>
+          <div class="mode-row">
+            <svg class="mode-glyph" viewBox="0 0 16 16" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="8" cy="8" r="5.5" /></svg>
+            <div><span class="mode-name">The Library</span><span class="mode-desc">Warm paper, serif, editorial space. For notes, thoughts, and reading.</span></div>
+          </div>
+          <div class="mode-row">
+            <svg class="mode-glyph" viewBox="0 0 16 16" fill="none" stroke="currentColor" aria-hidden="true"><ellipse cx="8" cy="8" rx="6.5" ry="4" /></svg>
+            <div><span class="mode-name">The Observatory</span><span class="mode-desc">Deep blue, thin geometry, coordinates. For research and formal ideas.</span></div>
+          </div>
+          <div class="mode-row">
+            <svg class="mode-glyph" viewBox="0 0 16 16" fill="none" stroke="currentColor" aria-hidden="true"><path d="M8 2 L14 13 L2 13 Z" /></svg>
+            <div><span class="mode-name">The Frontier</span><span class="mode-desc">Ink, abstraction, asymmetry. For projects and experiments.</span></div>
+          </div>
+        </div>
+        <figure class="about-plate">
+          <img
+            src="/images/about-vrchat.webp"
+            alt="A space station orbiting above Earth"
+            width="1200"
+            height="675"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      </aside>
+    </div>
+  </section>
+
+  <section class="timeline" aria-labelledby="timeline-title">
+    <div class="wrap">
+      <div class="timeline-head">
+        <p class="smallcaps">Timeline / A short history of the archive</p>
+        <h2 id="timeline-title">Six dates, one record</h2>
+      </div>
+      <ol class="timeline-list">
+        <li class="timeline-item"><div class="year">2024</div><div class="event">First personal blog</div><div class="event-note">Started an initial blog to document reading notes, language learning, and technical workflows.</div></li>
+        <li class="timeline-item"><div class="year">2024</div><div class="event">Exchange in Japan</div><div class="event-note">Spent half a year living in Japan, experiencing academic research environments and cross-cultural communication.</div></li>
+        <li class="timeline-item"><div class="year">2025</div><div class="event">Physics senior thesis</div><div class="event-note">Formulated an extension of the Euclidean path integral for thermofield double states in curved spacetime.</div></li>
+        <li class="timeline-item"><div class="year">2026</div><div class="event">Graduate studies admission</div><div class="event-note">Self-studied computer science and artificial intelligence, securing admission to graduate studies in Japan.</div></li>
+        <li class="timeline-item"><div class="year">2026</div><div class="event">Started building things</div><div class="event-note">Began Diglota and Tablinum, two language tools made for my own reading and study.</div></li>
+        <li class="timeline-item"><div class="year">2026</div><div class="event">Catalogue of Curiosities</div><div class="event-note">Launched this publication in Astro with bespoke typographic modes and constellation maps.</div></li>
+      </ol>
+    </div>
+  </section>
+</MainLayout>

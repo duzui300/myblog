@@ -1,0 +1,29 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import PageHead from '../../components/PageHead.astro';
+import EntryList from '../../components/EntryList.astro';
+import { getTags, textLang } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const tags = await getTags();
+  return tags.map(({ tag, entries }) => ({ params: { tag }, props: { tag, entries } }));
+}
+
+const { tag, entries } = Astro.props;
+const label = decodeURIComponent(Astro.params.tag ?? tag);
+const count = entries.length;
+const entryLabel = count === 1 ? 'entry' : 'entries';
+---
+<MainLayout title={`Tag / ${label}`} description={`Entries tagged ${label}.`}>
+  <PageHead
+    kicker={`Tag / ${count} ${entryLabel}`}
+    title={label}
+    deck={`Entries tagged ${label}, across the archive.`}
+    asideLines={[`${count} ${entryLabel}`, 'All sections', 'Tag']}
+    lang={textLang(label)}
+  />
+  <div class="wrap section-body">
+    <EntryList entries={entries} />
+    <p class="section-note"><a class="recent-link" href="/search/">The archive</a></p>
+  </div>
+</MainLayout>

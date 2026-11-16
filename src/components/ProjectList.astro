@@ -1,0 +1,30 @@
+---
+import { langCode, type EntrySummary } from '../lib/content';
+
+interface Props {
+  entries: EntrySummary[];
+}
+
+const { entries } = Astro.props;
+---
+<div class="project-index">
+  {
+    entries.map((entry, index) => (
+      <a class="project-row" href={entry.href}>
+        <span class="project-no">{String(index + 1).padStart(2, '0')}</span>
+        <span class="project-body">
+          <span class="project-name" lang={langCode(entry.langs[0])}>{entry.title}</span>
+          <span class="project-note" lang={langCode(entry.langs[0])}>{entry.description}</span>
+        </span>
+        <span class="project-status">
+          {entry.year ?? ''}
+          <br />
+          {(entry.status ?? '').toUpperCase()}
+        </span>
+        <span class="project-arrow">
+          {entry.status === 'Archived' ? 'Archive' : 'Enter'} →
+        </span>
+      </a>
+    ))
+  }
+</div>

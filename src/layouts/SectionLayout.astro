@@ -1,0 +1,49 @@
+---
+import MainLayout from './MainLayout.astro';
+import ModeBand from '../components/ModeBand.astro';
+import TagBar from '../components/TagBar.astro';
+import type { ContentKey, EntrySummary } from '../lib/content';
+import { sections } from '../data/sections';
+
+interface Props {
+  sectionKey: ContentKey;
+  entries: EntrySummary[];
+  showFilters?: boolean;
+  note?: string;
+}
+
+const { sectionKey, entries, showFilters = false, note } = Astro.props;
+const section = sections.find((item) => item.key === sectionKey)!;
+const count = entries.length;
+const base = sectionKey === 'projects' ? 'case' : 'entry';
+const label = count === 1 ? base : `${base}s`;
+const countText = `${String(count).padStart(2, '0')} ${label}`;
+const languages = [...new Set(entries.flatMap((entry) => entry.langs))];
+const aside = [countText, languages.join(' · ') || 'The archive', section.mode];
+const kicker = `${section.groupLabel} / ${section.title} / ${countText}`;
+const bandMode =
+  section.modeKey === 'observatory'
+    ? 'observatory'
+    : section.modeKey === 'frontier'
+      ? 'frontier'
+      : 'library';
+const bandTone = sectionKey === 'thoughts' ? 'warm' : undefined;
+---
+<MainLayout title={section.title} description={section.description}>
+  <ModeBand
+    mode={bandMode}
+    tone={bandTone}
+    kicker={kicker}
+    title={section.title}
+    deck={section.description}
+    metaLines={aside}
+    titleId="section-title"
+  >
+    <slot name="hero" />
+  </ModeBand>
+  <div class="wrap section-body">
+    {showFilters && entries.length > 1 && <TagBar languages={languages} allHref={section.href} />}
+    <slot />
+    {note && <p class="section-note">{note}</p>}
+  </div>
+</MainLayout>

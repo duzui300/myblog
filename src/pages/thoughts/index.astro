@@ -1,0 +1,17 @@
+---
+import SectionLayout from '../../layouts/SectionLayout.astro';
+import EntryList from '../../components/EntryList.astro';
+import SpiralFigure from '../../components/SpiralFigure.astro';
+import { getSectionSummaries } from '../../lib/content';
+
+const entries = await getSectionSummaries('thoughts');
+---
+<SectionLayout
+  sectionKey="thoughts"
+  entries={entries}
+  showFilters
+  note="Daily reflections and longer philosophical thoughts will appear here."
+>
+  <SpiralFigure slot="hero" />
+  <EntryList entries={entries} />
+</SectionLayout>

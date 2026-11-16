@@ -1,0 +1,335 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PageHead from '../components/PageHead.astro';
+import {
+  formatDate,
+  getCategoryCounts,
+  getPopularTags,
+  getSearchEntries,
+  langCode,
+  textLang,
+  type SearchEntry,
+} from '../lib/content';
+import { sections, navGroups } from '../data/sections';
+
+const entries = await getSearchEntries();
+const popularTags = await getPopularTags(8);
+const counts = await getCategoryCounts();
+const browseGroups = navGroups.map((group) => ({
+  ...group,
+  items: group.keys.map((key) => {
+    const section = sections.find((item) => item.key === key)!;
+    return { key, title: section.title, href: section.href, count: counts[key] };
+  }),
+}));
+
+const monthNames = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+type MonthGroup = { key: string; label: string; count: number; entries: SearchEntry[] };
+type YearGroup = { year: string; count: number; months: MonthGroup[] };
+
+const yearMap = new Map<string, Map<string, SearchEntry[]>>();
+for (const entry of entries) {
+  const date = new Date(entry.date);
+  const year = String(date.getFullYear());
+  const month = String(date.getMonth());
+  if (!yearMap.has(year)) yearMap.set(year, new Map());
+  const months = yearMap.get(year)!;
+  if (!months.has(month)) months.set(month, []);
+  months.get(month)!.push(entry);
+}
+
+const archive: YearGroup[] = [...yearMap.entries()]
+  .sort((a, b) => Number(b[0]) - Number(a[0]))
+  .map(([year, months]) => {
+    const monthGroups = [...months.entries()]
+      .sort((a, b) => Number(b[0]) - Number(a[0]))
+      .map(([month, list]) => ({
+        key: `${year}-${month}`,
+        label: monthNames[Number(month)],
+        count: list.length,
+        entries: [...list].sort((a, b) => b.date.localeCompare(a.date)),
+      }));
+    return {
+      year,
+      count: monthGroups.reduce((sum, month) => sum + month.count, 0),
+      months: monthGroups,
+    };
+  });
+---
+<MainLayout
+  title="Search"
+  description="Unified client-side search index covering notes, reflective essays, physics research, and software projects across the complete archive."
+>
+  <PageHead
+    kicker="Search / The archive"
+    title="Explore the Archive"
+    deck="A unified index querying titles, descriptions, tags, and full text across the entire archive."
+    asideLines={[`${entries.length} entries`, 'All categories', 'Unified index']}
+    glyph="library"
+  />
+
+  <section class="search-page">
+    <div class="wrap search-layout">
+      <div class="search-main">
+        <form class="search-form" role="search" onsubmit="return false">
+          <label class="sr-only" for="archive-search">Search the archive</label>
+          <input
+            id="archive-search"
+            type="search"
+            placeholder="Search notes, thoughts, research, projects..."
+            autocomplete="off"
+            aria-controls="search-results"
+          />
+          <p class="search-status" data-search-status role="status" aria-live="polite">
+            {entries.length} entries indexed. Type to search.
+          </p>
+        </form>
+        <div class="search-results" id="search-results" data-search-results></div>
+        <noscript>
+          <p class="section-note">
+            Search needs JavaScript. The chronological archive below lists every entry.
+          </p>
+        </noscript>
+      </div>
+      <aside class="search-side" aria-label="Browse the archive">
+        <section class="search-block">
+          <p class="smallcaps">Browse by category</p>
+          <div class="category-groups">
+            {
+              browseGroups.map((group) => (
+                <div class="category-group">
+                  <p class="category-group-label">
+                    {group.no} {group.title}
+                  </p>
+                  <ul class="category-list">
+                    {group.items.map((item) => (
+                      <li>
+                        <a href={item.href}>
+                          <span>{item.title}</span>
+                          <span class="count">{String(item.count).padStart(2, '0')}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+        <section class="search-block">
+          <p class="smallcaps">Popular tags</p>
+          <div class="tag-cloud">
+            {
+              popularTags.map(({ tag, entries: tagged }) => (
+                <a href={`/tags/${encodeURIComponent(tag)}/`} lang={textLang(tag)}>
+                  {tag}
+                  <span>{tagged.length}</span>
+                </a>
+              ))
+            }
+          </div>
+        </section>
+      </aside>
+    </div>
+
+    <div class="wrap archive-block">
+      <div class="archive-head">
+        <p class="smallcaps">Chronological archive</p>
+        <h2>Every entry, by month</h2>
+      </div>
+      <div class="archive">
+        {
+          archive.map((year) => (
+            <section class="archive-year">
+              <div class="archive-year-head">
+                <h3>{year.year}</h3>
+                <span>
+                  {year.count} {year.count === 1 ? 'entry' : 'entries'}
+                </span>
+              </div>
+              <div class="archive-months">
+                {year.months.map((month) => (
+                  <details class="archive-month">
+                    <summary>
+                      <span>{month.label}</span>
+                      <span class="count">{month.count}</span>
+                    </summary>
+                    <ul>
+                      {month.entries.map((entry) => (
+                        <li>
+                          <a href={entry.href}>
+                            <span class="archive-cat">{entry.category}</span>
+                            <span lang={langCode(entry.langs[0])}>{entry.title}</span>
+                            <time datetime={entry.date}>{formatDate(new Date(entry.date))}</time>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                ))}
+              </div>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<script>
+  import { normalizeSearchText } from '../lib/search-normalize';
+
+  type SearchItem = {
+    title: string;
+    href: string;
+    category: string;
+    group: string;
+    date: string;
+    langs: string[];
+    tags: string[];
+    description: string;
+    body: string;
+  };
+
+  const input = document.querySelector<HTMLInputElement>('#archive-search');
+  const results = document.querySelector<HTMLElement>('[data-search-results]');
+  const status = document.querySelector<HTMLElement>('[data-search-status]');
+  const base = import.meta.env.BASE_URL;
+  let entries: SearchItem[] = [];
+
+  const normalize = (value: string) => normalizeSearchText(value);
+
+  function languageOf(langs: string[] | undefined): string {
+    const lang = langs?.[0];
+    if (lang === '日本語') return 'ja';
+    if (lang === '中文') return 'zh-Hans';
+    return 'en';
+  }
+
+  function run() {
+    if (!input || !results || !status) return;
+    const query = normalize(input.value.trim());
+    if (!query) {
+      results.replaceChildren();
+      status.textContent = `${entries.length} entries indexed. Type to search.`;
+      return;
+    }
+    const terms = query.split(/\s+/).filter(Boolean);
+    const matched = entries.filter((entry) => {
+      const haystack = normalize(
+        [
+          entry.title,
+          entry.description,
+          entry.category,
+          entry.group,
+          entry.langs.join(' '),
+          entry.tags.join(' '),
+          entry.body,
+        ].join(' '),
+      );
+      return terms.every((term) => haystack.includes(term));
+    });
+    status.textContent =
+      `${matched.length} ${matched.length === 1 ? 'result' : 'results'} for “${input.value.trim()}”` +
+      (matched.length > 30 ? ' · showing first 30' : '');
+    results.replaceChildren();
+    for (const entry of matched.slice(0, 30)) {
+      const link = document.createElement('a');
+      link.className = 'search-result';
+      link.href = entry.href;
+
+      const meta = document.createElement('span');
+      meta.className = 'search-result-meta';
+      meta.textContent = [entry.category, ...entry.tags.slice(0, 1)].join(' · ');
+
+      const date = document.createElement('span');
+      date.className = 'search-result-date';
+      date.textContent = entry.date.slice(0, 10).replaceAll('-', '.');
+
+      const title = document.createElement('span');
+      title.className = 'search-result-title';
+      title.lang = languageOf(entry.langs);
+      title.textContent = entry.title;
+
+      const description = document.createElement('span');
+      description.className = 'search-result-desc';
+      description.lang = languageOf(entry.langs);
+      description.textContent = entry.description;
+
+      const tags = document.createElement('span');
+      tags.className = 'search-result-tags';
+      tags.textContent = entry.tags.join(' · ');
+
+      link.append(meta, date, title, description, tags);
+      results.append(link);
+    }
+    if (!matched.length) {
+      const empty = document.createElement('p');
+      empty.className = 'search-empty';
+      empty.textContent =
+        'No records match the query. Check the spelling or browse the chronological archive below.';
+      results.append(empty);
+    }
+  }
+
+  async function load() {
+    if (!status) return;
+    try {
+      const response = await fetch(`${base}search.json`);
+      entries = await response.json();
+      status.textContent = `${entries.length} entries indexed. Type to search.`;
+      const query = new URLSearchParams(location.search).get('q');
+      if (query && input) {
+        input.value = query;
+        run();
+      }
+    } catch {
+      status.textContent = 'The search index could not be loaded. The archive below is complete.';
+    }
+  }
+
+  input?.addEventListener('input', () => {
+    run();
+    if (!input) return;
+    const url = new URL(location.href);
+    if (input.value.trim()) url.searchParams.set('q', input.value.trim());
+    else url.searchParams.delete('q');
+    history.replaceState(null, '', url);
+  });
+
+  const searchMain = input?.closest<HTMLElement>('.search-main');
+  searchMain?.addEventListener('keydown', (event) => {
+    if (event.isComposing || !input || !results) return;
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      input.value = '';
+      run();
+      history.replaceState(null, '', location.pathname);
+      input.focus();
+      return;
+    }
+    if (event.key === 'Enter' && event.target === input) {
+      const first = results.querySelector<HTMLElement>('.search-result');
+      if (first) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  load();
+</script>

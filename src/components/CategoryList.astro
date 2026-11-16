@@ -1,0 +1,41 @@
+---
+import type { ContentKey, EntrySummary } from '../lib/content';
+import { sections } from '../data/sections';
+
+interface Props {
+  group: 'Writing' | 'Work';
+  entries: EntrySummary[];
+}
+
+const { group, entries } = Astro.props;
+const keys: ContentKey[] = group === 'Writing' ? ['notes', 'thoughts'] : ['research', 'projects'];
+const items = keys.map((key) => {
+  const section = sections.find((item) => item.key === key)!;
+  const count = entries.filter((entry) => entry.section === key).length;
+  return {
+    key,
+    no: section.no,
+    title: section.title,
+    description: section.description,
+    href: section.href,
+    count,
+  };
+});
+---
+<div class="category-grid">
+  {
+    items.map((item) => (
+      <a class="category-card" href={item.href}>
+        <span class="category-card-no">{item.no}</span>
+        <span class="category-card-title">{item.title}</span>
+        <span class="category-card-desc">{item.description}</span>
+        <span class="category-card-foot">
+          <span>
+            {String(item.count).padStart(2, '0')} {item.count === 1 ? 'entry' : 'entries'}
+          </span>
+          <span class="category-card-enter">Enter →</span>
+        </span>
+      </a>
+    ))
+  }
+</div>

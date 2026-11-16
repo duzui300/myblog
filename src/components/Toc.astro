@@ -1,0 +1,64 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+  label?: string;
+  folio: string;
+  lang?: string;
+}
+
+const { headings, label = 'In this entry', folio, lang } = Astro.props;
+const visible = headings.filter((heading) => heading.depth >= 2);
+---
+<nav class="entry-rail" aria-label="On this page">
+  <p class="rail-title">{label}</p>
+  <div class="rail-list" data-toc lang={lang}>
+    <ol>
+      {
+        visible.map((heading) => (
+          <li class={heading.depth === 3 ? 'lvl-3' : 'lvl-2'}>
+            <a href={`#${heading.slug}`}>{heading.text}</a>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+  <p class="rail-folio">{folio}</p>
+</nav>
+
+<script>
+  const toc = document.querySelector('[data-toc]');
+  if (toc) {
+    const links = Array.from(toc.querySelectorAll('a'));
+    const items = links
+      .map((link) => {
+        let id = link.hash.slice(1);
+        try {
+          id = decodeURIComponent(id);
+        } catch {
+          // Keep the raw fragment when the hash is malformed.
+        }
+        const target = document.getElementById(id);
+        return target ? { link, target } : null;
+      })
+      .filter((item): item is { link: HTMLAnchorElement; target: HTMLElement } => item !== null);
+
+    function setActive() {
+      const mark = window.scrollY + 140;
+      let current = 0;
+      items.forEach(({ target }, index) => {
+        if (target.getBoundingClientRect().top + window.scrollY <= mark) current = index;
+      });
+      items.forEach(({ link }, index) => {
+        const active = index === current;
+        link.classList.toggle('active', active);
+        if (active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    }
+
+    window.addEventListener('scroll', setActive, { passive: true });
+    setActive();
+  }
+</script>

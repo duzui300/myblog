@@ -1,0 +1,84 @@
+---
+const center = { x: 220, y: 180 };
+const cutArcs = [
+  { start: 250, end: 290 },
+  { start: 70, end: 110 },
+].map(({ start, end }) => {
+  const toRad = (degrees: number) => (degrees * Math.PI) / 180;
+  const point = (angle: number, radius: number) => ({
+    x: center.x + Math.cos(toRad(angle)) * radius,
+    y: center.y + Math.sin(toRad(angle)) * radius,
+  });
+  const from = point(start, 80);
+  const to = point(end, 80);
+  const ticks = [1, 2, 3, 4].map((step) => {
+    const angle = start + ((end - start) * step) / 5;
+    const inner = point(angle, 76);
+    const outer = point(angle, 84);
+    return { x1: inner.x, y1: inner.y, x2: outer.x, y2: outer.y };
+  });
+  return { x1: from.x, y1: from.y, x2: to.x, y2: to.y, ticks };
+});
+---
+<svg viewBox="0 0 440 360" role="img" aria-labelledby="thermal-title">
+  <title id="thermal-title">A periodic Euclidean time circle with two boundary copies</title>
+  <defs>
+    <marker id="cut-arrow" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto">
+      <path d="M0,0 L4,2 L0,4 Z" fill="var(--brass)" />
+    </marker>
+  </defs>
+  <g stroke="rgba(243,239,229,.12)" stroke-width="1">
+    <line x1="60" y1="60" x2="60" y2="300" /><line x1="140" y1="60" x2="140" y2="300" />
+    <line x1="220" y1="60" x2="220" y2="300" /><line x1="300" y1="60" x2="300" y2="300" />
+    <line x1="380" y1="60" x2="380" y2="300" />
+    <line x1="60" y1="100" x2="380" y2="100" /><line x1="60" y1="180" x2="380" y2="180" />
+    <line x1="60" y1="260" x2="380" y2="260" />
+  </g>
+  <g fill="none" stroke="rgba(243,239,229,.16)" stroke-width="1" stroke-dasharray="2 5">
+    <ellipse cx="220" cy="88" rx="92" ry="24" />
+    <ellipse cx="220" cy="272" rx="92" ry="24" />
+    <line x1="128" y1="88" x2="128" y2="272" />
+    <line x1="312" y1="88" x2="312" y2="272" />
+  </g>
+  <g fill="none" stroke="rgba(243,239,229,.34)" stroke-width="1">
+    <circle cx="220" cy="180" r="92" />
+    <circle cx="220" cy="180" r="52" stroke-dasharray="3 6" />
+    <line x1="220" y1="74" x2="220" y2="286" />
+    <line x1="46" y1="180" x2="394" y2="180" />
+  </g>
+  <g fill="none" stroke="var(--brass)" stroke-width=".8" opacity=".7">
+    {
+      cutArcs.map((arc) => (
+        <path d={`M ${arc.x1} ${arc.y1} A 80 80 0 0 1 ${arc.x2} ${arc.y2}`} marker-end="url(#cut-arrow)" />
+      ))
+    }
+    <g stroke-width=".6" opacity=".7">
+      {
+        cutArcs.flatMap((arc) =>
+          arc.ticks.map((tick) => (
+            <line x1={tick.x1} y1={tick.y1} x2={tick.x2} y2={tick.y2} />
+          )),
+        )
+      }
+    </g>
+  </g>
+  <g fill="none" stroke="var(--brass)" stroke-width="1.2">
+    <circle cx="220" cy="88" r="4" fill="var(--brass)" />
+    <circle cx="220" cy="180" r="3" fill="var(--oxide)" />
+    <path d="M220 180 L294 121" />
+    <path d="M244 180 A 24 24 0 0 0 240 158" />
+    <path d="M220 88 A 92 92 0 1 1 219 88" stroke-dasharray="2 6" />
+  </g>
+  <g font-family="IBM Plex Mono, monospace" font-size="9" fill="rgba(243,239,229,.62)" letter-spacing=".06em">
+    <text x="228" y="82">Σ₁</text>
+    <text x="228" y="282">Σ₂</text>
+    <text x="301" y="116">τ</text>
+    <text x="247" y="152">β</text>
+    <text x="220" y="318" text-anchor="middle" fill="var(--brass)">τ ~ τ + β</text>
+  </g>
+  <g font-family="IBM Plex Mono, monospace" font-size="9" fill="rgba(243,239,229,.5)" letter-spacing=".08em">
+    <text x="20" y="342">FIG. 01 / EUCLIDEAN TIME</text>
+    <text x="420" y="342" text-anchor="end">NOT TO SCALE</text>
+  </g>
+</svg>
+<figcaption class="mode-caption">A periodic Euclidean time circle. The two copies of the boundary are the two sides of the thermofield double.</figcaption>

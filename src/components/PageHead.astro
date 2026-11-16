@@ -1,0 +1,54 @@
+---
+interface Props {
+  kicker: string;
+  title: string;
+  deck: string;
+  asideLines: string[];
+  glyph?: 'library' | 'observatory' | 'frontier' | 'about';
+  lang?: string;
+}
+
+const { kicker, title, deck, asideLines, glyph, lang } = Astro.props;
+---
+<header class="page-head">
+  <div class="wrap page-head-grid">
+    <div>
+      <p class="page-kicker">{kicker}</p>
+      <h1 class="page-title" lang={lang}>{title}</h1>
+      <p class="page-deck">{deck}</p>
+    </div>
+    <div class="page-aside">
+      {
+        glyph === 'library' && (
+          <svg class="mode-glyph" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+            <circle cx="8" cy="8" r="5.5" />
+          </svg>
+        )
+      }
+      {
+        glyph === 'observatory' && (
+          <svg class="mode-glyph" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+            <ellipse cx="8" cy="8" rx="6.5" ry="4" />
+          </svg>
+        )
+      }
+      {
+        glyph === 'frontier' && (
+          <svg class="mode-glyph" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+            <path d="M8 2 L14 13 L2 13 Z" />
+          </svg>
+        )
+      }
+      {
+        glyph === 'about' && (
+          <svg class="mode-glyph" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+            <path d="M8 2 V14 M2 8 H14" />
+          </svg>
+        )
+      }
+      {asideLines.map((line, index) => (
+        <>{line}{index < asideLines.length - 1 && <br />}</>
+      ))}
+    </div>
+  </div>
+</header>

@@ -1,0 +1,16 @@
+---
+import SectionLayout from '../../layouts/SectionLayout.astro';
+import ProjectList from '../../components/ProjectList.astro';
+import FoldedPlane from '../../components/FoldedPlane.astro';
+import { getSectionSummaries } from '../../lib/content';
+
+const entries = await getSectionSummaries('projects');
+---
+<SectionLayout
+  sectionKey="projects"
+  entries={entries}
+  note="Two works in the archive. Diglota is an active reading platform; Tablinum is an implemented MVP."
+>
+  <FoldedPlane slot="hero" />
+  <ProjectList entries={entries} />
+</SectionLayout>

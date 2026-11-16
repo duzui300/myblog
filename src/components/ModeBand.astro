@@ -1,0 +1,44 @@
+---
+import { textLang } from '../lib/content';
+
+interface Props {
+  mode: 'library' | 'observatory' | 'frontier';
+  tone?: 'warm';
+  kicker: string;
+  title: string;
+  deck?: string;
+  metaLines: string[];
+  titleId?: string;
+  tags?: string[];
+  lang?: string;
+}
+
+const { mode, tone, kicker, title, deck, metaLines, titleId, tags = [], lang } = Astro.props;
+const hasFigure = Astro.slots.has('default');
+---
+<section class={`mode-band mode-${mode}${tone ? ` tone-${tone}` : ''}`} aria-labelledby={titleId}>
+  <div class={`wrap mode-band-grid${hasFigure ? '' : ' no-figure'}`}>
+    <div>
+      <p class="mode-kicker">{kicker}</p>
+      <h1 class="mode-title" id={titleId} lang={lang}>{title}</h1>
+      {deck && <p class="mode-deck" lang={lang}>{deck}</p>}
+      <p class="mode-meta">{metaLines.join(' / ')}</p>
+      {
+        tags.length > 0 && (
+          <div class="mode-tags">
+            {tags.map((tag) => (
+              <a
+                class="mode-tag"
+                href={`/tags/${encodeURIComponent(tag)}/`}
+                lang={textLang(tag)}
+              >
+                {tag}
+              </a>
+            ))}
+          </div>
+        )
+      }
+    </div>
+    {hasFigure && <div class="mode-figure"><slot /></div>}
+  </div>
+</section>

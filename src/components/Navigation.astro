@@ -1,0 +1,78 @@
+---
+import { navGroups } from '../data/sections';
+import { site } from '../data/site';
+
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => path === href || path.startsWith(href);
+const isGroupCurrent = (group: (typeof navGroups)[number]) =>
+  isCurrent(group.href) || group.keys.some((key) => isCurrent(`/${key}/`));
+---
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="/">{site.title}</a>
+    <nav class="site-nav" aria-label="Main">
+      {
+        navGroups.map((group) => (
+          <a href={group.href} aria-current={isGroupCurrent(group) ? 'page' : undefined}>
+            {group.no} {group.title}
+          </a>
+        ))
+      }
+      <a href="/about/" aria-current={isCurrent('/about/') ? 'page' : undefined}>About</a>
+      <a href="/search/" aria-current={isCurrent('/search/') ? 'page' : undefined}>Search</a>
+    </nav>
+    <div class="masthead-tools">
+      <div class="volume">{site.volume}</div>
+      <button
+        class="theme-toggle"
+        type="button"
+        data-theme-toggle
+        aria-label="Switch to night theme"
+        aria-pressed="false"
+      >
+        <span class="theme-glyph" aria-hidden="true">
+          <span class="when-day">☾</span><span class="when-night">☀</span>
+        </span>
+        <span class="theme-label">
+          <span class="when-day">Night</span><span class="when-night">Day</span>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const root = document.documentElement;
+  const toggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function sync() {
+    const night = root.dataset.theme === 'night';
+    if (!toggle) return;
+    toggle.setAttribute('aria-pressed', String(night));
+    toggle.setAttribute('aria-label', night ? 'Switch to day theme' : 'Switch to night theme');
+  }
+
+  toggle?.addEventListener('click', () => {
+    const night = root.dataset.theme !== 'night';
+    root.dataset.theme = night ? 'night' : 'day';
+    try {
+      localStorage.setItem('theme', night ? 'night' : 'day');
+    } catch {
+      /* storage can be unavailable; the visual toggle still works */
+    }
+    sync();
+  });
+
+  media.addEventListener?.('change', (event) => {
+    try {
+      if (localStorage.getItem('theme')) return;
+    } catch {
+      /* fall through to the system preference */
+    }
+    root.dataset.theme = event.matches ? 'night' : 'day';
+    sync();
+  });
+
+  sync();
+</script>

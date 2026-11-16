@@ -1,0 +1,17 @@
+---
+import SectionLayout from '../../layouts/SectionLayout.astro';
+import EntryList from '../../components/EntryList.astro';
+import NoteBoardFigure from '../../components/NoteBoardFigure.astro';
+import { getSectionSummaries } from '../../lib/content';
+
+const entries = await getSectionSummaries('notes');
+---
+<SectionLayout
+  sectionKey="notes"
+  entries={entries}
+  showFilters
+  note="New reading notes and study notes will appear here, long or short."
+>
+  <NoteBoardFigure slot="hero" />
+  <EntryList entries={entries} />
+</SectionLayout>

@@ -1,0 +1,47 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import PageHead from '../../components/PageHead.astro';
+import CategoryList from '../../components/CategoryList.astro';
+import EntryList from '../../components/EntryList.astro';
+import { getSectionSummaries } from '../../lib/content';
+
+const [notes, thoughts] = await Promise.all([
+  getSectionSummaries('notes'),
+  getSectionSummaries('thoughts'),
+]);
+const entries = [...notes, ...thoughts].sort((a, b) => b.date.getTime() - a.date.getTime());
+---
+<MainLayout
+  title="Writing"
+  description="Prose records and reading observations, tracing ideas from marginal study notes to open-ended personal essays."
+>
+  <PageHead
+    kicker="01 Writing / 02 categories"
+    title="Writing"
+    deck="Prose records and reading observations, tracing ideas from marginal study notes to open-ended personal essays."
+    asideLines={[
+      `${entries.length} ${entries.length === 1 ? 'entry' : 'entries'}`,
+      'Notes · Thoughts',
+      'The Library',
+    ]}
+    glyph="library"
+  />
+  <section class="group-page">
+    <div class="wrap">
+      <div class="group-head">
+        <p class="smallcaps">Categories</p>
+        <h2>Two ways of writing</h2>
+      </div>
+      <CategoryList group="Writing" entries={entries} />
+      <div class="group-recent">
+        <div class="recent-head">
+          <div>
+            <p class="smallcaps">Recent / In this group</p>
+            <h2>Recently added</h2>
+          </div>
+        </div>
+        <EntryList entries={entries.slice(0, 4)} />
+      </div>
+    </div>
+  </section>
+</MainLayout>
