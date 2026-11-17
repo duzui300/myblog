@@ -274,14 +274,14 @@ export async function getTags(): Promise<TagGroup[]> {
         entries: [...list].sort((a, b) => b.date.getTime() - a.date.getTime()),
       };
     })
-    .sort((a, b) => a.labels.zh.localeCompare(b.labels.zh));
+    .sort((a, b) => a.labels.en.localeCompare(b.labels.en));
 }
 
 export async function getPopularTags(limit = 8): Promise<TagGroup[]> {
   return (await getTags())
     .sort(
       (a, b) =>
-        b.entries.length - a.entries.length || a.labels.zh.localeCompare(b.labels.zh),
+        b.entries.length - a.entries.length || a.labels.en.localeCompare(b.labels.en),
     )
     .slice(0, limit);
 }
@@ -307,7 +307,7 @@ export async function getTopics(): Promise<TopicGroup[]> {
       ),
     }))
     .filter((topic) => topic.entries.length > 0)
-    .sort((a, b) => b.entries.length - a.entries.length || a.labels.zh.localeCompare(b.labels.zh));
+    .sort((a, b) => b.entries.length - a.entries.length || a.labels.en.localeCompare(b.labels.en));
 }
 
 export async function getLanguages(): Promise<LanguageGroup[]> {
@@ -390,7 +390,6 @@ function makeSearchEntry(
   kind: string,
 ): SearchEntry {
   const meta = sectionMeta[section];
-  const primaryLang = entry.data.lang[0];
   const taxonomyAliases = [
     ...new Set([
       ...entry.data.topics.flatMap((id) => getTopicSearchTerms(id)),
@@ -407,9 +406,9 @@ function makeSearchEntry(
     date: entry.data.date.toISOString(),
     langs: entry.data.lang,
     topics: entry.data.topics,
-    topicLabels: entry.data.topics.map((id) => getTopicLabel(id, primaryLang)),
+    topicLabels: entry.data.topics.map((id) => getTopicLabel(id, 'en')),
     tags: entry.data.tags,
-    tagLabels: entry.data.tags.map((id) => getTagLabel(id, primaryLang)),
+    tagLabels: entry.data.tags.map((id) => getTagLabel(id, 'en')),
     description: entry.data.description,
     series: entry.data.series,
     seriesOrder: entry.data.seriesOrder,

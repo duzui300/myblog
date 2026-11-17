@@ -34,13 +34,13 @@ Production build:
 - Research: 1 entry
 - Projects: 2 entries
 - Searchable archive: 95 entries
-- Static build: 209 pages
+- Static build: 124 pages
 
 Development also shows five draft sample entries used to test series ordering and cross-section series pages. They are excluded from the production build.
 
 The archive is public. It contains no student number, supervisor, institution, degree, thesis PDF, or DOCX. Multilingual entries use `lang` arrays and language-section headings.
 
-The taxonomy registry holds 11 topics and 85 canonical tags, each with Chinese, Japanese, and English labels, descriptions, and search aliases. All 95 entries were migrated from display-label tags to canonical IDs. The schema rejects unknown IDs. Retired tag URLs redirect to canonical tag routes, topic routes, language routes, or search.
+The taxonomy registry holds 11 topics and 85 canonical tags, each with Chinese, Japanese, and English labels, descriptions, and search aliases. All 95 entries were migrated from display-label tags to canonical IDs. The schema rejects unknown IDs. Tags have no individual pages; `/tags/` is a directory whose links open the filtered archive. Retired label-based tag URLs are not redirected.
 
 ## Shipped
 
@@ -48,7 +48,8 @@ The taxonomy registry holds 11 topics and 85 canonical tags, each with Chinese, 
 - Smaller About, Selected, and Series collection marks on the star map, plus the archive telescope
 - Notes, Thoughts, Research, and Projects indexes and entry routes
 - Canonical taxonomy in `src/data/taxonomy.ts`: 11 topics, 85 tags, multilingual labels, descriptions, and aliases
-- `/topics/` index and 11 topic pages; `/tags/` index and 85 canonical tag pages
+- `/topics/` index and 11 topic pages; `/tags/` directory with 85 tags, each linking to the filtered archive
+- English interface copy, English topic labels and descriptions, and English filter options; language autonyms and entry-level taxonomy chips stay in the entry language
 - Topic and tag chips on entry pages and the entry band
 - Section filters for language, topic, tag, year, and series where those facets exist, filtering by canonical IDs and displaying localized labels
 - Unified client-side search with combinable section, language, topic, tag, year, and series filters, indexing labels and aliases
@@ -70,14 +71,14 @@ The taxonomy registry holds 11 topics and 85 canonical tags, each with Chinese, 
 
 The working tree contains the language, filter, series, selected, star-map, and taxonomy-migration changes. They pass `npm run check` and `npm run build` locally but have not been committed or deployed.
 
-The taxonomy migration covers `src/data/taxonomy.ts`, all 95 entry frontmatter blocks, the content schema, tag and topic routes, search aliases, filters, and entry chips. Retired label-based tag URLs were intentionally dropped instead of redirected.
+The taxonomy migration covers `src/data/taxonomy.ts`, all 95 entry frontmatter blocks, the content schema, topic pages, the tag directory, search aliases, filters, and entry chips. Individual tag pages were removed; tags now link into the filtered archive. Retired label-based tag URLs were intentionally dropped instead of redirected.
 
 Open decisions and limits:
 
 - `src/data/selected.ts` currently contains one entry and is ready for more.
 - Series samples are drafts. Set `draft: false` only when a sample should become public.
 - Search renders the first 30 matches and reports that limit in the status line.
-- Old label-based tag URLs now 404 by design. Tag routes exist only as canonical IDs.
+- Old label-based tag URLs and former tag detail URLs now 404 by design. Tags are filter links into the archive.
 
 ## Deployment
 

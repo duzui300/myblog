@@ -1,7 +1,7 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 import PageHead from '../../components/PageHead.astro';
-import { getTags, textLang } from '../../lib/content';
+import { getTags } from '../../lib/content';
 
 const tags = await getTags();
 ---
@@ -12,7 +12,7 @@ const tags = await getTags();
   <PageHead
     kicker="Tags / The retrieval layer"
     title="Tags"
-    deck="Specific concepts, works, people, places, and techniques. Each tag page gathers entries across languages and sections."
+    deck="Specific concepts, works, people, places, and techniques. Each tag opens the archive filtered to that concept."
     asideLines={[`${tags.length} tags`, 'Canonical ids', 'Aliases in search']}
     glyph="library"
   />
@@ -20,13 +20,9 @@ const tags = await getTags();
     <div class="tag-index-grid">
       {
         tags.map((group) => (
-          <a class="tag-index-card" href={`/tags/${encodeURIComponent(group.id)}/`}>
-            <span class="tag-index-primary" lang={textLang(group.labels.zh)}>
-              {group.labels.zh}
-            </span>
-            <span class="tag-index-secondary">
-              {group.labels.en} · {group.labels.ja}
-            </span>
+          <a class="tag-index-card" href={`/search/?tag=${encodeURIComponent(group.id)}`}>
+            <span class="tag-index-primary">{group.labels.en}</span>
+            <span class="tag-index-secondary">{group.id}</span>
             <span class="tag-index-count">
               {group.entries.length} {group.entries.length === 1 ? 'entry' : 'entries'}
             </span>

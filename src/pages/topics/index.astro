@@ -1,13 +1,13 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 import PageHead from '../../components/PageHead.astro';
-import { getTopics, textLang } from '../../lib/content';
+import { getTopics } from '../../lib/content';
 
 const topics = await getTopics();
 ---
 <MainLayout
   title="Topics"
-  description="The broad browsing layer of the archive, with multilingual labels and aliases."
+  description="The broad browsing layer of the archive, grouped into stable domains."
 >
   <PageHead
     kicker="Topics / The broad shelves"
@@ -23,12 +23,8 @@ const topics = await getTopics();
           const sections = [...new Set(topic.entries.map((entry) => entry.category))];
           return (
             <a class="topic-index-card" href={`/topics/${encodeURIComponent(topic.id)}/`}>
-              <span class="topic-index-kicker">
-                {topic.labels.en} · {topic.labels.ja}
-              </span>
-              <span class="topic-index-title" lang={textLang(topic.labels.zh)}>
-                {topic.labels.zh}
-              </span>
+              <span class="topic-index-kicker">{topic.id}</span>
+              <span class="topic-index-title">{topic.labels.en}</span>
               <span class="topic-index-desc">{topic.description}</span>
               <span class="topic-index-meta">
                 {topic.entries.length} {topic.entries.length === 1 ? 'entry' : 'entries'} ·{' '}

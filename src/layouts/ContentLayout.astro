@@ -75,7 +75,7 @@ const topicChips = entry.data.topics.map((id) => ({
 const tagChips = entry.data.tags.map((id) => ({
   id,
   label: getTagLabel(id, primaryLang),
-  href: `/tags/${id}/`,
+  href: `/search/?tag=${encodeURIComponent(id)}`,
   lang: textLang(getTagLabel(id, primaryLang)),
   kind: 'tag' as const,
 }));

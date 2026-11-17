@@ -13,10 +13,10 @@ const languages = [...new Set(entries.flatMap((entry) => entry.langs))].sort((a,
   a.localeCompare(b),
 );
 const topicOptions = [...new Set(entries.flatMap((entry) => entry.topics))]
-  .map((id) => ({ id, label: getTopic(id)?.labels.zh ?? id }))
+  .map((id) => ({ id, label: getTopic(id)?.labels.en ?? id }))
   .sort((a, b) => a.label.localeCompare(b.label));
 const tagOptions = [...new Set(entries.flatMap((entry) => entry.tags))]
-  .map((id) => ({ id, label: getTag(id)?.labels.zh ?? id }))
+  .map((id) => ({ id, label: getTag(id)?.labels.en ?? id }))
   .sort((a, b) => a.label.localeCompare(b.label));
 const years = [...new Set(entries.map((entry) => String(entry.date.getFullYear())))].sort(
   (a, b) => Number(b) - Number(a),

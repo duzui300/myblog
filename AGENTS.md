@@ -22,7 +22,7 @@ Run `npm run check` and `npm run build` before reporting work as complete.
 
 - `src/content/` holds the four content collections.
 - `src/layouts/` owns page shells and the shared content layout.
-- `src/pages/` owns routes, search, topics, tags, and generated files.
+- `src/pages/` owns routes, search, topic pages, the tag directory, and generated files.
 - `src/components/` owns reusable navigation, figures, lists, and article parts.
 - `src/data/sections.ts` is the single source for section metadata, navigation groups, collection nodes, and star-map geometry.
 - `src/data/taxonomy.ts` is the single source for topic and tag ids, multilingual labels, descriptions, and search aliases.

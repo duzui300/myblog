@@ -11,7 +11,6 @@ import {
   getTags,
   getTopics,
   langCode,
-  textLang,
   type SearchEntry,
 } from '../lib/content';
 import { sections, navGroups } from '../data/sections';
@@ -143,9 +142,7 @@ const archive: YearGroup[] = [...yearMap.entries()]
               <select data-filter="topic">
                 <option value="">All</option>
                 {topics.map((topic) => (
-                  <option value={topic.id} title={topic.labels.en}>
-                    {topic.labels.zh}
-                  </option>
+                  <option value={topic.id}>{topic.labels.en}</option>
                 ))}
               </select>
             </label>
@@ -155,9 +152,7 @@ const archive: YearGroup[] = [...yearMap.entries()]
             <select data-filter="tag">
               <option value="">All</option>
               {tags.map((tag) => (
-                <option value={tag.id} title={tag.labels.en}>
-                  {tag.labels.zh}
-                </option>
+                <option value={tag.id}>{tag.labels.en}</option>
               ))}
             </select>
           </label>
@@ -239,12 +234,8 @@ const archive: YearGroup[] = [...yearMap.entries()]
           <div class="tag-cloud">
             {
               topics.map((topic) => (
-                <a
-                  href={`/topics/${encodeURIComponent(topic.id)}/`}
-                  lang={textLang(topic.labels.zh)}
-                  title={topic.labels.en}
-                >
-                  {topic.labels.zh}
+                <a href={`/topics/${encodeURIComponent(topic.id)}/`}>
+                  {topic.labels.en}
                   <span>{topic.entries.length}</span>
                 </a>
               ))
@@ -266,12 +257,8 @@ const archive: YearGroup[] = [...yearMap.entries()]
           <div class="tag-cloud">
             {
               popularTags.map((tag) => (
-                <a
-                  href={`/tags/${encodeURIComponent(tag.id)}/`}
-                  lang={textLang(tag.labels.zh)}
-                  title={tag.labels.en}
-                >
-                  {tag.labels.zh}
+                <a href={`/search/?tag=${encodeURIComponent(tag.id)}`}>
+                  {tag.labels.en}
                   <span>{tag.entries.length}</span>
                 </a>
               ))
