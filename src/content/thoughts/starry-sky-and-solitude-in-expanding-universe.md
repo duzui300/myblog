@@ -24,5 +24,5 @@ dropcap: false
 その光を届けるだろうか
 
 <figure>
-  <img src="/images/posts/starry-sky-and-solitude-in-expanding-universe/post_30_image_1.webp" alt="百四十億人の宇宙で" />
+  <img src="/images/posts/starry-sky-and-solitude-in-expanding-universe/post_22_image_1.jpg" alt="百四十億人の宇宙で" />
 </figure>

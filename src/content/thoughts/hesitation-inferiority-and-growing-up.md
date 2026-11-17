@@ -1,5 +1,5 @@
 ---
-title: "二十岁的自卑、犹豫与成长"
+title: "emo"
 date: 2024-05-03
 lang: 中文
 tags:

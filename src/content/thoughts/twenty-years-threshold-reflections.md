@@ -1,0 +1,58 @@
+---
+title: "就这么度过了人生的前二十年"
+date: 2023-10-18
+lang: 中文
+tags:
+  - 随想
+  - 成长
+  - 日常
+description: "小时候总是对时间的流逝抱有一种既期待又恐惧的想法，现在再回过头来看，大概还是这样的心情……"
+reading: 3 min
+dropcap: false
+---
+
+就这么度过了人生的前二十年。
+
+因为感冒导致喉咙鼻子全部报废本来在纯 K 唱到十二点的计划也被迫取消，取而代之则是一如既往地在虚构作品的世界里呆了一整天。
+
+小时候总是对时间的流逝抱有一种既期待又恐惧的想法：期待着快快长大可以自己赚到钱发展爱好、得到更多自由的空间与时间等等，又对这种不知不觉的、对之感知迟钝的时间的流逝感到恐惧，害怕眨眼间就几年过去，被时间带走某些东西、改变某些东西。
+
+现在再回过头来看，大概还是这样的心情，只不过程度或许减弱了不少。
+
+我还期待着能早些毕业去到我想去的地方，还期待着早点找到工作为自己的爱好更自由地更有底气的投入金钱。但或许并不像过去那么期待了，因为现在的我知道了成长伴随的不只有自由，不再被视作小孩身份上的自由，对自己空闲时间的自由，以后独居后空间上的自由等，与之相伴的还有新的责任与束缚，比如更多的需要自己处理与操心的琐事。过去这些事情一直被家长、学校等“暗中”处理好，在习以为常地享受这些便利的同时，也相应地受到其管制，感到一定程度的不自由。而自由的代价，就是将这背后的繁杂琐事一定程度地暴露在我的面前，由我自身来亲自处理，借由这种处理而接触的新事物，又会带来新的规则与束缚。
+
+对时间流逝的恐惧大概更难消解一些，偶尔恍然回望过去，也经常地感慨到竟然不知不觉又过去了多久多久。直面这种近似虚无的恐惧时，大概除了感叹两句光阴如矢、岁月无情以外，也没别的可以做了吧。但庆幸的是，当着眼于当下时，我依旧有着我为之热忱的爱好与目标，有着值得为之投入心力的人际关系，或许这些会时不时地为我带来压力与烦恼，但正因为有着这些，才会让我不至于落入每天在空虚中感叹着当下时光的无趣与虚无，偶尔茫然地看向过去又惊慌恐怖时间的无情流逝与自身的虚度这样的境地。过去的二十年里当然也有这样的日子，我也有时为之感到后悔，但我想活在现在的这个我，暂时还并没有囿于这种虚无与恐惧之中。
+
+话是这么说，但感觉自己这个阴间作息撑死只剩两个二十年可以霍霍了(((希望以后这烂命一条能过得少些遗憾吧。
+
+明日の僕に、二十歳の僕に、よろしく！
+
+<div class="image-grid">
+  <figure>
+    <img src="/images/posts/twenty-years-threshold-reflections/image_1.jpg" alt="" />
+  </figure>
+  <figure>
+    <img src="/images/posts/twenty-years-threshold-reflections/image_2.jpg" alt="" />
+  </figure>
+  <figure>
+    <img src="/images/posts/twenty-years-threshold-reflections/image_3.jpg" alt="" />
+  </figure>
+  <figure>
+    <img src="/images/posts/twenty-years-threshold-reflections/image_4.png" alt="" />
+  </figure>
+  <figure>
+    <img src="/images/posts/twenty-years-threshold-reflections/image_5.png" alt="" />
+  </figure>
+  <figure>
+    <img src="/images/posts/twenty-years-threshold-reflections/image_6.jpg" alt="" />
+  </figure>
+  <figure>
+    <img src="/images/posts/twenty-years-threshold-reflections/image_7.jpg" alt="" />
+  </figure>
+  <figure>
+    <img src="/images/posts/twenty-years-threshold-reflections/image_8.jpg" alt="" />
+  </figure>
+  <figure>
+    <img src="/images/posts/twenty-years-threshold-reflections/image_9.jpg" alt="" />
+  </figure>
+</div>

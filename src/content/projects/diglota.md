@@ -1,6 +1,6 @@
 ---
 title: Diglota
-date: 2026-10-28
+date: 2026-09-25
 lang: English
 kind: Project
 tags:
