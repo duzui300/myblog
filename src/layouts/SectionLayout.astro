@@ -1,7 +1,7 @@
 ---
 import MainLayout from './MainLayout.astro';
 import ModeBand from '../components/ModeBand.astro';
-import TagBar from '../components/TagBar.astro';
+import SectionFilters from '../components/SectionFilters.astro';
 import type { ContentKey, EntrySummary } from '../lib/content';
 import { sections } from '../data/sections';
 
@@ -42,7 +42,7 @@ const bandTone = sectionKey === 'thoughts' ? 'warm' : undefined;
     <slot name="hero" />
   </ModeBand>
   <div class="wrap section-body">
-    {showFilters && entries.length > 1 && <TagBar languages={languages} allHref={section.href} />}
+    {showFilters && <SectionFilters entries={entries} />}
     <slot />
     {note && <p class="section-note">{note}</p>}
   </div>

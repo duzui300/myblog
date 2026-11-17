@@ -1,0 +1,42 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import PageHead from '../../components/PageHead.astro';
+import { getLanguages, langCode } from '../../lib/content';
+
+const languages = await getLanguages();
+---
+<MainLayout
+  title="Languages"
+  description="The archive arranged by the language of composition, kept separate from topics and tags."
+>
+  <PageHead
+    kicker="Languages / The archive by language"
+    title="Languages"
+    deck="The language an entry is written in, kept separate from the topics it discusses."
+    asideLines={[`${languages.length} languages`, 'Global views', 'Language']}
+    glyph="library"
+  />
+  <div class="wrap section-body">
+    <div class="language-grid">
+      {
+        languages.map(({ lang, entries }) => {
+          const sections = [...new Set(entries.map((entry) => entry.category))];
+          return (
+            <a class="language-card" href={`/languages/${encodeURIComponent(lang)}/`}>
+              <span class="language-name" lang={langCode(lang)}>{lang}</span>
+              <span class="language-count">
+                {entries.length} {entries.length === 1 ? 'entry' : 'entries'}
+              </span>
+              <span class="language-sections">{sections.join(' · ')}</span>
+            </a>
+          );
+        })
+      }
+    </div>
+    <p class="section-note">
+      Language is a property of the text, not a topic. A Chinese entry about Japanese literature
+      belongs under <span lang="zh-Hans">中文</span>, with Japanese material recorded in its tags.
+    </p>
+    <p class="section-note"><a class="recent-link" href="/search/">Filter the full archive</a></p>
+  </div>
+</MainLayout>

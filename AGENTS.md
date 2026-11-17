@@ -24,8 +24,10 @@ Run `npm run check` and `npm run build` before reporting work as complete.
 - `src/layouts/` owns page shells and the shared content layout.
 - `src/pages/` owns routes, search, tags, and generated files.
 - `src/components/` owns reusable navigation, figures, lists, and article parts.
-- `src/data/sections.ts` is the single source for section metadata, navigation groups, and star-map geometry.
-- `src/lib/content.ts` owns collection queries and archive helpers.
+- `src/data/sections.ts` is the single source for section metadata, navigation groups, collection nodes, and star-map geometry.
+- `src/data/series.ts` holds human-authored series titles and descriptions.
+- `src/data/selected.ts` holds the curated Selected hrefs.
+- `src/lib/content.ts` owns collection queries, language views, series groups, and archive helpers.
 - `src/styles/global.css` owns design tokens and shared styles.
 
 Use the existing data flow. Do not duplicate section or entry metadata in components.
@@ -37,6 +39,8 @@ Use the existing data flow. Do not duplicate section or entry metadata in compon
 - Do not publish private correspondence or identifiable details about other people without consent.
 - Write in the language of the entry. For multilingual entries, set `lang` to an array and make the first item the primary language.
 - Use `## 中文`, `## English`, and `## 日本語` section headings when an entry has distinct language sections. The build adds `lang` attributes to those sections.
+- `topics` is the broad upper-level shelf; `tags` are specific concepts. Keep language names out of both. A Chinese entry about Japanese literature has `lang: 中文`, a Japan-related topic or tag, and no `日本語` tag.
+- Use `series` with `seriesOrder` for ordered sequences. Register series metadata in `src/data/series.ts`. A series may cross collections.
 - Keep descriptions specific and short. Do not use promotional or generic marketing language.
 - Use the frontmatter schema in `src/content.config.ts`. The file name is the URL slug.
 - Use `$...$` or `$$...$$` for math. Keep display equations short enough to read on a narrow screen.
@@ -51,10 +55,13 @@ Use the existing data flow. Do not duplicate section or entry metadata in compon
 title: ""
 date: YYYY-MM-DD
 lang: 中文
+topics: []
 tags: []
 description: ""
 reading: 6 min
 dropcap: false
+# series: sample-observatory
+# seriesOrder: 1
 margin: []
 ---
 
@@ -68,11 +75,14 @@ Start from the source and the reading situation. Record what the text says, the 
 title: ""
 date: YYYY-MM-DD
 lang: 中文
+topics: []
 tags: []
 description: ""
 reading: 8 min
 dropcap: false
 figure: chord
+# series: sample-observatory
+# seriesOrder: 1
 margin: []
 ---
 
@@ -87,11 +97,14 @@ title: ""
 date: YYYY-MM-DD
 lang: 中文
 kind: Research note
+topics: []
 tags: []
 description: ""
 reading: 10 min
 dropcap: false
 figure: thermal
+# series: sample-observatory
+# seriesOrder: 1
 margin: []
 ---
 
@@ -114,6 +127,7 @@ title: ""
 date: YYYY-MM-DD
 lang: English
 kind: Project
+topics: []
 tags: []
 description: ""
 reading: Case study
@@ -123,6 +137,8 @@ role: ""
 stack: ""
 link: ""
 figure: folded
+# series: sample-observatory
+# seriesOrder: 1
 margin: []
 ---
 
@@ -150,7 +166,7 @@ margin: []
 
 ## Verification
 
-For visual changes, check at least 1440px, 1024px, 768px, and 390px in both day and night themes. Confirm that the page has no horizontal overflow and that the running folio, TOC, search, and star-map interactions still work.
+For visual changes, check at least 1440px, 1024px, 768px, and 390px in both day and night themes. Confirm that the page has no horizontal overflow and that the running folio, TOC, search, section filters, language views, series views, and star-map interactions still work. Section and search filters should restore from URL parameters and reset cleanly.
 
 For content changes, run `npm run check` and `npm run build`, then inspect the generated page at the affected route.
 

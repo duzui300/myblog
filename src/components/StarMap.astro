@@ -1,12 +1,12 @@
 ---
-import { sections, searchEntry, mapGroups, telescope } from '../data/sections';
+import { sections, minorNodes, searchEntry, mapGroups, telescope } from '../data/sections';
 
 interface Props {
   variant?: 'section' | 'hero';
 }
 
 const { variant = 'section' } = Astro.props;
-const panelData = [...sections, searchEntry].map((item) => ({
+const panelData = [...sections, ...minorNodes, searchEntry].map((item) => ({
   key: item.key,
   no: item.no,
   kicker: item.groupLabel ? `${item.groupLabel} / ${item.mode}` : item.mode,
@@ -46,11 +46,11 @@ const sightStop = {
     {
       variant === 'section' && (
         <div class="index-head">
-          <p class="smallcaps light">Astronomical index / Five fields</p>
+          <p class="smallcaps light">Astronomical index / Four fields, one collection</p>
           <h2 id="index-title">The sky as a table of contents</h2>
           <p>
-            Five constellations for five fields. Hover or focus a star to read its entry. Click to
-            enter. This is an index, not a game.
+            Four constellations for writing and work, three small marks for the collection, and a
+            telescope for the archive. Hover or focus a star to read its entry.
           </p>
         </div>
       )
@@ -58,10 +58,11 @@ const sightStop = {
     <div class="index-body">
       <div class="star-map">
         <svg viewBox="0 0 720 720" role="img" aria-labelledby="starmap-title starmap-desc">
-          <title id="starmap-title">An astronomical index of five constellations and a telescope</title>
+          <title id="starmap-title">An astronomical index of four constellations, three small marks, and a telescope</title>
           <desc id="starmap-desc">
-            A coordinate chart with five labeled constellations for Notes, Thoughts, Research,
-            Projects, and About, plus a telescope linked to the archive search.
+            A coordinate chart with four labeled constellations for Notes, Thoughts, Research, and
+            Projects, three small marks for About, Selected, and Series, plus a telescope linked to
+            the archive search.
           </desc>
           <defs>
             <filter id="star-halo" x="-80%" y="-80%" width="260%" height="260%">
@@ -159,6 +160,24 @@ const sightStop = {
               </g>
             ))
           }
+          {
+            minorNodes.map((node) => (
+              <g class="constellation minor" data-constellation={node.key}>
+                {node.constellation.paths.map((path) => (
+                  <path class="ink-draw" d={path} />
+                ))}
+                {node.constellation.stars.map((star) => (
+                  <circle class="star minor-star" cx={star.x} cy={star.y} r="1.35" />
+                ))}
+                <circle
+                  class="minor-core"
+                  cx={node.constellation.core.x}
+                  cy={node.constellation.core.y}
+                  r="2.4"
+                />
+              </g>
+            ))
+          }
           <g class="telescope-sight" aria-hidden="true">
             <line
               x1={telescope.sight.x1}
@@ -183,7 +202,7 @@ const sightStop = {
               {railLabels.map((item) => <text x={item.x} y={item.y}>{item.label}</text>)}
             </g>
             <text x="72" y="696">HOVER OR FOCUS A CONSTELLATION</text>
-            <text x="648" y="696" text-anchor="end">FIVE CONSTELLATIONS / ONE ARCHIVE</text>
+            <text x="648" y="696" text-anchor="end">FOUR FIELDS / ONE ARCHIVE</text>
           </g>
         </svg>
         {
@@ -197,6 +216,20 @@ const sightStop = {
             >
               <span class="star-dot" />
               <span class="star-label">{section.title}</span>
+            </a>
+          ))
+        }
+        {
+          minorNodes.map((node) => (
+            <a
+              class="star-button minor-button"
+              href={node.href}
+              data-target={node.key}
+              style={`left:${node.constellation.button.left};top:${node.constellation.button.top}`}
+              aria-label={`Enter ${node.title}`}
+            >
+              <span class="star-dot" />
+              <span class="star-label">{node.title}</span>
             </a>
           ))
         }
@@ -259,9 +292,6 @@ const sightStop = {
     function setActive(key) {
       const item = data[key];
       if (!item) return;
-      const activeGroup = groups.find(
-        (group) => group.getAttribute('data-constellation') === key,
-      );
       const activeButton = buttons.find(
         (button) => button.getAttribute('data-target') === key,
       );
@@ -296,7 +326,7 @@ const sightStop = {
           destination.y - starY
         }px)`;
       });
-      sight?.classList.toggle('lit', Boolean(activeGroup));
+      sight?.classList.toggle('lit', key === 'search');
 
       panelNo.textContent = item.no;
       panelMode.textContent = item.kicker;

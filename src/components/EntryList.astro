@@ -12,10 +12,20 @@ const { entries } = Astro.props;
   entries.length > 0 ? (
     <div class="entry-list">
       {entries.map((entry) => (
-        <a class="entry-row" href={entry.href}>
+        <a
+          class="entry-row"
+          href={entry.href}
+          data-filter-row
+          data-langs={entry.langs.join('|')}
+          data-topics={entry.topics.join('|')}
+          data-tags={entry.tags.join('|')}
+          data-year={entry.date.getFullYear()}
+          data-series={entry.series ?? ''}
+        >
           <span class="entry-kind">{entry.category}</span>
           <span class="entry-body">
             <span class="entry-row-title" lang={langCode(entry.langs[0])}>{entry.title}</span>
+            {entry.seriesTitle && <span class="entry-series">Series / {entry.seriesTitle}</span>}
             <span class="entry-desc" lang={langCode(entry.langs[0])}>{entry.description}</span>
           </span>
           <span class="entry-meta">

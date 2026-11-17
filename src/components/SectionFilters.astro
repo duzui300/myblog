@@ -1,0 +1,177 @@
+---
+import { getSeriesTitle } from '../data/series';
+import { isLanguageTag, type EntrySummary } from '../lib/content';
+
+interface Props {
+  entries: EntrySummary[];
+}
+
+const { entries } = Astro.props;
+
+const languages = [...new Set(entries.flatMap((entry) => entry.langs))].sort((a, b) =>
+  a.localeCompare(b),
+);
+const topics = [...new Set(entries.flatMap((entry) => entry.topics))].sort((a, b) =>
+  a.localeCompare(b),
+);
+const tags = [
+  ...new Set(entries.flatMap((entry) => entry.tags).filter((tag) => tag && !isLanguageTag(tag))),
+].sort((a, b) => a.localeCompare(b));
+const years = [...new Set(entries.map((entry) => String(entry.date.getFullYear())))].sort(
+  (a, b) => Number(b) - Number(a),
+);
+const series = [
+  ...new Map(
+    entries
+      .filter((entry) => entry.series)
+      .map((entry) => [entry.series!, entry.seriesTitle ?? getSeriesTitle(entry.series!)]),
+  ).entries(),
+].sort((a, b) => a[1].localeCompare(b[1]));
+
+const languageCounts = new Map<string, number>();
+for (const entry of entries) {
+  for (const lang of new Set(entry.langs)) {
+    languageCounts.set(lang, (languageCounts.get(lang) ?? 0) + 1);
+  }
+}
+
+const hasFilters =
+  languages.length > 1 ||
+  topics.length > 0 ||
+  tags.length > 0 ||
+  years.length > 1 ||
+  series.length > 0;
+const show = hasFilters;
+const entryLabel = entries.length === 1 ? 'entry' : 'entries';
+---
+{
+  show && (
+    <form class="filter-bar entry-filters" data-entry-filters aria-label="Filter this section" hidden>
+      <span class="filter-label">Filter</span>
+      {languages.length > 1 && (
+        <label class="filter-field">
+          <span>Language</span>
+          <select data-filter="lang">
+            <option value="">All</option>
+            {languages.map((lang) => (
+              <option value={lang}>{lang} ({languageCounts.get(lang)})</option>
+            ))}
+          </select>
+        </label>
+      )}
+      {topics.length > 0 && (
+        <label class="filter-field">
+          <span>Topic</span>
+          <select data-filter="topic">
+            <option value="">All</option>
+            {topics.map((topic) => (
+              <option value={topic}>{topic}</option>
+            ))}
+          </select>
+        </label>
+      )}
+      {tags.length > 0 && (
+        <label class="filter-field">
+          <span>Tag</span>
+          <select data-filter="tag">
+            <option value="">All</option>
+            {tags.map((tag) => (
+              <option value={tag}>{tag}</option>
+            ))}
+          </select>
+        </label>
+      )}
+      {years.length > 1 && (
+        <label class="filter-field">
+          <span>Year</span>
+          <select data-filter="year">
+            <option value="">All</option>
+            {years.map((year) => (
+              <option value={year}>{year}</option>
+            ))}
+          </select>
+        </label>
+      )}
+      {series.length > 0 && (
+        <label class="filter-field">
+          <span>Series</span>
+          <select data-filter="series">
+            <option value="">All</option>
+            {series.map(([slug, title]) => (
+              <option value={slug}>{title}</option>
+            ))}
+          </select>
+        </label>
+      )}
+      <button class="filter-reset" type="reset">Reset</button>
+      <span class="filter-status" data-filter-status role="status" aria-live="polite">
+        All {entries.length} {entryLabel}
+      </span>
+    </form>
+    <p class="section-note filter-empty" data-filter-empty hidden>No entries match these filters.</p>
+  )
+}
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-entry-filters]').forEach((form) => {
+    form.hidden = false;
+    form.addEventListener('submit', (event) => event.preventDefault());
+
+    const scope = form.closest('.section-body') ?? document;
+    const rows = Array.from(scope.querySelectorAll<HTMLElement>('[data-filter-row]'));
+    const controls = Array.from(form.querySelectorAll<HTMLSelectElement>('select[data-filter]'));
+    const status = form.querySelector<HTMLElement>('[data-filter-status]');
+    const empty = form.nextElementSibling as HTMLElement | null;
+    const params = new URLSearchParams(location.search);
+
+    for (const control of controls) {
+      const value = params.get(control.dataset.filter ?? '');
+      if (value) control.value = value;
+    }
+
+    function apply(writeUrl: boolean) {
+      const active: Record<string, string> = {};
+      for (const control of controls) {
+        if (control.value) active[control.dataset.filter ?? ''] = control.value;
+      }
+
+      let visible = 0;
+      for (const row of rows) {
+        const matches = Object.entries(active).every(([key, value]) => {
+          if (key === 'lang') return (row.dataset.langs ?? '').split('|').includes(value);
+          if (key === 'topic') return (row.dataset.topics ?? '').split('|').includes(value);
+          if (key === 'tag') return (row.dataset.tags ?? '').split('|').includes(value);
+          if (key === 'year') return row.dataset.year === value;
+          if (key === 'series') return row.dataset.series === value;
+          return true;
+        });
+        row.hidden = !matches;
+        if (matches) visible += 1;
+      }
+
+      if (status) {
+        const label = rows.length === 1 ? 'entry' : 'entries';
+        status.textContent =
+          visible === rows.length
+            ? `All ${rows.length} ${label}`
+            : `${visible} of ${rows.length} ${label}`;
+      }
+      if (empty) empty.hidden = visible !== 0;
+
+      if (!writeUrl) return;
+      const url = new URL(location.href);
+      for (const control of controls) {
+        const key = control.dataset.filter ?? '';
+        if (control.value) url.searchParams.set(key, control.value);
+        else url.searchParams.delete(key);
+      }
+      history.replaceState(null, '', url);
+    }
+
+    for (const control of controls) {
+      control.addEventListener('change', () => apply(true));
+    }
+    form.addEventListener('reset', () => requestAnimationFrame(() => apply(true)));
+    apply(false);
+  });
+</script>

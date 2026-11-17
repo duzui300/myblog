@@ -10,10 +10,20 @@ const { entries } = Astro.props;
 <div class="project-index">
   {
     entries.map((entry, index) => (
-      <a class="project-row" href={entry.href}>
+      <a
+        class="project-row"
+        href={entry.href}
+        data-filter-row
+        data-langs={entry.langs.join('|')}
+        data-topics={entry.topics.join('|')}
+        data-tags={entry.tags.join('|')}
+        data-year={entry.date.getFullYear()}
+        data-series={entry.series ?? ''}
+      >
         <span class="project-no">{String(index + 1).padStart(2, '0')}</span>
         <span class="project-body">
           <span class="project-name" lang={langCode(entry.langs[0])}>{entry.title}</span>
+          {entry.seriesTitle && <span class="entry-series">Series / {entry.seriesTitle}</span>}
           <span class="project-note" lang={langCode(entry.langs[0])}>{entry.description}</span>
         </span>
         <span class="project-status">

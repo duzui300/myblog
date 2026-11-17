@@ -1,4 +1,6 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { getSeriesMeta, getSeriesTitle } from '../data/series';
+import { selectedHrefs } from '../data/selected';
 
 export type ContentKey = 'notes' | 'thoughts' | 'research' | 'projects';
 
@@ -11,11 +13,15 @@ export type EntrySummary = {
   href: string;
   date: Date;
   langs: string[];
+  topics: string[];
   tags: string[];
   description: string;
   reading?: string;
   status?: string;
   year?: string;
+  series?: string;
+  seriesOrder?: number;
+  seriesTitle?: string;
 };
 
 export type SearchEntry = {
@@ -27,9 +33,27 @@ export type SearchEntry = {
   href: string;
   date: string;
   langs: string[];
+  topics: string[];
   tags: string[];
   description: string;
+  series?: string;
+  seriesOrder?: number;
+  seriesTitle?: string;
   body: string;
+};
+
+export type LanguageGroup = {
+  lang: string;
+  entries: EntrySummary[];
+};
+
+export type SeriesGroup = {
+  slug: string;
+  title: string;
+  description?: string;
+  order: number;
+  sample: boolean;
+  entries: EntrySummary[];
 };
 
 const sectionMeta: Record<
@@ -96,9 +120,12 @@ type CommonData = {
   title: string;
   date: Date;
   lang: string[];
+  topics: string[];
   tags: string[];
   description: string;
   reading?: string;
+  series?: string;
+  seriesOrder?: number;
 };
 
 function makeSummary(
@@ -116,9 +143,13 @@ function makeSummary(
     href: `${meta.href}${entry.id}/`,
     date: entry.data.date,
     langs: entry.data.lang,
+    topics: entry.data.topics,
     tags: entry.data.tags,
     description: entry.data.description,
     reading: entry.data.reading,
+    series: entry.data.series,
+    seriesOrder: entry.data.seriesOrder,
+    seriesTitle: entry.data.series ? getSeriesTitle(entry.data.series) : undefined,
   };
 }
 
@@ -193,7 +224,8 @@ export async function getTags(): Promise<{ tag: string; entries: EntrySummary[] 
   const entries = await getAllSummaries();
   const map = new Map<string, EntrySummary[]>();
   for (const entry of entries) {
-    for (const tag of [...entry.langs, ...entry.tags]) {
+    const tags = new Set(entry.tags.filter((tag) => tag && !isLanguageTag(tag)));
+    for (const tag of tags) {
       const list = map.get(tag) ?? [];
       list.push(entry);
       map.set(tag, list);
@@ -211,9 +243,67 @@ export async function getPopularTags(
   limit = 8,
 ): Promise<{ tag: string; entries: EntrySummary[] }[]> {
   return (await getTags())
-    .filter(({ tag }) => !isLanguageTag(tag))
     .sort((a, b) => b.entries.length - a.entries.length || a.tag.localeCompare(b.tag))
     .slice(0, limit);
+}
+
+export async function getLanguages(): Promise<LanguageGroup[]> {
+  const entries = await getAllSummaries();
+  const map = new Map<string, EntrySummary[]>();
+  for (const entry of entries) {
+    for (const lang of new Set(entry.langs)) {
+      const list = map.get(lang) ?? [];
+      list.push(entry);
+      map.set(lang, list);
+    }
+  }
+  return [...map.entries()]
+    .map(([lang, list]) => ({
+      lang,
+      entries: [...list].sort((a, b) => b.date.getTime() - a.date.getTime()),
+    }))
+    .sort((a, b) => b.entries.length - a.entries.length || a.lang.localeCompare(b.lang));
+}
+
+export async function getSeriesGroups(): Promise<SeriesGroup[]> {
+  const entries = await getAllSummaries();
+  const map = new Map<string, EntrySummary[]>();
+  for (const entry of entries) {
+    if (!entry.series) continue;
+    const list = map.get(entry.series) ?? [];
+    list.push(entry);
+    map.set(entry.series, list);
+  }
+  return [...map.entries()]
+    .map(([slug, list]) => {
+      const meta = getSeriesMeta(slug);
+      return {
+        slug,
+        title: meta?.title ?? getSeriesTitle(slug),
+        description: meta?.description,
+        order: meta?.order ?? 999,
+        sample: meta?.sample ?? false,
+        entries: [...list].sort(
+          (a, b) =>
+            (a.seriesOrder ?? Number.MAX_SAFE_INTEGER) -
+              (b.seriesOrder ?? Number.MAX_SAFE_INTEGER) ||
+            a.date.getTime() - b.date.getTime(),
+        ),
+      };
+    })
+    .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title));
+}
+
+export async function getSeriesGroup(slug: string): Promise<SeriesGroup | undefined> {
+  return (await getSeriesGroups()).find((group) => group.slug === slug);
+}
+
+export async function getSelectedEntries(): Promise<EntrySummary[]> {
+  const entries = await getAllSummaries();
+  return selectedHrefs.flatMap((href) => {
+    const entry = entries.find((item) => item.href === href);
+    return entry ? [entry] : [];
+  });
 }
 
 type SearchableEntry = {
@@ -246,8 +336,12 @@ function makeSearchEntry(
     href: `${meta.href}${entry.id}/`,
     date: entry.data.date.toISOString(),
     langs: entry.data.lang,
+    topics: entry.data.topics,
     tags: entry.data.tags,
     description: entry.data.description,
+    series: entry.data.series,
+    seriesOrder: entry.data.seriesOrder,
+    seriesTitle: entry.data.series ? getSeriesTitle(entry.data.series) : undefined,
     body: plainBody(entry.body),
   };
 }

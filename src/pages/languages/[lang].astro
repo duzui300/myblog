@@ -1,0 +1,34 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import PageHead from '../../components/PageHead.astro';
+import EntryList from '../../components/EntryList.astro';
+import { getLanguages, textLang } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const languages = await getLanguages();
+  return languages.map(({ lang, entries }) => ({ params: { lang }, props: { lang, entries } }));
+}
+
+const { lang, entries } = Astro.props;
+const count = entries.length;
+const entryLabel = count === 1 ? 'entry' : 'entries';
+---
+<MainLayout title={`Language / ${lang}`} description={`Entries written in ${lang}, across every section.`}>
+  <PageHead
+    kicker={`Language / ${count} ${entryLabel}`}
+    title={lang}
+    deck={`Entries written in ${lang}, across every section of the archive.`}
+    asideLines={[`${count} ${entryLabel}`, 'All sections', 'Language']}
+    glyph="library"
+    lang={textLang(lang)}
+  />
+  <div class="wrap section-body">
+    <EntryList entries={entries} />
+    <p class="section-note">
+      <a class="recent-link" href={`/search/?lang=${encodeURIComponent(lang)}`}>
+        Filter the archive by this language
+      </a>
+    </p>
+    <p class="section-note"><a class="recent-link" href="/languages/">All languages</a></p>
+  </div>
+</MainLayout>

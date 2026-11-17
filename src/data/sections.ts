@@ -122,32 +122,85 @@ export const sections = [
       labelSide: 'left',
     },
   },
+] as const;
+
+export const minorNodes = [
   {
     key: 'about',
-    no: '03',
-    groupLabel: '03 About',
+    no: '03.1',
+    groupLabel: '03 Collection',
     title: 'About',
     mode: 'The Colophon',
-    modeKey: 'about',
-    description: 'The author, the method, and the modes of this publication.',
     panelDesc:
       'The author, the working method, the three modes of this publication, and the colophon that closes the volume.',
     href: '/about/',
     panelLabel: 'Enter the About',
     constellation: {
       paths: [
-        'M 264 518 C 304 518, 330 544, 330 574 C 330 604, 304 630, 264 630 C 224 630, 198 604, 198 574 C 198 544, 224 518, 264 518 Z',
-        'M 264 518 L 264 630',
-        'M 198 574 L 330 574',
+        'M 128 548 C 128 538, 138 530, 150 530 C 162 530, 172 538, 172 548 C 172 558, 162 566, 150 566 C 138 566, 128 558, 128 548 Z',
+        'M 128 548 L 172 548',
       ],
       stars: [
-        { x: 264, y: 518, major: true },
-        { x: 330, y: 574 },
-        { x: 264, y: 630 },
-        { x: 198, y: 574 },
-        { x: 264, y: 574 },
+        { x: 150, y: 530 },
+        { x: 172, y: 548 },
+        { x: 150, y: 566 },
+        { x: 128, y: 548 },
       ],
-      button: { left: '36.7%', top: '79.7%' },
+      core: { x: 128, y: 548 },
+      button: { left: '20.8%', top: '76.1%' },
+      labelSide: 'right',
+    },
+  },
+  {
+    key: 'selected',
+    no: '03.2',
+    groupLabel: '03 Collection',
+    title: 'Selected',
+    mode: 'The Selection',
+    panelDesc:
+      'A short shelf of entries chosen by hand, kept apart from the chronological record and the full archive.',
+    href: '/selected/',
+    panelLabel: 'Open the selection',
+    constellation: {
+      paths: [
+        'M 270 616 L 290 600 L 310 616 L 290 632 Z',
+        'M 270 616 L 310 616',
+        'M 290 600 L 290 632',
+      ],
+      stars: [
+        { x: 270, y: 616 },
+        { x: 290, y: 600 },
+        { x: 310, y: 616 },
+        { x: 290, y: 632 },
+      ],
+      core: { x: 270, y: 616 },
+      button: { left: '41.97%', top: '85.6%' },
+      labelSide: 'right',
+    },
+  },
+  {
+    key: 'series',
+    no: '03.3',
+    groupLabel: '03 Collection',
+    title: 'Series',
+    mode: 'The Sequence',
+    panelDesc:
+      'Ordered sequences that carry a question across several entries, sometimes across more than one section.',
+    href: '/series/',
+    panelLabel: 'Open the series',
+    constellation: {
+      paths: [
+        'M 376 527 C 386 511, 400 505, 416 511 C 432 517, 436 533, 424 541',
+        'M 416 511 L 424 541',
+      ],
+      stars: [
+        { x: 376, y: 527 },
+        { x: 400, y: 507 },
+        { x: 416, y: 511 },
+        { x: 424, y: 541 },
+      ],
+      core: { x: 376, y: 527 },
+      button: { left: '55.8%', top: '72.9%' },
       labelSide: 'right',
     },
   },
@@ -160,9 +213,9 @@ export const searchEntry = {
   title: 'Search',
   mode: 'The Archive',
   panelDesc:
-    'Search notes, thoughts, research, and projects in one full-text index, or browse the chronological archive below.',
+    'Search the full text, or combine section, language, topic, tag, year, and series filters across the whole archive.',
   href: '/search/',
-  panelLabel: 'Open the archive search',
+  panelLabel: 'Open the archive',
 } as const;
 
 export const mapGroups = [
@@ -179,10 +232,10 @@ export const mapGroups = [
     line: { x1: 72, y1: 320, x2: 648, y2: 320 },
   },
   {
-    label: '03 / ABOUT',
-    x: 198,
+    label: '03 / COLLECTION',
+    x: 72,
     y: 492,
-    line: { x1: 198, y1: 500, x2: 330, y2: 500 },
+    line: { x1: 72, y1: 500, x2: 444, y2: 500 },
   },
   {
     label: 'THE ARCHIVE',
@@ -198,10 +251,11 @@ export const navGroups = [
 ] as const;
 
 export const telescope = {
-  button: { left: '72.2%', top: '81.9%' },
-  sight: { x1: 552, y1: 556, x2: 640, y2: 512 },
+  button: { left: '72.2%', top: '86.1%' },
+  sight: { x1: 552, y1: 612, x2: 640, y2: 512 },
   star: { x: 640, y: 512 },
 } as const;
 
 export type Section = (typeof sections)[number];
 export type SectionKey = Section['key'];
+export type MinorNode = (typeof minorNodes)[number];

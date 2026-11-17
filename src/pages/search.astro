@@ -4,8 +4,11 @@ import PageHead from '../components/PageHead.astro';
 import {
   formatDate,
   getCategoryCounts,
+  getLanguages,
   getPopularTags,
   getSearchEntries,
+  getSeriesGroups,
+  isLanguageTag,
   langCode,
   textLang,
   type SearchEntry,
@@ -15,6 +18,17 @@ import { sections, navGroups } from '../data/sections';
 const entries = await getSearchEntries();
 const popularTags = await getPopularTags(8);
 const counts = await getCategoryCounts();
+const languages = await getLanguages();
+const series = await getSeriesGroups();
+const topics = [...new Set(entries.flatMap((entry) => entry.topics))].sort((a, b) =>
+  a.localeCompare(b),
+);
+const tags = [
+  ...new Set(entries.flatMap((entry) => entry.tags).filter((tag) => tag && !isLanguageTag(tag))),
+].sort((a, b) => a.localeCompare(b));
+const years = [...new Set(entries.map((entry) => String(new Date(entry.date).getFullYear())))].sort(
+  (a, b) => Number(b) - Number(a),
+);
 const browseGroups = navGroups.map((group) => ({
   ...group,
   items: group.keys.map((key) => {
@@ -71,14 +85,14 @@ const archive: YearGroup[] = [...yearMap.entries()]
   });
 ---
 <MainLayout
-  title="Search"
-  description="Unified client-side search index covering notes, reflective essays, physics research, and software projects across the complete archive."
+  title="Archive"
+  description="Search the complete archive, or combine section, language, topic, tag, year, and series filters."
 >
   <PageHead
-    kicker="Search / The archive"
+    kicker="Archive / Search and filter"
     title="Explore the Archive"
-    deck="A unified index querying titles, descriptions, tags, and full text across the entire archive."
-    asideLines={[`${entries.length} entries`, 'All categories', 'Unified index']}
+    deck="Search the full text, or combine section, language, topic, tag, year, and series filters."
+    asideLines={[`${entries.length} entries`, `${languages.length} languages`, 'Unified index']}
     glyph="library"
   />
 
@@ -95,9 +109,85 @@ const archive: YearGroup[] = [...yearMap.entries()]
             aria-controls="search-results"
           />
           <p class="search-status" data-search-status role="status" aria-live="polite">
-            {entries.length} entries indexed. Type to search.
+            {entries.length} entries indexed. Type to search or choose a filter.
           </p>
         </form>
+
+        <form
+          class="filter-bar archive-filters"
+          data-archive-filters
+          aria-label="Filter the archive"
+          hidden
+        >
+          <span class="filter-label">Filter</span>
+          <label class="filter-field">
+            <span>Section</span>
+            <select data-filter="section">
+              <option value="">All</option>
+              {sections.map((section) => (
+                <option value={section.key}>
+                  {section.title} ({counts[section.key]})
+                </option>
+              ))}
+            </select>
+          </label>
+          <label class="filter-field">
+            <span>Language</span>
+            <select data-filter="lang">
+              <option value="">All</option>
+              {languages.map(({ lang, entries: languageEntries }) => (
+                <option value={lang}>{lang} ({languageEntries.length})</option>
+              ))}
+            </select>
+          </label>
+          {topics.length > 0 && (
+            <label class="filter-field">
+              <span>Topic</span>
+              <select data-filter="topic">
+                <option value="">All</option>
+                {topics.map((topic) => (
+                  <option value={topic}>{topic}</option>
+                ))}
+              </select>
+            </label>
+          )}
+          <label class="filter-field">
+            <span>Tag</span>
+            <select data-filter="tag">
+              <option value="">All</option>
+              {tags.map((tag) => (
+                <option value={tag}>{tag}</option>
+              ))}
+            </select>
+          </label>
+          {years.length > 1 && (
+            <label class="filter-field">
+              <span>Year</span>
+              <select data-filter="year">
+                <option value="">All</option>
+                {years.map((year) => (
+                  <option value={year}>{year}</option>
+                ))}
+              </select>
+            </label>
+          )}
+          {series.length > 0 && (
+            <label class="filter-field">
+              <span>Series</span>
+              <select data-filter="series">
+                <option value="">All</option>
+                {series.map((group) => (
+                  <option value={group.slug}>{group.title}</option>
+                ))}
+              </select>
+            </label>
+          )}
+          <button class="filter-reset" type="reset">Reset</button>
+          <span class="filter-status" data-filter-status role="status" aria-live="polite">
+            All {entries.length} entries
+          </span>
+        </form>
+
         <div class="search-results" id="search-results" data-search-results></div>
         <noscript>
           <p class="section-note">
@@ -128,6 +218,27 @@ const archive: YearGroup[] = [...yearMap.entries()]
                 </div>
               ))
             }
+          </div>
+        </section>
+        <section class="search-block">
+          <p class="smallcaps">Browse by language</p>
+          <div class="tag-cloud">
+            {
+              languages.map(({ lang, entries: languageEntries }) => (
+                <a href={`/languages/${encodeURIComponent(lang)}/`} lang={langCode(lang)}>
+                  {lang}
+                  <span>{languageEntries.length}</span>
+                </a>
+              ))
+            }
+          </div>
+        </section>
+        <section class="search-block">
+          <p class="smallcaps">Collections</p>
+          <div class="tag-cloud">
+            <a href="/selected/">Selected</a>
+            <a href="/series/">Series{series.length > 0 ? <span>{series.length}</span> : null}</a>
+            <a href="/languages/">Languages</a>
           </div>
         </section>
         <section class="search-block">
@@ -194,20 +305,28 @@ const archive: YearGroup[] = [...yearMap.entries()]
   import { normalizeSearchText } from '../lib/search-normalize';
 
   type SearchItem = {
-    title: string;
-    href: string;
+    section: string;
     category: string;
     group: string;
+    kind: string;
+    title: string;
+    href: string;
     date: string;
     langs: string[];
+    topics: string[];
     tags: string[];
     description: string;
+    series?: string;
+    seriesOrder?: number;
+    seriesTitle?: string;
     body: string;
   };
 
   const input = document.querySelector<HTMLInputElement>('#archive-search');
   const results = document.querySelector<HTMLElement>('[data-search-results]');
   const status = document.querySelector<HTMLElement>('[data-search-status]');
+  const filterForm = document.querySelector<HTMLFormElement>('[data-archive-filters]');
+  const filterStatus = document.querySelector<HTMLElement>('[data-filter-status]');
   const base = import.meta.env.BASE_URL;
   let entries: SearchItem[] = [];
 
@@ -220,16 +339,61 @@ const archive: YearGroup[] = [...yearMap.entries()]
     return 'en';
   }
 
+  function activeFilters(): Record<string, string> {
+    if (!filterForm) return {};
+    const active: Record<string, string> = {};
+    for (const select of filterForm.querySelectorAll<HTMLSelectElement>('select[data-filter]')) {
+      if (select.value) active[select.dataset.filter ?? ''] = select.value;
+    }
+    return active;
+  }
+
+  function matchesFilters(entry: SearchItem, active: Record<string, string>): boolean {
+    if (active.section && entry.section !== active.section) return false;
+    if (active.lang && !entry.langs.includes(active.lang)) return false;
+    if (active.topic && !entry.topics.includes(active.topic)) return false;
+    if (active.tag && !entry.tags.includes(active.tag)) return false;
+    if (active.year && entry.date.slice(0, 4) !== active.year) return false;
+    if (active.series && entry.series !== active.series) return false;
+    return true;
+  }
+
+  function updateUrl() {
+    const url = new URL(location.href);
+    if (input?.value.trim()) url.searchParams.set('q', input.value.trim());
+    else url.searchParams.delete('q');
+
+    if (filterForm) {
+      for (const select of filterForm.querySelectorAll<HTMLSelectElement>('select[data-filter]')) {
+        const key = select.dataset.filter ?? '';
+        if (select.value) url.searchParams.set(key, select.value);
+        else url.searchParams.delete(key);
+      }
+    }
+    history.replaceState(null, '', url);
+  }
+
+  function baseStatus() {
+    return `${entries.length} entries indexed. Type to search or choose a filter.`;
+  }
+
   function run() {
     if (!input || !results || !status) return;
     const query = normalize(input.value.trim());
-    if (!query) {
+    const filters = activeFilters();
+    const filterKeys = Object.keys(filters);
+    const terms = query.split(/\s+/).filter(Boolean);
+
+    if (!terms.length && !filterKeys.length) {
       results.replaceChildren();
-      status.textContent = `${entries.length} entries indexed. Type to search.`;
+      status.textContent = baseStatus();
+      if (filterStatus) filterStatus.textContent = `All ${entries.length} entries`;
       return;
     }
-    const terms = query.split(/\s+/).filter(Boolean);
+
     const matched = entries.filter((entry) => {
+      if (!matchesFilters(entry, filters)) return false;
+      if (!terms.length) return true;
       const haystack = normalize(
         [
           entry.title,
@@ -237,15 +401,23 @@ const archive: YearGroup[] = [...yearMap.entries()]
           entry.category,
           entry.group,
           entry.langs.join(' '),
+          entry.topics.join(' '),
           entry.tags.join(' '),
+          entry.seriesTitle ?? '',
           entry.body,
         ].join(' '),
       );
       return terms.every((term) => haystack.includes(term));
     });
+
+    const context = [];
+    if (terms.length) context.push(`for “${input.value.trim()}”`);
+    if (filterKeys.length) context.push('with the selected filters');
     status.textContent =
-      `${matched.length} ${matched.length === 1 ? 'result' : 'results'} for “${input.value.trim()}”` +
+      `${matched.length} ${matched.length === 1 ? 'result' : 'results'} ${context.join(' ')}` +
       (matched.length > 30 ? ' · showing first 30' : '');
+    if (filterStatus) filterStatus.textContent = `${matched.length} of ${entries.length}`;
+
     results.replaceChildren();
     for (const entry of matched.slice(0, 30)) {
       const link = document.createElement('a');
@@ -254,7 +426,7 @@ const archive: YearGroup[] = [...yearMap.entries()]
 
       const meta = document.createElement('span');
       meta.className = 'search-result-meta';
-      meta.textContent = [entry.category, ...entry.tags.slice(0, 1)].join(' · ');
+      meta.textContent = [entry.category, entry.seriesTitle].filter(Boolean).join(' · ');
 
       const date = document.createElement('span');
       date.className = 'search-result-date';
@@ -272,7 +444,7 @@ const archive: YearGroup[] = [...yearMap.entries()]
 
       const tags = document.createElement('span');
       tags.className = 'search-result-tags';
-      tags.textContent = entry.tags.join(' · ');
+      tags.textContent = [...entry.topics, ...entry.tags].slice(0, 4).join(' · ');
 
       link.append(meta, date, title, description, tags);
       results.append(link);
@@ -291,12 +463,17 @@ const archive: YearGroup[] = [...yearMap.entries()]
     try {
       const response = await fetch(`${base}search.json`);
       entries = await response.json();
-      status.textContent = `${entries.length} entries indexed. Type to search.`;
-      const query = new URLSearchParams(location.search).get('q');
-      if (query && input) {
-        input.value = query;
-        run();
+      status.textContent = baseStatus();
+      if (filterForm) {
+        filterForm.hidden = false;
+        for (const select of filterForm.querySelectorAll<HTMLSelectElement>('select[data-filter]')) {
+          const value = new URLSearchParams(location.search).get(select.dataset.filter ?? '');
+          if (value) select.value = value;
+        }
       }
+      const query = new URLSearchParams(location.search).get('q');
+      if (query && input) input.value = query;
+      run();
     } catch {
       status.textContent = 'The search index could not be loaded. The archive below is complete.';
     }
@@ -304,12 +481,20 @@ const archive: YearGroup[] = [...yearMap.entries()]
 
   input?.addEventListener('input', () => {
     run();
-    if (!input) return;
-    const url = new URL(location.href);
-    if (input.value.trim()) url.searchParams.set('q', input.value.trim());
-    else url.searchParams.delete('q');
-    history.replaceState(null, '', url);
+    updateUrl();
   });
+
+  filterForm?.addEventListener('change', () => {
+    run();
+    updateUrl();
+  });
+  filterForm?.addEventListener('reset', () => {
+    requestAnimationFrame(() => {
+      run();
+      updateUrl();
+    });
+  });
+  filterForm?.addEventListener('submit', (event) => event.preventDefault());
 
   const searchMain = input?.closest<HTMLElement>('.search-main');
   searchMain?.addEventListener('keydown', (event) => {
@@ -317,8 +502,11 @@ const archive: YearGroup[] = [...yearMap.entries()]
     if (event.key === 'Escape') {
       event.preventDefault();
       input.value = '';
+      filterForm
+        ?.querySelectorAll<HTMLSelectElement>('select[data-filter]')
+        .forEach((select) => (select.value = ''));
       run();
-      history.replaceState(null, '', location.pathname);
+      updateUrl();
       input.focus();
       return;
     }

@@ -7,7 +7,7 @@ import Toc from '../components/Toc.astro';
 import type { MarkdownHeading } from 'astro';
 import type { CollectionEntry } from 'astro:content';
 import type { ContentKey, EntrySummary } from '../lib/content';
-import { formatDate, langCode, textLang } from '../lib/content';
+import { formatDate, getSeriesGroup, isLanguageTag, langCode, textLang } from '../lib/content';
 import { sections } from '../data/sections';
 
 interface Action {
@@ -49,6 +49,20 @@ const hasTruncatedDeck =
   entry.data.description &&
   (entry.data.description.endsWith('...') || entry.data.description.endsWith('……'));
 const showDeck = !isThought && !hasTruncatedDeck && Boolean(entry.data.description);
+const seriesGroup = entry.data.series ? await getSeriesGroup(entry.data.series) : null;
+const seriesPosition = seriesGroup
+  ? seriesGroup.entries.findIndex((item) => item.href === `${section.href}${entry.id}/`) + 1
+  : 0;
+const inSeries = Boolean(seriesGroup && seriesPosition > 0);
+const seriesHref = seriesGroup ? `/series/${encodeURIComponent(seriesGroup.slug)}/` : '';
+const seriesPrev =
+  inSeries && seriesGroup && seriesPosition > 1 ? seriesGroup.entries[seriesPosition - 2] : null;
+const seriesNext =
+  inSeries && seriesGroup && seriesPosition < seriesGroup.entries.length
+    ? seriesGroup.entries[seriesPosition]
+    : null;
+const pagerPrev = inSeries ? seriesPrev : prev;
+const pagerNext = inSeries ? seriesNext : next;
 ---
 <MainLayout title={entry.data.title} description={entry.data.description}>
   {
@@ -73,6 +87,20 @@ const showDeck = !isThought && !hasTruncatedDeck && Boolean(entry.data.descripti
     )
   }
   <RunningFolio folio={folio} lang={lang} tone={sectionKey} />
+  {
+    seriesGroup && seriesPosition > 0 && (
+      <div class="wrap series-banner">
+        <p class="smallcaps">
+          Series /{' '}
+          <a href={`/series/${encodeURIComponent(seriesGroup.slug)}/`}>{seriesGroup.title}</a>
+        </p>
+        <p>
+          Part {seriesPosition} of {seriesGroup.entries.length} ·{' '}
+          <a href={`/series/${encodeURIComponent(seriesGroup.slug)}/`}>All parts</a>
+        </p>
+      </div>
+    )
+  }
   <div class="wrap entry-wrap">
     <div class={`entry-layout${hasMargin ? '' : ' no-margin'}`}>
       <Toc headings={headings} label={tocLabel} folio={folio} lang={lang} />
@@ -104,7 +132,11 @@ const showDeck = !isThought && !hasTruncatedDeck && Boolean(entry.data.descripti
                     {entry.data.tags.map((tag) => (
                       <a
                         class="entry-tag"
-                        href={`/tags/${encodeURIComponent(tag)}/`}
+                        href={
+                          isLanguageTag(tag)
+                            ? `/languages/${encodeURIComponent(tag)}/`
+                            : `/tags/${encodeURIComponent(tag)}/`
+                        }
                         lang={textLang(tag)}
                       >
                         {tag}
@@ -165,24 +197,31 @@ const showDeck = !isThought && !hasTruncatedDeck && Boolean(entry.data.descripti
       </aside>
       <nav class="entry-pager" aria-label="Entry navigation">
         {
-          prev ? (
-            <a class="pager-link" href={prev.href}>
-              <span class="label">Previous</span>
-              <span class="title">{prev.title}</span>
+          pagerPrev ? (
+            <a class="pager-link" href={pagerPrev.href}>
+              <span class="label">{inSeries ? 'Previous part' : 'Previous'}</span>
+              <span class="title">{pagerPrev.title}</span>
             </a>
           ) : (
-            <a class="pager-link" href={section.href}>
-              <span class="label">Back</span>
-              <span class="title">All {section.title.toLowerCase()}</span>
+            <a class="pager-link" href={inSeries ? seriesHref : section.href}>
+              <span class="label">{inSeries ? 'Series' : 'Back'}</span>
+              <span class="title">{inSeries ? 'All parts' : `All ${section.title.toLowerCase()}`}</span>
             </a>
           )
         }
         {
-          next && (
-            <a class="pager-link next" href={next.href}>
-              <span class="label">Next</span>
-              <span class="title">{next.title}</span>
+          pagerNext ? (
+            <a class="pager-link next" href={pagerNext.href}>
+              <span class="label">{inSeries ? 'Next part' : 'Next'}</span>
+              <span class="title">{pagerNext.title}</span>
             </a>
+          ) : (
+            inSeries && (
+              <a class="pager-link next" href={seriesHref}>
+                <span class="label">Series</span>
+                <span class="title">All parts</span>
+              </a>
+            )
           )
         }
       </nav>

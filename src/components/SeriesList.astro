@@ -1,0 +1,30 @@
+---
+import { formatDate, langCode, type EntrySummary } from '../lib/content';
+
+interface Props {
+  entries: EntrySummary[];
+}
+
+const { entries } = Astro.props;
+---
+<ol class="series-list">
+  {
+    entries.map((entry, index) => (
+      <li>
+        <a class="series-row" href={entry.href}>
+          <span class="series-part">{String(index + 1).padStart(2, '0')}</span>
+          <span class="series-body">
+            <span class="series-cat">{entry.category}</span>
+            <span class="series-title" lang={langCode(entry.langs[0])}>{entry.title}</span>
+            <span class="series-desc" lang={langCode(entry.langs[0])}>{entry.description}</span>
+          </span>
+          <span class="series-meta">
+            {formatDate(entry.date)}
+            <br />
+            {entry.reading ?? entry.kind}
+          </span>
+        </a>
+      </li>
+    ))
+  }
+</ol>

@@ -1,0 +1,41 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import PageHead from '../../components/PageHead.astro';
+import SeriesList from '../../components/SeriesList.astro';
+import { getSeriesGroups, textLang } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const series = await getSeriesGroups();
+  return series.map((group) => ({ params: { slug: group.slug }, props: { group } }));
+}
+
+const { group } = Astro.props;
+const sections = [...new Set(group.entries.map((entry) => entry.category))];
+const count = group.entries.length;
+const partLabel = count === 1 ? 'part' : 'parts';
+---
+<MainLayout title={`Series / ${group.title}`} description={group.description ?? `An ordered series in ${count} ${partLabel}.`}>
+  <PageHead
+    kicker={`Series / ${count} ${partLabel}${group.sample ? ' / Draft sample' : ''}`}
+    title={group.title}
+    deck={group.description ?? `An ordered sequence in ${count} ${partLabel}.`}
+    asideLines={[`${count} ${partLabel}`, sections.join(' · '), 'The Sequence']}
+    glyph="library"
+    lang={textLang(group.title)}
+  />
+  <div class="wrap section-body">
+    <SeriesList entries={group.entries} />
+    {group.sample && (
+      <p class="section-note">
+        This is a draft sample series. It is visible in development only and is excluded from the
+        production build.
+      </p>
+    )}
+    <p class="section-note">
+      <a class="recent-link" href={`/search/?series=${encodeURIComponent(group.slug)}`}>
+        Filter the archive by this series
+      </a>
+    </p>
+    <p class="section-note"><a class="recent-link" href="/series/">All series</a></p>
+  </div>
+</MainLayout>

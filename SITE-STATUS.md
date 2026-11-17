@@ -1,6 +1,6 @@
 # Site status
 
-Last updated: 2026-11-16
+Last updated: 2026-11-17
 
 ## Live site
 
@@ -14,6 +14,8 @@ Last updated: 2026-11-16
 - Deploy workflow: `.github/workflows/deploy.yml`
 - Last verified Pages build: 2026-11-16 05:05 UTC
 
+The live site does not include the local library changes described below yet.
+
 ## Stack
 
 - Astro `7.4.12`
@@ -25,20 +27,30 @@ Last updated: 2026-11-16
 
 ## Content
 
-- Notes: 23 entries
-- Thoughts: 49 entries
+Production build:
+
+- Notes: 27 entries
+- Thoughts: 65 entries
 - Research: 1 entry
 - Projects: 2 entries
-- Searchable archive: 75 entries
-- Static build: 164 pages
+- Searchable archive: 95 entries
+- Static build: 202 pages
+
+Development also shows five draft sample entries used to test series ordering and cross-section series pages. They are excluded from the production build.
 
 The archive is public. It contains no student number, supervisor, institution, degree, thesis PDF, or DOCX. Multilingual entries use `lang` arrays and language-section headings.
 
 ## Shipped
 
-- Home frontispiece with star-map navigation and five section constellations
+- Home frontispiece with star-map navigation and the four section constellations
+- Smaller About, Selected, and Series collection marks on the star map, plus the archive telescope
 - Notes, Thoughts, Research, and Projects indexes and entry routes
-- Unified client-side search with category browsing, tags, and chronological archive
+- Section filters for language, topic, tag, year, and series where those facets exist
+- Unified client-side search with combinable section, language, topic, tag, year, and series filters
+- Global `/languages/<lang>/` views generated from entry `lang` values, separate from tag routes
+- `/series/` index and dynamic `/series/<slug>/` views with ordered parts
+- `/selected/` route with the first curated entry, `異文化理解について`
+- Draft sample series for design review
 - Running folio, table of contents, margin notes, pager, and RSS
 - Day and night themes with persistent local storage
 - CJK-aware font routing and section-level `lang` annotations
@@ -48,6 +60,17 @@ The archive is public. It contains no student number, supervisor, institution, d
 - About page colophon, social links, mode legend, and About plate image
 - Simplified star-ring and column favicon
 - `AGENTS.md` with repository rules and entry templates for all four collections
+
+## Current local work
+
+The working tree contains the language, filter, series, selected, and star-map changes. They pass `npm run check` and `npm run build` locally but have not been committed or deployed.
+
+Open decisions and limits:
+
+- `topics` is in the schema with an empty default; the corpus has not been migrated to a topic taxonomy yet.
+- `src/data/selected.ts` currently contains one entry and is ready for more.
+- Series samples are drafts. Set `draft: false` only when a sample should become public.
+- Search renders the first 30 matches and reports that limit in the status line.
 
 ## Deployment
 
@@ -70,13 +93,14 @@ curl -sI https://duzui300.github.io/ | grep -i last-modified
 ## Git state
 
 - The published history is linear on `main`. The initial publication is commit `298a465`; later entries are normal content commits.
+- Latest content commit before the current local work: `685dc4f` (`Expand the archive with new entries and media`).
+- The current library changes are uncommitted.
 - Local safety branches: `backup/main-pre-squash`, `backup/direction-two-pre-rebase`.
 - The old Hugo source folder `D:\blog\test` still exists locally and is no longer used by deployment. Its deletion was requested but blocked by the local safety check.
 - The remote `myblog` Hugo history was replaced by the single-commit Astro history.
 
 ## Known limits
 
-- Search renders the first 30 matches and reports that limit in the status line.
 - The empty TOC rail on articles without headings remains because the A-02 layout change was reverted.
 - GitHub Actions reports a non-blocking Node 20 deprecation warning for `actions/checkout` and `actions/setup-node`.
 - The final Pages publish step depends on the repository secret having write access to the Pages repository.

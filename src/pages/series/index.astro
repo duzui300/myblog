@@ -1,0 +1,52 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import PageHead from '../../components/PageHead.astro';
+import { getSeriesGroups } from '../../lib/content';
+
+const series = await getSeriesGroups();
+---
+<MainLayout
+  title="Series"
+  description="Ordered sequences of entries that carry a question across several parts and, sometimes, across more than one section."
+>
+  <PageHead
+    kicker="Series / Collected sequences"
+    title="Series"
+    deck="Ordered sequences that carry a question across several entries, sometimes across more than one section."
+    asideLines={[`${series.length} series`, 'Ordered reading', 'The Sequence']}
+    glyph="library"
+  />
+  <div class="wrap section-body">
+    {
+      series.length > 0 ? (
+        <div class="series-grid">
+          {series.map((group) => {
+            const sections = [...new Set(group.entries.map((entry) => entry.category))];
+            return (
+              <a class="series-card" href={`/series/${encodeURIComponent(group.slug)}/`}>
+                <span class="series-card-kicker">
+                  {group.sample ? 'Draft sample' : 'Series'} / {String(group.entries.length).padStart(2, '0')} parts
+                </span>
+                <span class="series-card-title">{group.title}</span>
+                {group.description && <span class="series-card-desc">{group.description}</span>}
+                <span class="series-card-meta">{sections.join(' · ')}</span>
+                <span class="series-card-parts">
+                  {group.entries.slice(0, 3).map((entry, index) => (
+                    <span>
+                      {String(index + 1).padStart(2, '0')} {entry.title}
+                    </span>
+                  ))}
+                  {group.entries.length > 3 && <span>+ {group.entries.length - 3} more</span>}
+                </span>
+                <span class="series-card-enter">Open the series →</span>
+              </a>
+            );
+          })}
+        </div>
+      ) : (
+        <p class="section-note">No series yet. The first sequence will appear here when its first entry is published.</p>
+      )
+    }
+    <p class="section-note"><a class="recent-link" href="/search/">Filter the full archive</a></p>
+  </div>
+</MainLayout>

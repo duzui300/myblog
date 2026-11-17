@@ -28,12 +28,14 @@ src/
   content/              Markdown entries by collection
   components/           navigation, figures, article parts, lists
   layouts/              MainLayout, SectionLayout, ContentLayout
-  pages/                routes for the home page, sections, entries, search, and tags
+  pages/                routes for the home page, sections, entries, search, languages, series, selected, and tags
   data/
     sections.ts         section metadata, navigation groups, star-map geometry
+    series.ts           series titles and descriptions
+    selected.ts         curated Selected hrefs
     site.ts             site title, description, volume, social links
   lib/
-    content.ts          collection queries and archive helpers
+    content.ts          collection queries, language views, series groups, and archive helpers
     search-normalize.ts client-side query normalization
     rehype-language-sections.mjs
   styles/global.css     design tokens and shared styles
@@ -53,7 +55,9 @@ Entries live in four collections under `src/content/`:
 - `research`
 - `projects`
 
-Every entry has a title, date, language, tags, description, and optional reading time, series, dropcap, margin notes, and metadata. Collection-specific fields are defined in `src/content.config.ts`. The file name is the URL slug. Draft entries are excluded from production listings.
+Every entry has a title, date, language, topics, tags, description, and optional reading time, series, dropcap, margin notes, and metadata. Collection-specific fields are defined in `src/content.config.ts`. The file name is the URL slug. Draft entries are excluded from production listings.
+
+`topics` is the broad browsing shelf; `tags` remains the specific concept layer. `series` plus `seriesOrder` turns entries into an ordered sequence, and a series may cross collection boundaries. Series titles and descriptions live in `src/data/series.ts`; curated Selected hrefs live in `src/data/selected.ts`.
 
 The first item in `lang` is the primary language. Multilingual entries may mark sections with headings such as `## 中文`, `## English`, and `## 日本語`; the Markdown pipeline adds the corresponding `lang` attributes to the sections that follow. Interface copy stays in English.
 
@@ -71,7 +75,11 @@ Math can use `$...$` or `$$...$$`. Display equations should be kept short; split
 /projects/                projects index
 /<section>/<slug>/        content entry
 /about/                   about and colophon
-/search/                  unified archive search
+/search/                  searchable and filterable archive
+/languages/<lang>/        global language views
+/series/                  series index
+/series/<slug>/           ordered series view
+/selected/                curated selection
 /tags/<tag>/              tag views
 /search.json              generated search index
 /index.xml                RSS
@@ -81,7 +89,9 @@ Redirects for retired paths are configured in `astro.config.mjs`.
 
 ## Search
 
-`/search/` queries the build-time `search.json` index. The page supports live filtering, category browsing, popular tags, and a chronological archive. The implementation is a client-side substring match that handles English and CJK.
+`/search/` queries the build-time `search.json` index. The page supports full-text search plus combinable section, language, topic, tag, year, and series filters, category browsing, popular tags, and a chronological archive. Section indexes have their own client-side filters. The implementation is a client-side substring match that handles English and CJK.
+
+Language routes are global. Language is a property of the text, not a topic, so `/languages/<lang>/` is generated from entry `lang` values and never from tags.
 
 ## Design system
 
@@ -91,7 +101,7 @@ Redirects for retired paths are configured in `astro.config.mjs`.
 - **The Observatory** for research
 - **The Frontier** for projects
 
-The home page and section indexes use a star-map navigation system. Section metadata, constellation geometry, and panel copy live in `src/data/sections.ts`.
+The home page and section indexes use a star-map navigation system. Section metadata, constellation geometry, and panel copy live in `src/data/sections.ts`. The four main fields keep full constellations; About, Selected, and Series are smaller collection marks, and Search is the telescope.
 
 Language-aware typography is handled with `:lang()` rules and collection language metadata. Day and night themes share the same semantic tokens; use the existing custom properties rather than hard-coded colors.
 

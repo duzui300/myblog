@@ -1,0 +1,33 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PageHead from '../components/PageHead.astro';
+import EntryList from '../components/EntryList.astro';
+import { getSelectedEntries } from '../lib/content';
+
+const entries = await getSelectedEntries();
+const countLabel = entries.length === 1 ? 'entry' : 'entries';
+---
+<MainLayout
+  title="Selected"
+  description="A short shelf of entries chosen by hand, kept apart from the chronological archive."
+>
+  <PageHead
+    kicker="Selected / By hand"
+    title="Selected"
+    deck="A short shelf of entries chosen by hand, kept apart from the chronological record and the full archive."
+    asideLines={[`${entries.length} ${countLabel}`, 'Curated', 'The Selection']}
+    glyph="library"
+  />
+  <div class="wrap section-body">
+    {
+      entries.length > 0 ? (
+        <EntryList entries={entries} />
+      ) : (
+        <p class="section-note">
+          The selection is being assembled. Entries chosen by hand will appear here.
+        </p>
+      )
+    }
+    <p class="section-note"><a class="recent-link" href="/search/">Browse the full archive</a></p>
+  </div>
+</MainLayout>
