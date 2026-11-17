@@ -1,11 +1,13 @@
 ---
-title: "又想学乐器了"
+title: 又想学乐器了
 date: 2026-10-18
 lang: 中文
+topics:
+  - music
 tags:
-  - 音乐
-  - 乐器
-description: "又想学乐器了 听朋友给弹了春よ来い好感动🥹 比起之前只是因为作为娱乐的对音乐性的个人享受或者是出于耍帅或者对某些场景的向……"
+  - spring-come
+  - daily-life
+description: 又想学乐器了 听朋友给弹了春よ来い好感动🥹 比起之前只是因为作为娱乐的对音乐性的个人享受或者是出于耍帅或者对某些场景的向……
 reading: 2 min
 dropcap: false
 ---

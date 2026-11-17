@@ -1,12 +1,14 @@
 ---
-title: "记录与回忆"
+title: 记录与回忆
 date: 2026-09-19
 lang: 中文
+topics:
+  - mindset
 tags:
-  - 随想
-  - 回忆
-  - 芙莉莲
-description: "有朋友发了这段话让我想起来自己以前看过还很喜欢这段，在某年生日帖还发了这张截图，就去翻了一下顺便又看了遍当时写的贴文……"
+  - memory
+  - frieren
+  - time-perception
+description: 有朋友发了这段话让我想起来自己以前看过还很喜欢这段，在某年生日帖还发了这张截图，就去翻了一下顺便又看了遍当时写的贴文……
 reading: 4 min
 dropcap: false
 ---

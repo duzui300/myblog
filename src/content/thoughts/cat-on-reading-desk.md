@@ -1,11 +1,12 @@
 ---
-title: "看书与猫"
+title: 看书与猫
 date: 2026-09-30
 lang: 中文
+topics:
+  - mindset
 tags:
-  - 随想
-  - 日常
-description: "看书看一半哈基米上桌了，已对其毛发发起严厉打击作为打断我看书的惩罚……"
+  - daily-life
+description: 看书看一半哈基米上桌了，已对其毛发发起严厉打击作为打断我看书的惩罚……
 reading: 1 min
 dropcap: false
 ---

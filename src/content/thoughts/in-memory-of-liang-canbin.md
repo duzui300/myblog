@@ -1,12 +1,15 @@
 ---
-title: "悼念梁灿彬先生"
+title: 悼念梁灿彬先生
 date: 2022-02-16
 lang: 中文
+topics:
+  - physics
+  - mindset
 tags:
-  - 回忆
-  - 物理
-  - 悼念
-description: "现在我的书架上还放着您著写的的电磁学教材，收藏夹中还存有您的广相课待我学习，电子阅读器里存放着您的书籍待我翻阅，您教导的……"
+  - liang-canbin
+  - memory
+  - general-relativity
+description: 现在我的书架上还放着您著写的的电磁学教材，收藏夹中还存有您的广相课待我学习，电子阅读器里存放着您的书籍待我翻阅，您教导的……
 reading: 2 min
 dropcap: false
 ---

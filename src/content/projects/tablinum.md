@@ -2,15 +2,16 @@
 title: Tablinum
 date: 2026-11-14
 lang: English
-kind: Project
+topics:
+  - tools
+  - humanities
 tags:
-  - Latin
-  - classics
-  - annotation
-  - offline
-  - desktop
+  - latin
+  - local-first
+  - classical-studies
 description: An offline-first Latin project workstation for Windows, combining dependency annotation, dual-layer reading hypotheses, and local reference lexicons.
 reading: Case study
+kind: Project
 figure: annotation
 year: 2026 —
 status: Ongoing

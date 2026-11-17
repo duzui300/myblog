@@ -1,13 +1,14 @@
 ---
-title: "HIMEHINA Live 2025：Day 2 最前排"
+title: HIMEHINA Live 2025：Day 2 最前排
 date: 2025-03-03
 lang: 中文
+topics:
+  - music
 tags:
-  - Live
-  - 音乐
-  - HIMEHINA
-  - 日常
-description: "day2 最前排太幸福了。感谢ヒメヒナ，带给我这么幸福的时间，永远的酒姬民！"
+  - live-performance
+  - himehina
+  - daily-life
+description: day2 最前排太幸福了。感谢ヒメヒナ，带给我这么幸福的时间，永远的酒姬民！
 reading: 2 min
 dropcap: false
 ---

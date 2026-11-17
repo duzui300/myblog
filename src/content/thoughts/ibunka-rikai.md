@@ -1,14 +1,15 @@
 ---
-title: "異文化理解について"
+title: 異文化理解について
 date: 2026-01-06
 lang: 日本語
-figure: chord
+topics:
+  - society
+  - language
 tags:
-  - 随想
-  - 日本語
-  - 対話
-description: "最近は前VRCHATで出来た韓国人の友達とだんだん仲が良くなってきて……"
+  - vrchat
+description: 最近は前VRCHATで出来た韓国人の友達とだんだん仲が良くなってきて……
 reading: 8 min
+figure: chord
 dropcap: false
 margin:
   - label: Note 01

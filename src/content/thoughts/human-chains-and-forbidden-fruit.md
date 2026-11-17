@@ -1,11 +1,16 @@
 ---
-title: "束缚感"
+title: 束缚感
 date: 2024-05-23
-lang: [中文, English, 日本語]
+lang:
+  - 中文
+  - English
+  - 日本語
+topics:
+  - mindset
 tags:
-  - 随想
-  - 哲学
-description: "无论是客观环境施加的，还是自我主观创造的，人类这种生物一生都背负着锁链，也永远无法获得自由，能够被允许并借由某些活动来短……"
+  - self-identity
+  - free-will
+description: 无论是客观环境施加的，还是自我主观创造的，人类这种生物一生都背负着锁链，也永远无法获得自由，能够被允许并借由某些活动来短……
 reading: 2 min
 dropcap: false
 ---

@@ -1,11 +1,16 @@
 ---
-title: "日常的重复与对称性"
+title: 日常的重复与对称性
 date: 2026-02-01
-lang: [中文, English, 日本語]
+lang:
+  - 中文
+  - English
+  - 日本語
+topics:
+  - physics
+  - mindset
 tags:
-  - 随想
-  - 物理隐喻
-description: "人似乎总是会重复自己过去所做过的事情，不光是日常习惯与微小偏好，每日每周每月，甚至在更大的时间尺度上似乎也是如此。这似乎……"
+  - daily-life
+description: 人似乎总是会重复自己过去所做过的事情，不光是日常习惯与微小偏好，每日每周每月，甚至在更大的时间尺度上似乎也是如此。这似乎……
 reading: 6 min
 dropcap: false
 ---

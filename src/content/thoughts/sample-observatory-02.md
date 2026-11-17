@@ -1,16 +1,17 @@
 ---
-title: "Sample II — The Window"
+title: Sample II — The Window
 date: 2023-01-11
 lang: English
+topics:
+  - mindset
 tags:
-  - sample
-  - series test
-description: "A draft sample entry used to test a series that crosses from Notes into Thoughts."
+  - daily-life
+description: A draft sample entry used to test a series that crosses from Notes into Thoughts.
 reading: 2 min
-dropcap: false
+draft: true
 series: sample-observatory
 seriesOrder: 2
-draft: true
+dropcap: false
 ---
 
 This is the second draft sample. It lives in Thoughts while the first and third parts live in Notes, so the series page has to carry a reader across section boundaries without losing the order.

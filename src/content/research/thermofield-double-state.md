@@ -1,20 +1,21 @@
 ---
 title: 推广的热场双态的研究
 date: 2025-05-06
-lang: [中文, English]
-kind: Thesis
+lang:
+  - 中文
+  - English
+topics:
+  - physics
 tags:
-  - 热场双重态
-  - 欧几里得路径积分
-  - 弯曲时空量子场论
-  - Unruh效应
-  - 密度矩阵一致性
-  - 路径积分
-  - 黑洞热力学
+  - thermofield-double-state
+  - quantum-field-theory
+  - black-hole-thermodynamics
+  - path-integral
 description: 欧几里得路径积分框架下推广热场双重态的几何构造，以及在 Rindler 与 Schwarzschild 时空中的密度矩阵一致性研究。
 reading: 10 min
-dropcap: false
+kind: Thesis
 figure: thermal
+dropcap: false
 margin:
   - label: S1 topology
     text: 欧氏虚时间 τ = it 具有周期 β = 1/T，路径积分流形在拓扑上等价于柱面或圆环。

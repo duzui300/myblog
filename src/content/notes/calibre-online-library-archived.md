@@ -1,11 +1,14 @@
 ---
-title: "搭建线上书库的一点记录"
+title: 搭建线上书库的一点记录
 date: 2026-06-27
 lang: 中文
+topics:
+  - tools
+  - reading
 tags:
-  - 软件与工具
-  - 阅读
-description: "💡 归档注记：本项目搭建的云端书库服务现已关闭归档，本文作为数字书房折腾过程与西语诗歌的阅读记录予以留存……"
+  - calibre
+  - workflow
+description: 💡 归档注记：本项目搭建的云端书库服务现已关闭归档，本文作为数字书房折腾过程与西语诗歌的阅读记录予以留存……
 reading: 2 min
 dropcap: false
 ---

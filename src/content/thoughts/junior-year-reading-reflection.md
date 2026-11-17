@@ -1,11 +1,15 @@
 ---
-title: "大三的阅读总结"
+title: 大三的阅读总结
 date: 2024-06-30
 lang: 中文
+topics:
+  - reading
+  - humanities
 tags:
-  - 阅读
-  - 回忆
-description: "眨眼间24年已经过去了一半，我的大三也就此落下了帷幕。虽然无数次在与人交流时错把现在当作23年，但这段快速奔流的时间绝非……"
+  - periodic-review
+  - classical-studies
+  - latin
+description: 眨眼间24年已经过去了一半，我的大三也就此落下了帷幕。虽然无数次在与人交流时错把现在当作23年，但这段快速奔流的时间绝非……
 reading: 5 min
 dropcap: false
 ---

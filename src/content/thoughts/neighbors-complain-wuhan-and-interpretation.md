@@ -1,11 +1,13 @@
 ---
-title: "Neighbors Complain 武汉站现场"
+title: Neighbors Complain 武汉站现场
 date: 2025-05-22
 lang: 中文
+topics:
+  - music
 tags:
-  - 音乐
-  - Live
-description: "没想到mc环节上台当了前半的同传翻译，真的太惊喜了。第一次听rnb现场本来还有点担心，结果不仅扭爽了还收获了意外之喜，实……"
+  - live-performance
+  - wuhan
+description: 没想到mc环节上台当了前半的同传翻译，真的太惊喜了。第一次听rnb现场本来还有点担心，结果不仅扭爽了还收获了意外之喜，实……
 reading: 2 min
 dropcap: false
 ---

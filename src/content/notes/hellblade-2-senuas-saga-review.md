@@ -1,11 +1,13 @@
 ---
-title: "《地狱之刃 2》通关简评"
+title: 《地狱之刃 2》通关简评
 date: 2024-07-02
 lang: 中文
+topics:
+  - games
 tags:
-  - 游戏
-  - 地狱之刃2
-description: "大概是目前为止今年最超出我预期的游戏，因为玩之前的预期就是画面好短线性流程轻gameplay，加上前作中间有段解密给我的……"
+  - hellblade-2
+  - audiovisual-language
+description: 大概是目前为止今年最超出我预期的游戏，因为玩之前的预期就是画面好短线性流程轻gameplay，加上前作中间有段解密给我的……
 reading: 2 min
 dropcap: false
 ---

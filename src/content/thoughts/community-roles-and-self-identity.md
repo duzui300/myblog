@@ -1,11 +1,16 @@
 ---
-title: "社群与自我：社交压力与自我发展"
+title: 社群与自我：社交压力与自我发展
 date: 2024-05-26
-lang: [中文, English, 日本語]
+lang:
+  - 中文
+  - English
+  - 日本語
+topics:
+  - mindset
+  - society
 tags:
-  - 随想
-  - 自我
-description: "人的自我的相当大一部分是在与人交流或者说所处的某个社群中诞生的……"
+  - self-identity
+description: 人的自我的相当大一部分是在与人交流或者说所处的某个社群中诞生的……
 reading: 6 min
 dropcap: false
 ---

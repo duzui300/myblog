@@ -1,13 +1,13 @@
 ---
-title: "旅游：航海家、地图与海边离岛"
+title: 旅游：航海家、地图与海边离岛
 date: 2026-08-05
 lang: 中文
+topics:
+  - travel
 tags:
-  - 出行
-  - 海
-  - 博物馆
-  - 日常
-description: "跟海最有缘的一集，谁懂逛博物馆正好看到在看的讲17世纪航海家的历史虚构漫画里的角色/地图展示……"
+  - museum
+  - sea
+description: 跟海最有缘的一集，谁懂逛博物馆正好看到在看的讲17世纪航海家的历史虚构漫画里的角色/地图展示……
 reading: 1 min
 dropcap: false
 ---

@@ -1,11 +1,13 @@
 ---
-title: "歩みを止めること"
+title: 歩みを止めること
 date: 2024-12-15
 lang: 日本語
+topics:
+  - mindset
 tags:
-  - 诗歌
-  - 日本語
-description: "好きなときに立ち止まって ゆっくり見て、感じて、味わっていたい。 なぜ学業に、生活に、社会に、世界に押されて……"
+  - poetry
+  - daily-life
+description: 好きなときに立ち止まって ゆっくり見て、感じて、味わっていたい。 なぜ学業に、生活に、社会に、世界に押されて……
 reading: 2 min
 dropcap: false
 ---

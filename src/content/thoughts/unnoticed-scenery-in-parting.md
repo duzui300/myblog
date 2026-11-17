@@ -1,11 +1,17 @@
 ---
-title: "四年日常中的非日常"
+title: 四年日常中的非日常
 date: 2025-06-08
-lang: [中文, English, 日本語]
+lang:
+  - 中文
+  - English
+  - 日本語
+topics:
+  - travel
+  - mindset
 tags:
-  - 随想
-  - 回忆
-description: "总是在要离开的时候才会注意到过去忽视的东西。 夏日的艳阳与暴雨下，热气与雨水的雾霭中，正潜藏着在四年“无趣”日常中我所追……"
+  - campus-life
+  - memory
+description: 总是在要离开的时候才会注意到过去忽视的东西。 夏日的艳阳与暴雨下，热气与雨水的雾霭中，正潜藏着在四年“无趣”日常中我所追……
 reading: 4 min
 dropcap: false
 ---

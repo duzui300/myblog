@@ -1,12 +1,15 @@
 ---
-title: "闪击西安金属现场"
+title: 闪击西安金属现场
 date: 2025-07-26
 lang: 中文
+topics:
+  - music
+  - travel
 tags:
-  - Live
-  - 重金属
-  - 出行
-description: "闪击西安，已飞。三个人全是无情铁手，感觉要给弦拨出火星子了……"
+  - live-performance
+  - metal
+  - xian
+description: 闪击西安，已飞。三个人全是无情铁手，感觉要给弦拨出火星子了……
 reading: 2 min
 dropcap: false
 ---

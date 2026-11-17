@@ -1,11 +1,12 @@
 ---
-title: "《Jusant》通关简评"
+title: 《Jusant》通关简评
 date: 2023-11-03
 lang: 中文
+topics:
+  - games
 tags:
-  - 游戏
-  - Jusant
-description: "因为一直对这种能带来平静和禅意感的游戏比较感兴趣，所以在游戏刚公布的时候就关注了，但真正玩到时，对这个游戏的喜爱与满意远……"
+  - jusant
+description: 因为一直对这种能带来平静和禅意感的游戏比较感兴趣，所以在游戏刚公布的时候就关注了，但真正玩到时，对这个游戏的喜爱与满意远……
 reading: 2 min
 dropcap: false
 ---

@@ -1,11 +1,13 @@
 ---
-title: "星に導かれて"
+title: 星に導かれて
 date: 2024-09-08
 lang: 日本語
+topics:
+  - mindset
 tags:
-  - 诗歌
-  - 日本語
-description: "数えきれないほどの偶然が重なってこそ、星に導かれているように、運命がこんなに儚くて、尊くて、美しき時間を作り上げてきた……"
+  - poetry
+  - time-perception
+description: 数えきれないほどの偶然が重なってこそ、星に導かれているように、運命がこんなに儚くて、尊くて、美しき時間を作り上げてきた……
 reading: 2 min
 dropcap: false
 ---

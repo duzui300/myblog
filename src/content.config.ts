@@ -1,18 +1,26 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { tagIdSet, topicIdSet } from './data/taxonomy';
 
 const language = z.enum(['中文', '日本語', 'English']);
 const langField = z
   .union([language, z.array(language).min(1)])
   .transform((value) => (Array.isArray(value) ? value : [value]));
 
+const topicId = z.string().refine((value) => topicIdSet.has(value), {
+  message: 'Unknown topic id. Add it to src/data/taxonomy.ts first.',
+});
+const tagId = z.string().refine((value) => tagIdSet.has(value), {
+  message: 'Unknown tag id. Add it to src/data/taxonomy.ts first.',
+});
+
 const common = {
   title: z.string(),
   date: z.coerce.date(),
   lang: langField,
-  topics: z.array(z.string()).default([]),
-  tags: z.array(z.string()).default([]),
+  topics: z.array(topicId).default([]),
+  tags: z.array(tagId).default([]),
   description: z.string(),
   draft: z.boolean().default(false),
   reading: z.string().optional(),

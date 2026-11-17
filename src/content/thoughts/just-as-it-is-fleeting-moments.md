@@ -1,11 +1,13 @@
 ---
-title: "このままでもいい"
+title: このままでもいい
 date: 2026-04-18
 lang: 日本語
+topics:
+  - mindset
 tags:
-  - 诗歌
-  - 日本語
-description: "このままでもいい 取るに足りない小さなひととき 心に染みる些細な温もり 会いたい憧れと すぐ会えない焦がれた気持ち……"
+  - poetry
+  - nihilism
+description: このままでもいい 取るに足りない小さなひととき 心に染みる些細な温もり 会いたい憧れと すぐ会えない焦がれた気持ち……
 reading: 2 min
 dropcap: false
 ---

@@ -1,12 +1,13 @@
 ---
-title: "GBC 5th Live 现场随笔"
+title: GBC 5th Live 现场随笔
 date: 2025-02-07
 lang: 中文
+topics:
+  - music
 tags:
-  - 音乐
-  - Live
-  - GBC
-description: "赤い糸合唱，小孩姐的吉他合奏，武道馆宣布，期待很久的生きて生きてゆく压轴。 真的要哭出来了……"
+  - live-performance
+  - girls-band-cry
+description: 赤い糸合唱，小孩姐的吉他合奏，武道馆宣布，期待很久的生きて生きてゆく压轴。 真的要哭出来了……
 reading: 2 min
 dropcap: false
 ---

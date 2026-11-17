@@ -1,11 +1,14 @@
 ---
-title: "读《その日暮らしの人類学》"
+title: 读《その日暮らしの人類学》
 date: 2025-02-24
 lang: 日本語
+topics:
+  - reading
+  - humanities
 tags:
-  - 阅读
-  - 人类学
-description: "内山は、人間の存在自体が時間的な存在であると述べ、自然や他者との関係的時間が実態的時間に変容する過程のなかに、近代の成立……"
+  - anthropology
+  - time-perception
+description: 内山は、人間の存在自体が時間的な存在であると述べ、自然や他者との関係的時間が実態的時間に変容する過程のなかに、近代の成立……
 reading: 2 min
 dropcap: false
 ---

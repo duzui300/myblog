@@ -1,11 +1,13 @@
 ---
-title: "obsidian自动导入工具"
+title: obsidian自动导入工具
 date: 2026-10-08
 lang: 中文
+topics:
+  - tools
 tags:
-  - 软件与工具
-  - Obsidian
-description: "前天搞完了Obsidian配置，但是因为自己平常看书主要还是手机上的各种阅读器，readest/kindle/readi……"
+  - obsidian
+  - workflow
+description: 前天搞完了Obsidian配置，但是因为自己平常看书主要还是手机上的各种阅读器，readest/kindle/readi……
 reading: 2 min
 dropcap: false
 ---

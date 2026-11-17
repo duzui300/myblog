@@ -1,12 +1,14 @@
 ---
-title: "仮想の花火"
+title: 仮想の花火
 date: 2026-05-23
 lang: 日本語
+topics:
+  - mindset
 tags:
-  - 诗歌
-  - VRChat
-  - 日本語
-description: "儚い故に美しい、消えゆく姿こそ存在の意味……"
+  - poetry
+  - vrchat
+  - nihilism
+description: 儚い故に美しい、消えゆく姿こそ存在の意味……
 reading: 2 min
 dropcap: false
 ---

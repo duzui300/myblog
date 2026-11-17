@@ -1,11 +1,13 @@
 ---
-title: "读《教養としての宗教学入門》"
+title: 读《教養としての宗教学入門》
 date: 2024-05-03
 lang: 中文
+topics:
+  - reading
+  - humanities
 tags:
-  - 阅读
-  - 宗教学
-description: "作者将宗教分为融入文化生活的薄い宗教和虔信的濃い宗教非常的有意思……"
+  - religious-studies
+description: 作者将宗教分为融入文化生活的薄い宗教和虔信的濃い宗教非常的有意思……
 reading: 2 min
 dropcap: false
 ---

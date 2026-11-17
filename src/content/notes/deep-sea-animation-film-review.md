@@ -1,11 +1,14 @@
 ---
-title: "电影《深海》观后感"
+title: 电影《深海》观后感
 date: 2023-01-28
 lang: 中文
+topics:
+  - moving-image
 tags:
-  - 电影
-  - 影评
-description: "刚看完深海，虽然不怎么看电影，但是太喜欢这部电影了所以来吹一波。（放在我个人看过的所有虚构作品，游戏小说动画里我都觉得是……"
+  - deep-sea
+  - film
+  - audiovisual-language
+description: 刚看完深海，虽然不怎么看电影，但是太喜欢这部电影了所以来吹一波。（放在我个人看过的所有虚构作品，游戏小说动画里我都觉得是……
 reading: 2 min
 dropcap: false
 ---

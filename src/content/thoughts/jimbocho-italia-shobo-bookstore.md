@@ -1,11 +1,15 @@
 ---
-title: "神保町イタリア書房"
+title: 神保町イタリア書房
 date: 2026-09-02
 lang: 中文
+topics:
+  - reading
+  - travel
 tags:
-  - 书店
-  - 城市与土地
-description: "神宝町イタリア書房 非常好书店！ 没去过欧洲美洲第一次线下看到一柜子西语书的书店！除了西语还有意大利语和葡萄牙语。整体以……"
+  - jimbocho
+  - physical-bookstore
+  - spanish
+description: 神宝町イタリア書房 非常好书店！ 没去过欧洲美洲第一次线下看到一柜子西语书的书店！除了西语还有意大利语和葡萄牙语。整体以……
 reading: 2 min
 dropcap: false
 ---

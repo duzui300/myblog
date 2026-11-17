@@ -1,11 +1,13 @@
 ---
-title: "Russell on the Disappearance of Matter"
+title: Russell on the Disappearance of Matter
 date: 2024-07-23
 lang: English
+topics:
+  - physics
 tags:
-  - 物理
-  - 哲学
-description: "The main point for the philosopher in the modern theory is t……"
+  - philosophy-of-science
+  - russell
+description: The main point for the philosopher in the modern theory is t……
 reading: 2 min
 dropcap: false
 ---

@@ -2,28 +2,44 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 import PageHead from '../../components/PageHead.astro';
 import EntryList from '../../components/EntryList.astro';
-import { getTags, textLang } from '../../lib/content';
+import { getTags, textLang, type TagGroup } from '../../lib/content';
 
 export async function getStaticPaths() {
   const tags = await getTags();
-  return tags.map(({ tag, entries }) => ({ params: { tag }, props: { tag, entries } }));
+  return tags.map((group) => ({ params: { tag: group.id }, props: { group } }));
 }
 
-const { tag, entries } = Astro.props;
-const label = decodeURIComponent(Astro.params.tag ?? tag);
+interface Props {
+  group: TagGroup;
+}
+
+const { group } = Astro.props;
+const { id, labels, aliases, description, entries } = group;
 const count = entries.length;
 const entryLabel = count === 1 ? 'entry' : 'entries';
+const title = labels.zh || labels.en || id;
 ---
-<MainLayout title={`Tag / ${label}`} description={`Entries tagged ${label}.`}>
+<MainLayout title={`Tag / ${title}`} description={description ?? `Entries tagged ${labels.en || title}.`}>
   <PageHead
     kicker={`Tag / ${count} ${entryLabel}`}
-    title={label}
-    deck={`Entries tagged ${label}, across the archive.`}
-    asideLines={[`${count} ${entryLabel}`, 'All sections', 'Tag']}
-    lang={textLang(label)}
+    title={title}
+    deck={description ?? `Entries tagged ${labels.en || title}, across the archive.`}
+    asideLines={[`${count} ${entryLabel}`, 'Cross-language', 'Tag']}
+    glyph="library"
+    lang={textLang(title)}
   />
   <div class="wrap section-body">
     <EntryList entries={entries} />
-    <p class="section-note"><a class="recent-link" href="/search/">The archive</a></p>
+    <p class="section-note">Translations / {labels.en} · {labels.ja}</p>
+    <p class="section-note">Canonical id / {id}</p>
+    {aliases.length > 0 && (
+      <p class="section-note">Also indexed as / {aliases.slice(0, 10).join(' · ')}</p>
+    )}
+    <p class="section-note">
+      <a class="recent-link" href={`/search/?tag=${encodeURIComponent(id)}`}>
+        Filter the archive by this tag
+      </a>
+    </p>
+    <p class="section-note"><a class="recent-link" href="/tags/">All tags</a></p>
   </div>
 </MainLayout>

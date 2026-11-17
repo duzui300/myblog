@@ -1,16 +1,17 @@
 ---
-title: "Sample I — The Instrument"
+title: Sample I — The Instrument
 date: 2023-01-10
 lang: English
+topics:
+  - mindset
 tags:
-  - sample
-  - series test
-description: "A draft sample entry used to test the first position of an ordered series."
+  - daily-life
+description: A draft sample entry used to test the first position of an ordered series.
 reading: 2 min
-dropcap: false
+draft: true
 series: sample-observatory
 seriesOrder: 1
-draft: true
+dropcap: false
 ---
 
 This is a draft sample, not a published note. It exists so the series index, the part counter, and the cross-section ordering can be inspected while the site is running locally.

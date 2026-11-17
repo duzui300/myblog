@@ -7,7 +7,8 @@ import Toc from '../components/Toc.astro';
 import type { MarkdownHeading } from 'astro';
 import type { CollectionEntry } from 'astro:content';
 import type { ContentKey, EntrySummary } from '../lib/content';
-import { formatDate, getSeriesGroup, isLanguageTag, langCode, textLang } from '../lib/content';
+import { formatDate, getSeriesGroup, langCode, textLang } from '../lib/content';
+import { getTagLabel, getTopicLabel } from '../data/taxonomy';
 import { sections } from '../data/sections';
 
 interface Action {
@@ -63,6 +64,22 @@ const seriesNext =
     : null;
 const pagerPrev = inSeries ? seriesPrev : prev;
 const pagerNext = inSeries ? seriesNext : next;
+const primaryLang = entry.data.lang[0];
+const topicChips = entry.data.topics.map((id) => ({
+  id,
+  label: getTopicLabel(id, primaryLang),
+  href: `/topics/${id}/`,
+  lang: textLang(getTopicLabel(id, primaryLang)),
+  kind: 'topic' as const,
+}));
+const tagChips = entry.data.tags.map((id) => ({
+  id,
+  label: getTagLabel(id, primaryLang),
+  href: `/tags/${id}/`,
+  lang: textLang(getTagLabel(id, primaryLang)),
+  kind: 'tag' as const,
+}));
+const bandTags = [...topicChips, ...tagChips];
 ---
 <MainLayout title={entry.data.title} description={entry.data.description}>
   {
@@ -79,7 +96,7 @@ const pagerNext = inSeries ? seriesNext : next;
           section.mode,
         ]}
         titleId="entry-title"
-        tags={entry.data.tags}
+        tags={bandTags}
         lang={lang}
       >
         <slot name="hero" />
@@ -127,19 +144,16 @@ const pagerNext = inSeries ? seriesNext : next;
                 / {entry.data.reading ?? kind} / Vol. I
               </p>
               {
-                entry.data.tags.length > 0 && (
+                bandTags.length > 0 && (
                   <div class="entry-tags">
-                    {entry.data.tags.map((tag) => (
-                      <a
-                        class="entry-tag"
-                        href={
-                          isLanguageTag(tag)
-                            ? `/languages/${encodeURIComponent(tag)}/`
-                            : `/tags/${encodeURIComponent(tag)}/`
-                        }
-                        lang={textLang(tag)}
-                      >
-                        {tag}
+                    {topicChips.map((chip) => (
+                      <a class="entry-tag entry-topic" href={chip.href} lang={chip.lang}>
+                        {chip.label}
+                      </a>
+                    ))}
+                    {tagChips.map((chip) => (
+                      <a class="entry-tag" href={chip.href} lang={chip.lang}>
+                        {chip.label}
                       </a>
                     ))}
                   </div>

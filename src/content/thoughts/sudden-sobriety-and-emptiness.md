@@ -1,11 +1,16 @@
 ---
-title: "好讨厌这种突然清醒的感觉"
+title: 好讨厌这种突然清醒的感觉
 date: 2025-03-14
-lang: [中文, English, 日本語]
+lang:
+  - 中文
+  - English
+  - 日本語
+topics:
+  - mindset
 tags:
-  - 诗歌
-  - 随想
-description: "好讨厌这种突然清醒的感觉 突然对过去热忱的东西失去兴趣 突然感到自己所处状态的荒谬 突然意识到自己的无足轻重……"
+  - poetry
+  - nihilism
+description: 好讨厌这种突然清醒的感觉 突然对过去热忱的东西失去兴趣 突然感到自己所处状态的荒谬 突然意识到自己的无足轻重……
 reading: 2 min
 dropcap: false
 ---

@@ -1,10 +1,12 @@
 ---
-title: "The In-between"
+title: The In-between
 date: 2024-12-05
 lang: English
+topics:
+  - mindset
 tags:
-  - 诗歌
-  - English
+  - poetry
+  - time-perception
 description: "the in-between time: from when a sound is made to when it returns as an echo……"
 reading: 2 min
 dropcap: false

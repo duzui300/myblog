@@ -1,12 +1,13 @@
 ---
-title: "就这么度过了人生的前二十年"
+title: 就这么度过了人生的前二十年
 date: 2023-10-18
 lang: 中文
+topics:
+  - mindset
 tags:
-  - 随想
-  - 成长
-  - 日常
-description: "小时候总是对时间的流逝抱有一种既期待又恐惧的想法，现在再回过头来看，大概还是这样的心情……"
+  - growth
+  - time-perception
+description: 小时候总是对时间的流逝抱有一种既期待又恐惧的想法，现在再回过头来看，大概还是这样的心情……
 reading: 3 min
 dropcap: false
 ---

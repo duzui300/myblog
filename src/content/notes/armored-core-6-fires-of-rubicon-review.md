@@ -1,12 +1,15 @@
 ---
-title: "《装甲核心 6》三周目通关随感"
+title: 《装甲核心 6》三周目通关随感
 date: 2023-09-17
-lang: [中文, 日本語]
+lang:
+  - 中文
+  - 日本語
+topics:
+  - games
 tags:
-  - 游戏
-  - FromSoftware
-  - 装甲核心6
-description: "两周目双结局打完了！本来只是想换个口味，但是没想到这么沉迷……"
+  - fromsoftware
+  - armored-core-6
+description: 两周目双结局打完了！本来只是想换个口味，但是没想到这么沉迷……
 reading: 6 min
 dropcap: false
 ---

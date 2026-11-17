@@ -1,11 +1,13 @@
 ---
-title: "在桥上吹风"
+title: 在桥上吹风
 date: 2024-05-09
 lang: 中文
+topics:
+  - society
+  - mindset
 tags:
-  - 随想
-  - 城市与土地
-description: "越是了解人类的历史和生活样式，越让人意识到过去短短几十年间所谓的近现代化/城市化对人类的各各方面，生活方式、家族观念、个……"
+  - sense-of-place
+description: 越是了解人类的历史和生活样式，越让人意识到过去短短几十年间所谓的近现代化/城市化对人类的各各方面，生活方式、家族观念、个……
 reading: 2 min
 dropcap: false
 ---

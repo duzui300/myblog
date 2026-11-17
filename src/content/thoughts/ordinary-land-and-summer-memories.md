@@ -1,11 +1,17 @@
 ---
-title: "土地与记忆"
+title: 土地与记忆
 date: 2025-07-04
-lang: [中文, English, 日本語]
+lang:
+  - 中文
+  - English
+  - 日本語
+topics:
+  - travel
+  - mindset
 tags:
-  - 随想
-  - 城市与土地
-description: "这些清晰又平凡的景象似乎无法再承载儿时那夹杂着恐惧与好奇的无边无际的想象……"
+  - sense-of-place
+  - time-perception
+description: 这些清晰又平凡的景象似乎无法再承载儿时那夹杂着恐惧与好奇的无边无际的想象……
 reading: 3 min
 dropcap: false
 ---

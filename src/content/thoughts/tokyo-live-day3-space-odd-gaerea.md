@@ -1,12 +1,15 @@
 ---
-title: "东京 Live 记：Space Odd"
+title: 东京 Live 记：Space Odd
 date: 2026-07-14
 lang: 中文
+topics:
+  - music
+  - travel
 tags:
-  - 音乐
-  - Live
-  - 东京
-description: "day3 space odd gaerea 一如既往眼镜战损，总感觉不是第一次了🫠 这次是之前就有关注的乐队，后黑金属/……"
+  - live-performance
+  - tokyo
+  - metal
+description: day3 space odd gaerea 一如既往眼镜战损，总感觉不是第一次了🫠 这次是之前就有关注的乐队，后黑金属/……
 reading: 2 min
 dropcap: false
 ---

@@ -1,12 +1,14 @@
 ---
-title: "读《Nexus》"
+title: 读《Nexus》
 date: 2025-09-14
 lang: 中文
+topics:
+  - reading
+  - society
 tags:
-  - 阅读
-  - 历史
-  - 社会
-description: "断断续续读了三周，终于看完了。 尤瓦尔赫拉利一直是我很喜欢的一位作者。在中学时读到的人类简史，以其广阔的叙述视角和丰富的……"
+  - yuval-noah-harari
+  - history
+description: 断断续续读了三周，终于看完了。 尤瓦尔赫拉利一直是我很喜欢的一位作者。在中学时读到的人类简史，以其广阔的叙述视角和丰富的……
 reading: 3 min
 dropcap: false
 ---

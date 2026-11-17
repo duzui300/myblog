@@ -1,11 +1,14 @@
 ---
-title: "Heavenstamp Live"
+title: Heavenstamp Live
 date: 2025-08-09
 lang: 中文
+topics:
+  - music
 tags:
-  - 音乐
-  - Live
-description: "第一次来看，事先扫了一遍专其实最喜欢的是一专……"
+  - live-performance
+  - rock
+  - heavenstamp
+description: 第一次来看，事先扫了一遍专其实最喜欢的是一专……
 reading: 2 min
 dropcap: false
 ---

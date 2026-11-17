@@ -2,15 +2,17 @@
 title: Diglota
 date: 2026-09-25
 lang: English
-kind: Project
+topics:
+  - tools
+  - language
 tags:
-  - language learning
-  - Spanish
   - local-first
-  - desktop
-  - AI
+  - spanish
+  - language-learning
+  - ai
 description: A reading-first desktop platform for acquiring Spanish in context through the diglot weave method, built local-first with Python and WebView2.
 reading: Case study
+kind: Project
 figure: diglot
 year: 2026 —
 status: Ongoing

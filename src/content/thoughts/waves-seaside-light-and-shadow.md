@@ -1,11 +1,12 @@
 ---
-title: "波"
+title: 波
 date: 2026-07-30
 lang: 中文
+topics:
+  - games
 tags:
-  - 摄影
-  - 海
-description: "海边波浪与潮汐翻涌的光影摄影切片……"
+  - vrchat
+description: 海边波浪与潮汐翻涌的光影摄影切片……
 reading: 2 min
 dropcap: false
 ---

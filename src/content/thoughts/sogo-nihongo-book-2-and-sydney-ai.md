@@ -1,11 +1,14 @@
 ---
-title: "《綜合日本語》第二册学完了"
+title: 《綜合日本語》第二册学完了
 date: 2023-03-02
 lang: 日本語
+topics:
+  - language
 tags:
-  - 语言学习
-  - 日语
-description: "これで「綜合日本語」の二冊目は完成です(≧▽≦) 次は、日本語能力試験N2を目指して準備をしてみよう!……"
+  - sogo-nihongo
+  - japanese
+  - ai
+description: これで「綜合日本語」の二冊目は完成です(≧▽≦) 次は、日本語能力試験N2を目指して準備をしてみよう!……
 reading: 2 min
 dropcap: false
 ---

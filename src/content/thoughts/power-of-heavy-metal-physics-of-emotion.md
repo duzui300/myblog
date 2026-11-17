@@ -1,11 +1,13 @@
 ---
-title: "关于金属乐"
+title: 关于金属乐
 date: 2025-04-25
 lang: 中文
+topics:
+  - music
+  - mindset
 tags:
-  - 音乐
-  - 摇滚
-description: "感觉金属乐真的是一种很神奇的东西。 它并不像大部分其他能够安慰或者减缓负面情绪的事物一样，一层层或一块块地拨开拂去人的情……"
+  - metal
+description: 感觉金属乐真的是一种很神奇的东西。 它并不像大部分其他能够安慰或者减缓负面情绪的事物一样，一层层或一块块地拨开拂去人的情……
 reading: 2 min
 dropcap: false
 ---

@@ -1,6 +1,15 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { getSeriesMeta, getSeriesTitle } from '../data/series';
 import { selectedHrefs } from '../data/selected';
+import {
+  getTag,
+  getTagLabel,
+  getTagSearchTerms,
+  getTopicLabel,
+  getTopicSearchTerms,
+  topics as topicRegistry,
+  type TaxonomyLabels,
+} from '../data/taxonomy';
 
 export type ContentKey = 'notes' | 'thoughts' | 'research' | 'projects';
 
@@ -14,7 +23,9 @@ export type EntrySummary = {
   date: Date;
   langs: string[];
   topics: string[];
+  topicLabels: string[];
   tags: string[];
+  tagLabels: string[];
   description: string;
   reading?: string;
   status?: string;
@@ -34,16 +45,35 @@ export type SearchEntry = {
   date: string;
   langs: string[];
   topics: string[];
+  topicLabels: string[];
   tags: string[];
+  tagLabels: string[];
   description: string;
   series?: string;
   seriesOrder?: number;
   seriesTitle?: string;
+  taxonomyAliases: string;
   body: string;
 };
 
 export type LanguageGroup = {
   lang: string;
+  entries: EntrySummary[];
+};
+
+export type TagGroup = {
+  id: string;
+  labels: TaxonomyLabels;
+  aliases: string[];
+  description?: string;
+  entries: EntrySummary[];
+};
+
+export type TopicGroup = {
+  id: string;
+  labels: TaxonomyLabels;
+  aliases: string[];
+  description: string;
   entries: EntrySummary[];
 };
 
@@ -134,6 +164,7 @@ function makeSummary(
   kind: string,
 ): EntrySummary {
   const meta = sectionMeta[section];
+  const primaryLang = entry.data.lang[0];
   return {
     section,
     category: meta.category,
@@ -144,7 +175,9 @@ function makeSummary(
     date: entry.data.date,
     langs: entry.data.lang,
     topics: entry.data.topics,
+    topicLabels: entry.data.topics.map((id) => getTopicLabel(id, primaryLang)),
     tags: entry.data.tags,
+    tagLabels: entry.data.tags.map((id) => getTagLabel(id, primaryLang)),
     description: entry.data.description,
     reading: entry.data.reading,
     series: entry.data.series,
@@ -220,31 +253,61 @@ export async function getAdjacent(
   };
 }
 
-export async function getTags(): Promise<{ tag: string; entries: EntrySummary[] }[]> {
+export async function getTags(): Promise<TagGroup[]> {
   const entries = await getAllSummaries();
   const map = new Map<string, EntrySummary[]>();
   for (const entry of entries) {
-    const tags = new Set(entry.tags.filter((tag) => tag && !isLanguageTag(tag)));
-    for (const tag of tags) {
+    for (const tag of new Set(entry.tags)) {
       const list = map.get(tag) ?? [];
       list.push(entry);
       map.set(tag, list);
     }
   }
   return [...map.entries()]
-    .map(([tag, list]) => ({
-      tag,
-      entries: list.sort((a, b) => b.date.getTime() - a.date.getTime()),
-    }))
-    .sort((a, b) => a.tag.localeCompare(b.tag));
+    .map(([id, list]) => {
+      const meta = getTag(id);
+      return {
+        id,
+        labels: meta?.labels ?? { zh: id, ja: id, en: id },
+        aliases: meta?.aliases ?? [],
+        description: meta?.description,
+        entries: [...list].sort((a, b) => b.date.getTime() - a.date.getTime()),
+      };
+    })
+    .sort((a, b) => a.labels.zh.localeCompare(b.labels.zh));
 }
 
-export async function getPopularTags(
-  limit = 8,
-): Promise<{ tag: string; entries: EntrySummary[] }[]> {
+export async function getPopularTags(limit = 8): Promise<TagGroup[]> {
   return (await getTags())
-    .sort((a, b) => b.entries.length - a.entries.length || a.tag.localeCompare(b.tag))
+    .sort(
+      (a, b) =>
+        b.entries.length - a.entries.length || a.labels.zh.localeCompare(b.labels.zh),
+    )
     .slice(0, limit);
+}
+
+export async function getTopics(): Promise<TopicGroup[]> {
+  const entries = await getAllSummaries();
+  const map = new Map<string, EntrySummary[]>();
+  for (const entry of entries) {
+    for (const topic of new Set(entry.topics)) {
+      const list = map.get(topic) ?? [];
+      list.push(entry);
+      map.set(topic, list);
+    }
+  }
+  return topicRegistry
+    .map((topic) => ({
+      id: topic.id,
+      labels: topic.labels,
+      aliases: topic.aliases,
+      description: topic.description,
+      entries: [...(map.get(topic.id) ?? [])].sort(
+        (a, b) => b.date.getTime() - a.date.getTime(),
+      ),
+    }))
+    .filter((topic) => topic.entries.length > 0)
+    .sort((a, b) => b.entries.length - a.entries.length || a.labels.zh.localeCompare(b.labels.zh));
 }
 
 export async function getLanguages(): Promise<LanguageGroup[]> {
@@ -327,6 +390,13 @@ function makeSearchEntry(
   kind: string,
 ): SearchEntry {
   const meta = sectionMeta[section];
+  const primaryLang = entry.data.lang[0];
+  const taxonomyAliases = [
+    ...new Set([
+      ...entry.data.topics.flatMap((id) => getTopicSearchTerms(id)),
+      ...entry.data.tags.flatMap((id) => getTagSearchTerms(id)),
+    ]),
+  ].join(' ');
   return {
     section,
     category: meta.category,
@@ -337,11 +407,14 @@ function makeSearchEntry(
     date: entry.data.date.toISOString(),
     langs: entry.data.lang,
     topics: entry.data.topics,
+    topicLabels: entry.data.topics.map((id) => getTopicLabel(id, primaryLang)),
     tags: entry.data.tags,
+    tagLabels: entry.data.tags.map((id) => getTagLabel(id, primaryLang)),
     description: entry.data.description,
     series: entry.data.series,
     seriesOrder: entry.data.seriesOrder,
     seriesTitle: entry.data.series ? getSeriesTitle(entry.data.series) : undefined,
+    taxonomyAliases,
     body: plainBody(entry.body),
   };
 }

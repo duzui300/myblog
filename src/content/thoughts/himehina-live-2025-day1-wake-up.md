@@ -1,13 +1,14 @@
 ---
-title: "HIMEHINA Live 2025：Day 1 睡醒记"
+title: HIMEHINA Live 2025：Day 1 睡醒记
 date: 2025-03-02
 lang: 中文
+topics:
+  - music
 tags:
-  - Live
-  - 音乐
-  - HIMEHINA
-  - 日常
-description: "睡醒发day1。进场有些晚了但视野意外的不错，生バンド演奏加开头直接炸场……"
+  - live-performance
+  - himehina
+  - daily-life
+description: 睡醒发day1。进场有些晚了但视野意外的不错，生バンド演奏加开头直接炸场……
 reading: 2 min
 dropcap: false
 ---

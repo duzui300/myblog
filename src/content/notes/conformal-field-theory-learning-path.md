@@ -1,11 +1,13 @@
 ---
-title: "关于 CFT 的基础学习与文献"
+title: 关于 CFT 的基础学习与文献
 date: 2024-05-16
 lang: 中文
+topics:
+  - physics
 tags:
-  - 物理
-  - CFT
-description: "关于 CFT（Conformal Field Theory）的基础学习和文献推荐：……"
+  - conformal-field-theory
+  - quantum-field-theory
+description: 关于 CFT（Conformal Field Theory）的基础学习和文献推荐：……
 reading: 3 min
 dropcap: false
 ---

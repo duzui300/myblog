@@ -1,6 +1,7 @@
 ---
 import { getSeriesTitle } from '../data/series';
-import { isLanguageTag, type EntrySummary } from '../lib/content';
+import { getTag, getTopic } from '../data/taxonomy';
+import type { EntrySummary } from '../lib/content';
 
 interface Props {
   entries: EntrySummary[];
@@ -11,12 +12,12 @@ const { entries } = Astro.props;
 const languages = [...new Set(entries.flatMap((entry) => entry.langs))].sort((a, b) =>
   a.localeCompare(b),
 );
-const topics = [...new Set(entries.flatMap((entry) => entry.topics))].sort((a, b) =>
-  a.localeCompare(b),
-);
-const tags = [
-  ...new Set(entries.flatMap((entry) => entry.tags).filter((tag) => tag && !isLanguageTag(tag))),
-].sort((a, b) => a.localeCompare(b));
+const topicOptions = [...new Set(entries.flatMap((entry) => entry.topics))]
+  .map((id) => ({ id, label: getTopic(id)?.labels.zh ?? id }))
+  .sort((a, b) => a.label.localeCompare(b.label));
+const tagOptions = [...new Set(entries.flatMap((entry) => entry.tags))]
+  .map((id) => ({ id, label: getTag(id)?.labels.zh ?? id }))
+  .sort((a, b) => a.label.localeCompare(b.label));
 const years = [...new Set(entries.map((entry) => String(entry.date.getFullYear())))].sort(
   (a, b) => Number(b) - Number(a),
 );
@@ -37,8 +38,8 @@ for (const entry of entries) {
 
 const hasFilters =
   languages.length > 1 ||
-  topics.length > 0 ||
-  tags.length > 0 ||
+  topicOptions.length > 0 ||
+  tagOptions.length > 0 ||
   years.length > 1 ||
   series.length > 0;
 const show = hasFilters;
@@ -59,24 +60,24 @@ const entryLabel = entries.length === 1 ? 'entry' : 'entries';
           </select>
         </label>
       )}
-      {topics.length > 0 && (
+      {topicOptions.length > 0 && (
         <label class="filter-field">
           <span>Topic</span>
           <select data-filter="topic">
             <option value="">All</option>
-            {topics.map((topic) => (
-              <option value={topic}>{topic}</option>
+            {topicOptions.map((topic) => (
+              <option value={topic.id}>{topic.label}</option>
             ))}
           </select>
         </label>
       )}
-      {tags.length > 0 && (
+      {tagOptions.length > 0 && (
         <label class="filter-field">
           <span>Tag</span>
           <select data-filter="tag">
             <option value="">All</option>
-            {tags.map((tag) => (
-              <option value={tag}>{tag}</option>
+            {tagOptions.map((tag) => (
+              <option value={tag.id}>{tag.label}</option>
             ))}
           </select>
         </label>

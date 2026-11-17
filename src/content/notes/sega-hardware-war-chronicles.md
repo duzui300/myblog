@@ -1,12 +1,14 @@
 ---
-title: "读《セガハード戦記》"
+title: 读《セガハード戦記》
 date: 2024-02-26
 lang: 中文
+topics:
+  - games
+  - reading
 tags:
-  - 阅读
-  - 游戏史
-  - 世嘉
-description: "纪念自己从头到尾读完的第一本日语书，セガハード戦記 看完在推特写了一点读后感（写的时候没注意変な日本語すまん）（第一句改……"
+  - sega
+  - gaming-history
+description: 纪念自己从头到尾读完的第一本日语书，セガハード戦記 看完在推特写了一点读后感（写的时候没注意変な日本語すまん）（第一句改……
 reading: 2 min
 dropcap: false
 ---

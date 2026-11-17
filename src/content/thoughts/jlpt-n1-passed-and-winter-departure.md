@@ -1,12 +1,15 @@
 ---
-title: "JLPT N1合格！"
+title: JLPT N1合格！
 date: 2024-01-22
 lang: 中文
+topics:
+  - language
+  - mindset
 tags:
-  - 日语
-  - 成长
-  - 日常
-description: "过了！！！宣告我以学习日语为借口的逃避学业与现实的一年彻底结束……"
+  - jlpt
+  - japanese
+  - growth
+description: 过了！！！宣告我以学习日语为借口的逃避学业与现实的一年彻底结束……
 reading: 2 min
 dropcap: false
 ---

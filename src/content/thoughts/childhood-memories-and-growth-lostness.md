@@ -1,11 +1,14 @@
 ---
-title: "胡言乱语"
+title: 胡言乱语
 date: 2025-02-20
 lang: 中文
+topics:
+  - mindset
 tags:
-  - 诗歌
-  - 回忆
-description: "我想要的到底是什么 一路走来伤害了这么多人 犯下了这么多错误 像是为了给自己挖一个越来越深的坟墓……"
+  - poetry
+  - growth
+  - childhood
+description: 我想要的到底是什么 一路走来伤害了这么多人 犯下了这么多错误 像是为了给自己挖一个越来越深的坟墓……
 reading: 2 min
 dropcap: false
 ---

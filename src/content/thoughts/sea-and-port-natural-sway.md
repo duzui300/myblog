@@ -1,11 +1,13 @@
 ---
-title: "海と港"
+title: 海と港
 date: 2026-07-30
 lang: 日本語
+topics:
+  - travel
+  - mindset
 tags:
-  - 随想
-  - 日本語
-description: "やっぱり港より一面に広がって視野を占め尽くそうとしながらもただ平然と……"
+  - sea
+description: やっぱり港より一面に広がって視野を占め尽くそうとしながらもただ平然と……
 reading: 2 min
 dropcap: false
 ---

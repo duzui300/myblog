@@ -1,0 +1,45 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import PageHead from '../../components/PageHead.astro';
+import EntryList from '../../components/EntryList.astro';
+import { getTopics, textLang, type TopicGroup } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const topics = await getTopics();
+  return topics.map((group) => ({ params: { topic: group.id }, props: { group } }));
+}
+
+interface Props {
+  group: TopicGroup;
+}
+
+const { group } = Astro.props;
+const { id, labels, aliases, description, entries } = group;
+const count = entries.length;
+const entryLabel = count === 1 ? 'entry' : 'entries';
+const title = labels.zh || labels.en || id;
+---
+<MainLayout title={`Topic / ${title}`} description={description}>
+  <PageHead
+    kicker={`Topic / ${count} ${entryLabel}`}
+    title={title}
+    deck={description}
+    asideLines={[`${count} ${entryLabel}`, 'Broad shelf', 'Topic']}
+    glyph="library"
+    lang={textLang(title)}
+  />
+  <div class="wrap section-body">
+    <EntryList entries={entries} />
+    <p class="section-note">Translations / {labels.en} · {labels.ja}</p>
+    <p class="section-note">Canonical id / {id}</p>
+    {aliases.length > 0 && (
+      <p class="section-note">Also indexed as / {aliases.slice(0, 10).join(' · ')}</p>
+    )}
+    <p class="section-note">
+      <a class="recent-link" href={`/search/?topic=${encodeURIComponent(id)}`}>
+        Filter the archive by this topic
+      </a>
+    </p>
+    <p class="section-note"><a class="recent-link" href="/topics/">All topics</a></p>
+  </div>
+</MainLayout>

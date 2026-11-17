@@ -1,12 +1,14 @@
 ---
-title: "电影《第二十条》观后感"
+title: 电影《第二十条》观后感
 date: 2024-02-14
 lang: 中文
+topics:
+  - moving-image
+  - society
 tags:
-  - 电影
-  - 社会与法
-  - 影评
-description: "看了第二十条，因为之前玩过审判系列（如龙外传法庭侦探剧act）和逆转裁判系列，所以对这个题材比较感兴趣……"
+  - film
+  - article-20
+description: 看了第二十条，因为之前玩过审判系列（如龙外传法庭侦探剧act）和逆转裁判系列，所以对这个题材比较感兴趣……
 reading: 4 min
 dropcap: false
 ---

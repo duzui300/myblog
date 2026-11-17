@@ -1,11 +1,12 @@
 ---
-title: "来自地球另一端的礼物"
+title: 来自地球另一端的礼物
 date: 2026-06-12
 lang: English
+topics:
+  - mindset
 tags:
-  - 随想
-  - 人际
-description: "If only one day, I could share its back with the world in th……"
+  - minority-rights
+description: If only one day, I could share its back with the world in th……
 reading: 2 min
 dropcap: false
 ---

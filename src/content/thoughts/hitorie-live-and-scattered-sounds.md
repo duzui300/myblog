@@ -1,12 +1,14 @@
 ---
-title: "Hitorie 现场与散落的声音"
+title: Hitorie 现场与散落的声音
 date: 2025-05-28
 lang: 中文
+topics:
+  - music
 tags:
-  - Live
-  - 音乐
-  - Hitorie
-description: "蹦爽了。整场听下来印象最深刻的是鼓，写得真的很不错；其次贝斯也很突出……"
+  - live-performance
+  - hitorie
+  - rock
+description: 蹦爽了。整场听下来印象最深刻的是鼓，写得真的很不错；其次贝斯也很突出……
 reading: 3 min
 dropcap: false
 ---

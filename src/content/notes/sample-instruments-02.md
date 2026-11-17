@@ -1,16 +1,17 @@
 ---
-title: "样本二 · 地图的边缘"
+title: 样本二 · 地图的边缘
 date: 2023-02-11
 lang: 中文
+topics:
+  - mindset
 tags:
-  - sample
-  - series test
-description: "用于测试中文系列第二部分的草稿样本。"
+  - daily-life
+description: 用于测试中文系列第二部分的草稿样本。
 reading: 2 min
-dropcap: false
+draft: true
 series: sample-instruments
 seriesOrder: 2
-draft: true
+dropcap: false
 ---
 
 这是第二篇草稿样本。它测试系列的最后一篇：系列页应当只列出两篇，上一篇与下一篇的标记不应越界。

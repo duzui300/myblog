@@ -1,12 +1,13 @@
 ---
-title: "《奥德赛》读后感"
+title: 《奥德赛》读后感
 date: 2026-08-10
 lang: 中文
+topics:
+  - humanities
 tags:
-  - 古典学
-  - 奥德赛
-  - 阅读
-description: "趁着电影上映，把很早就想看的《奥德赛》看了。考虑到自己半吊子的英文水平，看评价挑了 Emily Wilson 这个最平易……"
+  - odyssey
+  - classical-studies
+description: 趁着电影上映，把很早就想看的《奥德赛》看了。考虑到自己半吊子的英文水平，看评价挑了 Emily Wilson 这个最平易……
 reading: 6 min
 dropcap: false
 margin:

@@ -1,12 +1,14 @@
 ---
-title: "抽象逻辑与具体语言"
+title: 抽象逻辑与具体语言
 date: 2024-03-12
 lang: 中文
+topics:
+  - language
+  - physics
 tags:
-  - 随想
-  - 语言学习
-  - 物理
-description: "看日语的物理科普书时忽然出现的一点想法 学习外语的时候对于更抽象的词汇像是表示逻辑关系的词句等，应该是更容易学习和理解的……"
+  - language-learning
+  - japanese
+description: 看日语的物理科普书时忽然出现的一点想法 学习外语的时候对于更抽象的词汇像是表示逻辑关系的词句等，应该是更容易学习和理解的……
 reading: 4 min
 dropcap: false
 ---

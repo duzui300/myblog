@@ -1,0 +1,42 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import PageHead from '../../components/PageHead.astro';
+import { getTags, textLang } from '../../lib/content';
+
+const tags = await getTags();
+---
+<MainLayout
+  title="Tags"
+  description="The precise retrieval layer of the archive, with canonical ids, multilingual labels, and search aliases."
+>
+  <PageHead
+    kicker="Tags / The retrieval layer"
+    title="Tags"
+    deck="Specific concepts, works, people, places, and techniques. Each tag page gathers entries across languages and sections."
+    asideLines={[`${tags.length} tags`, 'Canonical ids', 'Aliases in search']}
+    glyph="library"
+  />
+  <div class="wrap section-body">
+    <div class="tag-index-grid">
+      {
+        tags.map((group) => (
+          <a class="tag-index-card" href={`/tags/${encodeURIComponent(group.id)}/`}>
+            <span class="tag-index-primary" lang={textLang(group.labels.zh)}>
+              {group.labels.zh}
+            </span>
+            <span class="tag-index-secondary">
+              {group.labels.en} · {group.labels.ja}
+            </span>
+            <span class="tag-index-count">
+              {group.entries.length} {group.entries.length === 1 ? 'entry' : 'entries'}
+            </span>
+          </a>
+        ))
+      }
+    </div>
+    <p class="section-note">
+      <a class="recent-link" href="/topics/">Browse the broader topics</a>
+    </p>
+    <p class="section-note"><a class="recent-link" href="/search/">Filter the full archive</a></p>
+  </div>
+</MainLayout>

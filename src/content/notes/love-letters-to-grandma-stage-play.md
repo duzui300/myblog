@@ -1,11 +1,15 @@
 ---
-title: "电影《给阿嬷的情书》"
+title: 电影《给阿嬷的情书》
 date: 2026-05-23
 lang: 中文
+topics:
+  - moving-image
+  - society
 tags:
-  - 电影
-  - 回忆
-description: "看了给阿嬷的情书。 像文学作品。 最喜欢的片段是南枝得知木生死后，写了讣告在银信局准备寄信的部分。向家里报平安的、寄钱让……"
+  - love-letters-to-grandma
+  - film
+  - history
+description: 看了给阿嬷的情书。 像文学作品。 最喜欢的片段是南枝得知木生死后，写了讣告在银信局准备寄信的部分。向家里报平安的、寄钱让……
 reading: 2 min
 dropcap: false
 ---

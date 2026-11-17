@@ -1,5 +1,10 @@
 ---
-import { textLang } from '../lib/content';
+interface Chip {
+  label: string;
+  href: string;
+  lang: string;
+  kind: 'topic' | 'tag';
+}
 
 interface Props {
   mode: 'library' | 'observatory' | 'frontier';
@@ -9,7 +14,7 @@ interface Props {
   deck?: string;
   metaLines: string[];
   titleId?: string;
-  tags?: string[];
+  tags?: Chip[];
   lang?: string;
 }
 
@@ -27,12 +32,8 @@ const hasFigure = Astro.slots.has('default');
         tags.length > 0 && (
           <div class="mode-tags">
             {tags.map((tag) => (
-              <a
-                class="mode-tag"
-                href={`/tags/${encodeURIComponent(tag)}/`}
-                lang={textLang(tag)}
-              >
-                {tag}
+              <a class={`mode-tag${tag.kind === 'topic' ? ' mode-topic' : ''}`} href={tag.href} lang={tag.lang}>
+                {tag.label}
               </a>
             ))}
           </div>

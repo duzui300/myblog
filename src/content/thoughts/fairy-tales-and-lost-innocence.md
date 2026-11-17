@@ -1,11 +1,17 @@
 ---
-title: "成长与童话故事"
+title: 成长与童话故事
 date: 2024-08-31
-lang: [中文, English, 日本語]
+lang:
+  - 中文
+  - English
+  - 日本語
+topics:
+  - mindset
 tags:
-  - 随想
-  - 童话
-description: "在随着自身的逐渐成长，对世界的认知越来越具体的这个不可逆的过程中，不知不觉间丢失的那份混沌与懵懂，纯粹与无知，那份言语描……"
+  - growth
+  - childhood
+  - self-identity
+description: 在随着自身的逐渐成长，对世界的认知越来越具体的这个不可逆的过程中，不知不觉间丢失的那份混沌与懵懂，纯粹与无知，那份言语描……
 reading: 3 min
 dropcap: false
 ---

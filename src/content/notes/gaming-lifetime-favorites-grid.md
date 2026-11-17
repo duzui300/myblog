@@ -1,12 +1,12 @@
 ---
-title: "构成我的九个游戏"
+title: 构成我的九个游戏
 date: 2026-03-11
 lang: 中文
+topics:
+  - games
 tags:
-  - 游戏
-  - 评测
-  - ACG
-description: "跟风填了一下个人游戏喜好表。前两排是没有任何纠结的。如龙、DOOM、AW 是系列而非单作……"
+  - gaming-history
+description: 跟风填了一下个人游戏喜好表。前两排是没有任何纠结的。如龙、DOOM、AW 是系列而非单作……
 reading: 2 min
 dropcap: false
 ---

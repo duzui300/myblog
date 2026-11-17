@@ -1,11 +1,12 @@
 ---
-title: "在阳光下生活"
+title: 在阳光下生活
 date: 2024-12-06
 lang: 中文
+topics:
+  - society
 tags:
-  - 随想
-  - 社会与法
-description: "仅仅是想在阳光下生活也不被允许 仅仅因为一个标签就要被否定全身 你说人们的思想、社会的共识……"
+  - minority-rights
+description: 仅仅是想在阳光下生活也不被允许 仅仅因为一个标签就要被否定全身 你说人们的思想、社会的共识……
 reading: 2 min
 dropcap: false
 ---

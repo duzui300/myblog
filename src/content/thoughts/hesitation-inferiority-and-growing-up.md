@@ -1,12 +1,13 @@
 ---
-title: "emo"
+title: emo
 date: 2024-05-03
 lang: 中文
+topics:
+  - mindset
 tags:
-  - 随想
-  - 成长
-  - 心境
-description: "希望有一天能摆脱自卑与害怕带来的犹豫不决，总是忍不住幻想成功后的美好结果，但又每次因为自卑而去考虑并恐惧坏的结果……"
+  - self-identity
+  - growth
+description: 希望有一天能摆脱自卑与害怕带来的犹豫不决，总是忍不住幻想成功后的美好结果，但又每次因为自卑而去考虑并恐惧坏的结果……
 reading: 2 min
 dropcap: false
 ---

@@ -1,12 +1,12 @@
 ---
-title: "隔绝互联网与仰望星空"
+title: 隔绝互联网与仰望星空
 date: 2023-09-27
 lang: 中文
+topics:
+  - mindset
 tags:
-  - 随想
-  - 互联网
-  - 星空
-description: "忽然觉得确实很有必要偶尔彻底隔绝一下互联网了。忘记开流量时打开QQ，恍惚间感觉时间仿佛暂停了一般……"
+  - internet
+description: 忽然觉得确实很有必要偶尔彻底隔绝一下互联网了。忘记开流量时打开QQ，恍惚间感觉时间仿佛暂停了一般……
 reading: 3 min
 dropcap: false
 ---

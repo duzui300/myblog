@@ -1,11 +1,14 @@
 ---
-title: "八秒前的太阳"
+title: 八秒前的太阳
 date: 2024-11-23
 lang: 中文
+topics:
+  - physics
+  - mindset
 tags:
-  - 诗歌
-  - 物理
-description: "我们所见到的太阳来自八秒前 我们所见到的星空来自千万年前 我们与这个世界，我与你 我们之间相隔的不仅是空间……"
+  - poetry
+  - time-perception
+description: 我们所见到的太阳来自八秒前 我们所见到的星空来自千万年前 我们与这个世界，我与你 我们之间相隔的不仅是空间……
 reading: 2 min
 dropcap: false
 ---

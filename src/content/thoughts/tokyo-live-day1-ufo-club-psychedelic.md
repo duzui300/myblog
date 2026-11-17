@@ -1,12 +1,15 @@
 ---
-title: "东京 Live 记：UFO Club"
+title: 东京 Live 记：UFO Club
 date: 2026-07-12
 lang: 中文
+topics:
+  - music
+  - travel
 tags:
-  - 音乐
-  - Live
-  - 东京
-description: "day1 UFO Club 爽爽爽飞飞飞爽爽爽飞飞飞 好像是一位日本非常出名的迷幻摇滚的主唱/吉他手的生日特别场（66岁……"
+  - live-performance
+  - tokyo
+  - rock
+description: day1 UFO Club 爽爽爽飞飞飞爽爽爽飞飞飞 好像是一位日本非常出名的迷幻摇滚的主唱/吉他手的生日特别场（66岁……
 reading: 2 min
 dropcap: false
 ---

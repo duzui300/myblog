@@ -1,12 +1,12 @@
 ---
-title: "夢には必ず目覚めるときがある"
+title: 夢には必ず目覚めるときがある
 date: 2024-09-29
 lang: 日本語
+topics:
+  - mindset
 tags:
-  - 随想
-  - 日本語
-  - 日常
-description: "夢には必ず 目覚めるときがある"
+  - daily-life
+description: 夢には必ず 目覚めるときがある
 reading: 1 min
 dropcap: false
 ---

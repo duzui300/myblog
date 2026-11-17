@@ -1,12 +1,13 @@
 ---
-title: "读完第一部日语小说后的随记"
+title: 读完第一部日语小说后的随记
 date: 2024-08-07
 lang: 中文
+topics:
+  - language
+  - reading
 tags:
-  - 阅读
-  - 语言学习
-  - 日语
-description: "三天旅游的空闲时间看完了我的第一本fiction的日语书，惊叹于不知不觉提升上去的阅读速度和（已经可以顺畅的阅读虚构作品……"
+  - japanese
+description: 三天旅游的空闲时间看完了我的第一本fiction的日语书，惊叹于不知不觉提升上去的阅读速度和（已经可以顺畅的阅读虚构作品……
 reading: 2 min
 dropcap: false
 ---

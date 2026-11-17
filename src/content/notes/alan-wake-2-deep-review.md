@@ -1,12 +1,13 @@
 ---
-title: "《心灵杀手 2》通关随感"
+title: 《心灵杀手 2》通关随感
 date: 2023-11-13
 lang: 中文
+topics:
+  - games
 tags:
-  - 游戏
-  - Remedy
-  - 心灵杀手2
-description: "心灵杀手 2 或许会是我一直以来最喜欢的游戏之一……"
+  - remedy
+  - alan-wake-2
+description: 心灵杀手 2 或许会是我一直以来最喜欢的游戏之一……
 reading: 6 min
 dropcap: false
 ---

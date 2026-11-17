@@ -1,12 +1,15 @@
 ---
-title: "《南京照相馆》"
+title: 《南京照相馆》
 date: 2025-08-21
 lang: 中文
+topics:
+  - moving-image
+  - society
 tags:
-  - 电影
-  - 历史
-  - 札记
-description: "拍得很好。虽然有点不太喜欢结尾的处理，但选择照相馆的视角真的很合适，避免了不少直接的血腥场面……"
+  - photo-studio-nanjing
+  - history
+  - film
+description: 拍得很好。虽然有点不太喜欢结尾的处理，但选择照相馆的视角真的很合适，避免了不少直接的血腥场面……
 reading: 2 min
 dropcap: false
 ---

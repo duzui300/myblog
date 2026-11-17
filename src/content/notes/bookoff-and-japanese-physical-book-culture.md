@@ -1,12 +1,17 @@
 ---
-title: "BOOKOFF 与日本的实体书店"
+title: BOOKOFF 与日本的实体书店
 date: 2026-07-15
-lang: [中文, English, 日本語]
+lang:
+  - 中文
+  - English
+  - 日本語
+topics:
+  - reading
+  - society
 tags:
-  - 阅读
-  - 书店
-  - 日本文化
-description: "看了三天live来搞点文艺 我真的太爱bookoff了，其他的各种书店也都喜欢。相比于国内日本的出版业有着相对较低的准入……"
+  - physical-bookstore
+  - bookoff
+description: 看了三天live来搞点文艺 我真的太爱bookoff了，其他的各种书店也都喜欢。相比于国内日本的出版业有着相对较低的准入……
 reading: 11 min
 dropcap: false
 ---

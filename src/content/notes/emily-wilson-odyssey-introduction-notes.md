@@ -1,12 +1,14 @@
 ---
-title: "Emily Wilson 版《奥德赛》导言笔记"
+title: Emily Wilson 版《奥德赛》导言笔记
 date: 2026-07-20
 lang: 中文
+topics:
+  - humanities
 tags:
-  - 古典学
-  - 奥德赛
-  - 阅读
-description: "小红书新加的这个自动排版好好用。想着正好借着电影上映把很早就想看的《奥德赛》看了，感觉还不错。考虑到自己半吊子的英文水平……"
+  - odyssey
+  - classical-studies
+  - emily-wilson
+description: 小红书新加的这个自动排版好好用。想着正好借着电影上映把很早就想看的《奥德赛》看了，感觉还不错。考虑到自己半吊子的英文水平……
 reading: 7 min
 dropcap: false
 ---

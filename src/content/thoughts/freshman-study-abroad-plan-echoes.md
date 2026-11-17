@@ -1,11 +1,14 @@
 ---
-title: "翻到大一写的留学计划"
+title: 翻到大一写的留学计划
 date: 2024-05-12
 lang: 中文
+topics:
+  - mindset
 tags:
-  - 随想
-  - 回忆
-description: "いつ夢を失ったのかさえ知らずに、 ただうつろな身体に ときを通した 翻到了大一时写的留学计划，眨眼间已经两年了，虽然有些……"
+  - memory
+  - time-perception
+  - self-identity
+description: いつ夢を失ったのかさえ知らずに、 ただうつろな身体に ときを通した 翻到了大一时写的留学计划，眨眼间已经两年了，虽然有些……
 reading: 2 min
 dropcap: false
 ---

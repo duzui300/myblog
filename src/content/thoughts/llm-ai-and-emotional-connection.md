@@ -1,11 +1,13 @@
 ---
-title: "关于 LLM 与情感链接"
+title: 关于 LLM 与情感链接
 date: 2026-09-08
 lang: 中文
+topics:
+  - tools
+  - mindset
 tags:
-  - AI
-  - 随想
-description: "虽然依然做不到向现在的基于 LLM 的 AI 进行情感投射并建立情感链接，但是不论是自己偶尔的感受或者思考，写下的文字……"
+  - ai
+description: 虽然依然做不到向现在的基于 LLM 的 AI 进行情感投射并建立情感链接，但是不论是自己偶尔的感受或者思考，写下的文字……
 reading: 2 min
 dropcap: false
 ---

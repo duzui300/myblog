@@ -1,12 +1,13 @@
 ---
-title: "夏天结束前的最后一舞"
+title: 夏天结束前的最后一舞
 date: 2026-09-15
 lang: 中文
+topics:
+  - music
 tags:
-  - Live
-  - 音乐
-  - 日常
-description: "夏天结束前的最后一舞。太爽了听爽了蹦爽了肘爽了唱爽了喝爽了爽爽爽……"
+  - live-performance
+  - rock
+description: 夏天结束前的最后一舞。太爽了听爽了蹦爽了肘爽了唱爽了喝爽了爽爽爽……
 reading: 2 min
 dropcap: false
 ---

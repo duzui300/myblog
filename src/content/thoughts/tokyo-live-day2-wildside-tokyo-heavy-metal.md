@@ -1,12 +1,15 @@
 ---
-title: "东京 Live 记：Wildside Tokyo"
+title: 东京 Live 记：Wildside Tokyo
 date: 2026-07-13
 lang: 中文
+topics:
+  - music
+  - travel
 tags:
-  - 音乐
-  - Live
-  - 东京
-description: "day2 wildside tokyo 今日老学校heavy metal 这辈子第一次拿到鼓棒！！！都敲裂了太屌了……"
+  - live-performance
+  - tokyo
+  - metal
+description: day2 wildside tokyo 今日老学校heavy metal 这辈子第一次拿到鼓棒！！！都敲裂了太屌了……
 reading: 2 min
 dropcap: false
 ---

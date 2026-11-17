@@ -1,11 +1,13 @@
 ---
-title: "出发前"
+title: 出发前
 date: 2024-09-15
 lang: 中文
+topics:
+  - travel
+  - mindset
 tags:
-  - 随想
-  - 出行
-description: "意外频出的行程，手忙脚乱的准备，不舍与兴奋翻涌在胸腔，飞机延误的信息、意料之外的邮件、与网友的闲聊，或小或大的石子激起的……"
+  - time-perception
+description: 意外频出的行程，手忙脚乱的准备，不舍与兴奋翻涌在胸腔，飞机延误的信息、意料之外的邮件、与网友的闲聊，或小或大的石子激起的……
 reading: 2 min
 dropcap: false
 ---

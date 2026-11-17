@@ -1,11 +1,12 @@
 ---
-title: "現実を見つめること"
+title: 現実を見つめること
 date: 2026-08-17
 lang: 日本語
+topics:
+  - mindset
 tags:
-  - 随想
-  - 日本語
-description: "目を背けず醜い現実と世間を見つめる勇気を持つのがいかに難しいことか……"
+  - self-identity
+description: 目を背けず醜い現実と世間を見つめる勇気を持つのがいかに難しいことか……
 reading: 2 min
 dropcap: false
 ---

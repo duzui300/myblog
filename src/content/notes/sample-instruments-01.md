@@ -1,16 +1,17 @@
 ---
-title: "样本一 · 阅读的器具"
+title: 样本一 · 阅读的器具
 date: 2023-02-10
 lang: 中文
+topics:
+  - mindset
 tags:
-  - sample
-  - series test
-description: "用于测试中文系列顺序与系列索引的草稿样本。"
+  - daily-life
+description: 用于测试中文系列顺序与系列索引的草稿样本。
 reading: 2 min
-dropcap: false
+draft: true
 series: sample-instruments
 seriesOrder: 1
-draft: true
+dropcap: false
 ---
 
 这是一篇草稿样本，不会进入正式构建。它用来检查中文系列的标题、语言标注、以及系列页面的排序是否正常。

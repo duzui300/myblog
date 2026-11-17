@@ -22,12 +22,13 @@ Run `npm run check` and `npm run build` before reporting work as complete.
 
 - `src/content/` holds the four content collections.
 - `src/layouts/` owns page shells and the shared content layout.
-- `src/pages/` owns routes, search, tags, and generated files.
+- `src/pages/` owns routes, search, topics, tags, and generated files.
 - `src/components/` owns reusable navigation, figures, lists, and article parts.
 - `src/data/sections.ts` is the single source for section metadata, navigation groups, collection nodes, and star-map geometry.
+- `src/data/taxonomy.ts` is the single source for topic and tag ids, multilingual labels, descriptions, and search aliases.
 - `src/data/series.ts` holds human-authored series titles and descriptions.
 - `src/data/selected.ts` holds the curated Selected hrefs.
-- `src/lib/content.ts` owns collection queries, language views, series groups, and archive helpers.
+- `src/lib/content.ts` owns collection queries, language views, topic/tag groups, series groups, and archive helpers.
 - `src/styles/global.css` owns design tokens and shared styles.
 
 Use the existing data flow. Do not duplicate section or entry metadata in components.
@@ -39,7 +40,9 @@ Use the existing data flow. Do not duplicate section or entry metadata in compon
 - Do not publish private correspondence or identifiable details about other people without consent.
 - Write in the language of the entry. For multilingual entries, set `lang` to an array and make the first item the primary language.
 - Use `## 中文`, `## English`, and `## 日本語` section headings when an entry has distinct language sections. The build adds `lang` attributes to those sections.
-- `topics` is the broad upper-level shelf; `tags` are specific concepts. Keep language names out of both. A Chinese entry about Japanese literature has `lang: 中文`, a Japan-related topic or tag, and no `日本語` tag.
+- `topics` is the broad upper-level shelf; `tags` are specific concepts. Both fields contain canonical IDs from `src/data/taxonomy.ts`, never display labels. A Chinese entry about Japanese literature has `lang: 中文`, a Japan-related topic or tag ID, and no `日本語` tag.
+- Add or rename taxonomy entries in `src/data/taxonomy.ts` first. The content schema rejects unknown topic and tag IDs.
+- Keep language names out of topics and tags. Language is represented by `lang` and `/languages/<lang>/`.
 - Use `series` with `seriesOrder` for ordered sequences. Register series metadata in `src/data/series.ts`. A series may cross collections.
 - Keep descriptions specific and short. Do not use promotional or generic marketing language.
 - Use the frontmatter schema in `src/content.config.ts`. The file name is the URL slug.
@@ -55,8 +58,8 @@ Use the existing data flow. Do not duplicate section or entry metadata in compon
 title: ""
 date: YYYY-MM-DD
 lang: 中文
-topics: []
-tags: []
+topics: [] # canonical IDs from src/data/taxonomy.ts
+tags: []   # canonical IDs from src/data/taxonomy.ts
 description: ""
 reading: 6 min
 dropcap: false
@@ -75,8 +78,8 @@ Start from the source and the reading situation. Record what the text says, the 
 title: ""
 date: YYYY-MM-DD
 lang: 中文
-topics: []
-tags: []
+topics: [] # canonical IDs from src/data/taxonomy.ts
+tags: []   # canonical IDs from src/data/taxonomy.ts
 description: ""
 reading: 8 min
 dropcap: false
@@ -97,8 +100,8 @@ title: ""
 date: YYYY-MM-DD
 lang: 中文
 kind: Research note
-topics: []
-tags: []
+topics: [] # canonical IDs from src/data/taxonomy.ts
+tags: []   # canonical IDs from src/data/taxonomy.ts
 description: ""
 reading: 10 min
 dropcap: false
@@ -127,8 +130,8 @@ title: ""
 date: YYYY-MM-DD
 lang: English
 kind: Project
-topics: []
-tags: []
+topics: [] # canonical IDs from src/data/taxonomy.ts
+tags: []   # canonical IDs from src/data/taxonomy.ts
 description: ""
 reading: Case study
 year: 2026 —

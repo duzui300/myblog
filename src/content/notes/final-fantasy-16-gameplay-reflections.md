@@ -1,13 +1,13 @@
 ---
-title: "《最终幻想 16》"
+title: 《最终幻想 16》
 date: 2024-08-20
 lang: 中文
+topics:
+  - games
 tags:
-  - 游戏
-  - 评测
-  - JRPG
-  - 最终幻想
-description: "FF16不是一个合格的最终幻想，但它有着值得为之一玩的优点。召唤兽战斗在游戏内的体现确实十分充分……"
+  - final-fantasy
+  - jrpg
+description: FF16不是一个合格的最终幻想，但它有着值得为之一玩的优点。召唤兽战斗在游戏内的体现确实十分充分……
 reading: 3 min
 dropcap: false
 ---

@@ -1,12 +1,14 @@
 ---
-title: "秋日校园与季节的变迁"
+title: 秋日校园与季节的变迁
 date: 2023-11-05
 lang: 中文
+topics:
+  - travel
+  - mindset
 tags:
-  - 随想
-  - 季节
-  - 校园
-description: "看着湿淋淋的反射着路灯的光线的地面上四散的枯黄树叶，感觉好像一夜之间秋天到了。主动去注意季节的变迁，这还是第一次……"
+  - time-perception
+  - campus-life
+description: 看着湿淋淋的反射着路灯的光线的地面上四散的枯黄树叶，感觉好像一夜之间秋天到了。主动去注意季节的变迁，这还是第一次……
 reading: 3 min
 dropcap: false
 ---

@@ -1,11 +1,14 @@
 ---
-title: "关于幕末的一点随想"
+title: 关于幕末的一点随想
 date: 2023-10-22
 lang: 中文
+topics:
+  - society
+  - games
 tags:
-  - 随想
-  - 历史
-description: "该找本幕末的历史书看了 每个时代都有每个时代独特的魅力与浪漫啊 但是不得不说新旧动荡冲突相互交融的年代更加的吸引人富有魅……"
+  - history
+  - bakumatsu
+description: 该找本幕末的历史书看了 每个时代都有每个时代独特的魅力与浪漫啊 但是不得不说新旧动荡冲突相互交融的年代更加的吸引人富有魅……
 reading: 2 min
 dropcap: false
 ---

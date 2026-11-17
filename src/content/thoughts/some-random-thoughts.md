@@ -1,10 +1,13 @@
 ---
-title: "Some random thoughts"
+title: Some random thoughts
 date: 2026-10-15
 lang: 中文
+topics:
+  - society
+  - mindset
 tags:
-  - 随想
-description: "感觉现代的工作好可怕，一直存在着家里蹲或者学生这样的脱产者会更容易键政或者更关心国际事务社会问题之类的是闲的没事，没有进……"
+  - sense-of-place
+description: 感觉现代的工作好可怕，一直存在着家里蹲或者学生这样的脱产者会更容易键政或者更关心国际事务社会问题之类的是闲的没事，没有进……
 reading: 8 min
 dropcap: false
 margin:

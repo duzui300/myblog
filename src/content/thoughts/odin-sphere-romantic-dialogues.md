@@ -1,11 +1,13 @@
 ---
-title: "《奥丁领域》台词摘录"
+title: 《奥丁领域》台词摘录
 date: 2024-05-03
 lang: 日本語
+topics:
+  - games
 tags:
-  - 游戏
-  - 台词摘录
-description: "オズワルド：グウェンドリン、君の意思に反して傍らに留めることがどれほどつらいか… 解っていても　君を求めずにはいられなか……"
+  - odin-sphere
+  - vanillaware
+description: オズワルド：グウェンドリン、君の意思に反して傍らに留めることがどれほどつらいか… 解っていても　君を求めずにはいられなか……
 reading: 2 min
 dropcap: false
 ---

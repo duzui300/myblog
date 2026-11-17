@@ -1,12 +1,13 @@
 ---
-title: "追 GBC Live 的半年小结"
+title: 追 GBC Live 的半年小结
 date: 2025-02-08
 lang: 中文
+topics:
+  - music
 tags:
-  - 音乐
-  - Live
-  - GBC
-description: "每次看完 live 都觉得自己是世界上最空虚的人，但这次却意外的有一种满足感……"
+  - live-performance
+  - girls-band-cry
+description: 每次看完 live 都觉得自己是世界上最空虚的人，但这次却意外的有一种满足感……
 reading: 5 min
 dropcap: false
 ---

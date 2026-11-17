@@ -1,11 +1,13 @@
 ---
-title: "《法と社会　新しい法学入門》"
+title: 《法と社会　新しい法学入門》
 date: 2025-03-08
 lang: 中文
+topics:
+  - reading
+  - society
 tags:
-  - 阅读
-  - 社会与法
-description: "法律作为社会統制的手段之一，对于个体而言，既起到了规范个体行为，促进其社会化的作用（社会化の過程は、個人を中心として見れ……"
+  - sociology-of-law
+description: 法律作为社会統制的手段之一，对于个体而言，既起到了规范个体行为，促进其社会化的作用（社会化の過程は、個人を中心として見れ……
 reading: 2 min
 dropcap: false
 ---

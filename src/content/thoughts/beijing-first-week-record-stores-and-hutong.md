@@ -1,13 +1,15 @@
 ---
-title: "闪现北京第一周"
+title: 闪现北京第一周
 date: 2023-08-19
 lang: 中文
+topics:
+  - travel
+  - music
 tags:
-  - 出行
-  - 北京
-  - 音乐
-  - 日常
-description: "闪现北京第一周。唱片店有很多国人独立乐队的唱片，还有杏仁豆腐与炸咯吱……"
+  - beijing
+  - strolling
+  - sense-of-place
+description: 闪现北京第一周。唱片店有很多国人独立乐队的唱片，还有杏仁豆腐与炸咯吱……
 reading: 2 min
 dropcap: false
 ---

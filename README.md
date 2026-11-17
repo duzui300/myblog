@@ -28,9 +28,10 @@ src/
   content/              Markdown entries by collection
   components/           navigation, figures, article parts, lists
   layouts/              MainLayout, SectionLayout, ContentLayout
-  pages/                routes for the home page, sections, entries, search, languages, series, selected, and tags
+  pages/                routes for the home page, sections, entries, search, languages, topics, tags, series, and selected
   data/
     sections.ts         section metadata, navigation groups, star-map geometry
+    taxonomy.ts         topic and tag ids, multilingual labels, aliases
     series.ts           series titles and descriptions
     selected.ts         curated Selected hrefs
     site.ts             site title, description, volume, social links
@@ -57,7 +58,7 @@ Entries live in four collections under `src/content/`:
 
 Every entry has a title, date, language, topics, tags, description, and optional reading time, series, dropcap, margin notes, and metadata. Collection-specific fields are defined in `src/content.config.ts`. The file name is the URL slug. Draft entries are excluded from production listings.
 
-`topics` is the broad browsing shelf; `tags` remains the specific concept layer. `series` plus `seriesOrder` turns entries into an ordered sequence, and a series may cross collection boundaries. Series titles and descriptions live in `src/data/series.ts`; curated Selected hrefs live in `src/data/selected.ts`.
+`topics` is the broad browsing shelf; `tags` is the specific concept layer. Both fields store canonical IDs from `src/data/taxonomy.ts`, not display labels. The registry owns the Chinese, Japanese, and English labels, descriptions, and search aliases. Unknown IDs fail the content schema. `series` plus `seriesOrder` turns entries into an ordered sequence, and a series may cross collection boundaries. Series titles and descriptions live in `src/data/series.ts`; curated Selected hrefs live in `src/data/selected.ts`.
 
 The first item in `lang` is the primary language. Multilingual entries may mark sections with headings such as `## 中文`, `## English`, and `## 日本語`; the Markdown pipeline adds the corresponding `lang` attributes to the sections that follow. Interface copy stays in English.
 
@@ -77,10 +78,13 @@ Math can use `$...$` or `$$...$$`. Display equations should be kept short; split
 /about/                   about and colophon
 /search/                  searchable and filterable archive
 /languages/<lang>/        global language views
+/topics/                  topic index
+/topics/<id>/             broad topic view
+/tags/                    tag index
+/tags/<id>/               canonical tag view
 /series/                  series index
 /series/<slug>/           ordered series view
 /selected/                curated selection
-/tags/<tag>/              tag views
 /search.json              generated search index
 /index.xml                RSS
 ```
@@ -89,9 +93,9 @@ Redirects for retired paths are configured in `astro.config.mjs`.
 
 ## Search
 
-`/search/` queries the build-time `search.json` index. The page supports full-text search plus combinable section, language, topic, tag, year, and series filters, category browsing, popular tags, and a chronological archive. Section indexes have their own client-side filters. The implementation is a client-side substring match that handles English and CJK.
+`/search/` queries the build-time `search.json` index. The page supports full-text search plus combinable section, language, topic, tag, year, and series filters, category browsing, topic browsing, popular tags, and a chronological archive. Section indexes have their own client-side filters. The implementation is a client-side substring match that handles English and CJK. Search indexes every topic and tag label plus every alias, while filtering uses canonical IDs.
 
-Language routes are global. Language is a property of the text, not a topic, so `/languages/<lang>/` is generated from entry `lang` values and never from tags.
+Language routes are global. Language is a property of the text, not a topic, so `/languages/<lang>/` is generated from entry `lang` values and never from tags. Retired tag URLs are not redirected; the canonical tag pages are the only tag routes.
 
 ## Design system
 

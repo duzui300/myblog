@@ -1,13 +1,14 @@
 ---
-title: "夏末余音"
+title: 夏末余音
 date: 2026-09-06
 lang: 中文
+topics:
+  - mindset
+  - travel
 tags:
-  - 随想
-  - 日本語
-  - 诗歌
-  - 日常
-description: "又要回家了，四处辗转迷茫的一年也伴随着仿佛推迟了的毕业旅行般的这两个月来到了最后的终幕……"
+  - poetry
+  - time-perception
+description: 又要回家了，四处辗转迷茫的一年也伴随着仿佛推迟了的毕业旅行般的这两个月来到了最后的终幕……
 reading: 3 min
 dropcap: false
 ---

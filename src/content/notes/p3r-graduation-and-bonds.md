@@ -1,12 +1,14 @@
 ---
-title: "《女神异闻录 3 Reload》通关随感"
+title: 《女神异闻录 3 Reload》通关随感
 date: 2024-02-29
 lang: 中文
+topics:
+  - games
 tags:
-  - 游戏
-  - P3R
-  - 女神异闻录
-description: "好久没有玩游戏这么代入了，以至于最后主人公们在忘记了过去一年的记忆后在约定的毕业典礼重新回忆起来聚在一块那点直接哭晕……"
+  - p3r
+  - atlus
+  - jrpg
+description: 好久没有玩游戏这么代入了，以至于最后主人公们在忘记了过去一年的记忆后在约定的毕业典礼重新回忆起来聚在一块那点直接哭晕……
 reading: 2 min
 dropcap: false
 ---

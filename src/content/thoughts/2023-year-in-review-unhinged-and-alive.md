@@ -2,11 +2,11 @@
 title: "2023."
 date: 2024-01-01
 lang: 中文
+topics:
+  - mindset
 tags:
-  - 随想
-  - 年度总结
-  - 日常
-description: "非常好一年，虽然物理一点没学绩点一路滑坡前路未卜，但玩游戏看管人逛展子学日语爽了个遍……"
+  - periodic-review
+description: 非常好一年，虽然物理一点没学绩点一路滑坡前路未卜，但玩游戏看管人逛展子学日语爽了个遍……
 reading: 2 min
 dropcap: false
 ---

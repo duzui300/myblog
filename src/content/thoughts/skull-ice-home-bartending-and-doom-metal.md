@@ -1,12 +1,14 @@
 ---
-title: "骷髅冰块、调酒与 Doom Metal"
+title: 骷髅冰块、调酒与 Doom Metal
 date: 2025-07-01
 lang: 中文
+topics:
+  - mindset
+  - music
 tags:
-  - 日常
-  - 调酒
-  - 音乐
-description: "小小记录一下，这个骷髅头形状的冰太帅了。初衷是为了highball自由结果感觉掉入深坑了……"
+  - metal
+  - daily-life
+description: 小小记录一下，这个骷髅头形状的冰太帅了。初衷是为了highball自由结果感觉掉入深坑了……
 reading: 2 min
 dropcap: false
 ---

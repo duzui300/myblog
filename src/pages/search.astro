@@ -8,7 +8,8 @@ import {
   getPopularTags,
   getSearchEntries,
   getSeriesGroups,
-  isLanguageTag,
+  getTags,
+  getTopics,
   langCode,
   textLang,
   type SearchEntry,
@@ -20,12 +21,8 @@ const popularTags = await getPopularTags(8);
 const counts = await getCategoryCounts();
 const languages = await getLanguages();
 const series = await getSeriesGroups();
-const topics = [...new Set(entries.flatMap((entry) => entry.topics))].sort((a, b) =>
-  a.localeCompare(b),
-);
-const tags = [
-  ...new Set(entries.flatMap((entry) => entry.tags).filter((tag) => tag && !isLanguageTag(tag))),
-].sort((a, b) => a.localeCompare(b));
+const topics = await getTopics();
+const tags = await getTags();
 const years = [...new Set(entries.map((entry) => String(new Date(entry.date).getFullYear())))].sort(
   (a, b) => Number(b) - Number(a),
 );
@@ -146,7 +143,9 @@ const archive: YearGroup[] = [...yearMap.entries()]
               <select data-filter="topic">
                 <option value="">All</option>
                 {topics.map((topic) => (
-                  <option value={topic}>{topic}</option>
+                  <option value={topic.id} title={topic.labels.en}>
+                    {topic.labels.zh}
+                  </option>
                 ))}
               </select>
             </label>
@@ -156,7 +155,9 @@ const archive: YearGroup[] = [...yearMap.entries()]
             <select data-filter="tag">
               <option value="">All</option>
               {tags.map((tag) => (
-                <option value={tag}>{tag}</option>
+                <option value={tag.id} title={tag.labels.en}>
+                  {tag.labels.zh}
+                </option>
               ))}
             </select>
           </label>
@@ -234,10 +235,29 @@ const archive: YearGroup[] = [...yearMap.entries()]
           </div>
         </section>
         <section class="search-block">
+          <p class="smallcaps">Browse by topic</p>
+          <div class="tag-cloud">
+            {
+              topics.map((topic) => (
+                <a
+                  href={`/topics/${encodeURIComponent(topic.id)}/`}
+                  lang={textLang(topic.labels.zh)}
+                  title={topic.labels.en}
+                >
+                  {topic.labels.zh}
+                  <span>{topic.entries.length}</span>
+                </a>
+              ))
+            }
+          </div>
+        </section>
+        <section class="search-block">
           <p class="smallcaps">Collections</p>
           <div class="tag-cloud">
             <a href="/selected/">Selected</a>
             <a href="/series/">Series{series.length > 0 ? <span>{series.length}</span> : null}</a>
+            <a href="/topics/">Topics</a>
+            <a href="/tags/">Tags</a>
             <a href="/languages/">Languages</a>
           </div>
         </section>
@@ -245,10 +265,14 @@ const archive: YearGroup[] = [...yearMap.entries()]
           <p class="smallcaps">Popular tags</p>
           <div class="tag-cloud">
             {
-              popularTags.map(({ tag, entries: tagged }) => (
-                <a href={`/tags/${encodeURIComponent(tag)}/`} lang={textLang(tag)}>
-                  {tag}
-                  <span>{tagged.length}</span>
+              popularTags.map((tag) => (
+                <a
+                  href={`/tags/${encodeURIComponent(tag.id)}/`}
+                  lang={textLang(tag.labels.zh)}
+                  title={tag.labels.en}
+                >
+                  {tag.labels.zh}
+                  <span>{tag.entries.length}</span>
                 </a>
               ))
             }
@@ -314,11 +338,14 @@ const archive: YearGroup[] = [...yearMap.entries()]
     date: string;
     langs: string[];
     topics: string[];
+    topicLabels: string[];
     tags: string[];
+    tagLabels: string[];
     description: string;
     series?: string;
     seriesOrder?: number;
     seriesTitle?: string;
+    taxonomyAliases: string;
     body: string;
   };
 
@@ -402,7 +429,10 @@ const archive: YearGroup[] = [...yearMap.entries()]
           entry.group,
           entry.langs.join(' '),
           entry.topics.join(' '),
+          entry.topicLabels.join(' '),
           entry.tags.join(' '),
+          entry.tagLabels.join(' '),
+          entry.taxonomyAliases,
           entry.seriesTitle ?? '',
           entry.body,
         ].join(' '),
@@ -410,7 +440,7 @@ const archive: YearGroup[] = [...yearMap.entries()]
       return terms.every((term) => haystack.includes(term));
     });
 
-    const context = [];
+    const context: string[] = [];
     if (terms.length) context.push(`for “${input.value.trim()}”`);
     if (filterKeys.length) context.push('with the selected filters');
     status.textContent =
@@ -426,7 +456,10 @@ const archive: YearGroup[] = [...yearMap.entries()]
 
       const meta = document.createElement('span');
       meta.className = 'search-result-meta';
-      meta.textContent = [entry.category, entry.seriesTitle].filter(Boolean).join(' · ');
+      meta.textContent = [entry.category, entry.topicLabels[0], entry.tagLabels[0]]
+        .filter(Boolean)
+        .slice(0, 2)
+        .join(' · ');
 
       const date = document.createElement('span');
       date.className = 'search-result-date';
@@ -444,7 +477,7 @@ const archive: YearGroup[] = [...yearMap.entries()]
 
       const tags = document.createElement('span');
       tags.className = 'search-result-tags';
-      tags.textContent = [...entry.topics, ...entry.tags].slice(0, 4).join(' · ');
+      tags.textContent = [...entry.topicLabels, ...entry.tagLabels].slice(0, 4).join(' · ');
 
       link.append(meta, date, title, description, tags);
       results.append(link);

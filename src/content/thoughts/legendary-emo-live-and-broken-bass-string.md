@@ -1,12 +1,13 @@
 ---
-title: "Pen Name live fuck this awesome day！！"
+title: Pen Name live fuck this awesome day！！
 date: 2026-04-12
 lang: 中文
+topics:
+  - music
 tags:
-  - Live
-  - 音乐
-  - 日常
-description: "第一次现场听 emo，第一次见 bass 弦被弹断，灭火器不知道为什么喷了，第一次被 livehouse 老板请喝酒……"
+  - live-performance
+  - rock
+description: 第一次现场听 emo，第一次见 bass 弦被弹断，灭火器不知道为什么喷了，第一次被 livehouse 老板请喝酒……
 reading: 2 min
 dropcap: false
 ---

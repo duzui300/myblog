@@ -1,11 +1,13 @@
 ---
-title: "整理 Obsidian 笔记库"
+title: 整理 Obsidian 笔记库
 date: 2026-10-07
 lang: 中文
+topics:
+  - tools
 tags:
-  - 软件与工具
-  - Obsidian
-description: "折腾了一下午文具看着真不错，以后随想录书摘什么的就丢这里了。说有没有用吧也不好说，确实也需要一个统一的地方记东西。但是不……"
+  - obsidian
+  - workflow
+description: 折腾了一下午文具看着真不错，以后随想录书摘什么的就丢这里了。说有没有用吧也不好说，确实也需要一个统一的地方记东西。但是不……
 reading: 2 min
 dropcap: false
 ---

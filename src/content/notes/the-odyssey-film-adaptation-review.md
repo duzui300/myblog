@@ -1,12 +1,15 @@
 ---
-title: "《奥德赛》电影观后感"
+title: 《奥德赛》电影观后感
 date: 2026-08-15
 lang: 中文
+topics:
+  - humanities
+  - moving-image
 tags:
-  - 电影
-  - 古典学
-  - 奥德赛
-description: "好看好看 虽然保留了整体的叙述节奏和大致的顺序，但是从头到尾真的改了好多地方、删改合并，顺序的调换以及原作不存在的情节等……"
+  - odyssey
+  - film
+  - audiovisual-language
+description: 好看好看 虽然保留了整体的叙述节奏和大致的顺序，但是从头到尾真的改了好多地方、删改合并，顺序的调换以及原作不存在的情节等……
 reading: 2 min
 dropcap: false
 ---

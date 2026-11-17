@@ -1,11 +1,12 @@
 ---
-title: "無力感と自由"
+title: 無力感と自由
 date: 2026-04-14
 lang: 日本語
+topics:
+  - mindset
 tags:
-  - 随想
-  - 日本語
-description: "人間は結局なんの自由もないもの。 外で起きる出来事はさておき、自分の身体も制御しきれないし、所謂自由意志も実際のところは……"
+  - free-will
+description: 人間は結局なんの自由もないもの。 外で起きる出来事はさておき、自分の身体も制御しきれないし、所謂自由意志も実際のところは……
 reading: 2 min
 dropcap: false
 ---

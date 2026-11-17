@@ -1,13 +1,14 @@
 ---
-title: "《破晓传说》通关杂感"
+title: 《破晓传说》通关杂感
 date: 2022-04-15
 lang: 中文
+topics:
+  - games
 tags:
-  - 游戏
-  - 评测
-  - JRPG
-  - 传说系列
-description: "打完了！挑三个刺：两处圣母原谅情节、2D动画拉、后期换皮怪多。剩下的战斗画面剧情小剧场都很棒……"
+  - tales-series
+  - jrpg
+  - bandai-namco
+description: 打完了！挑三个刺：两处圣母原谅情节、2D动画拉、后期换皮怪多。剩下的战斗画面剧情小剧场都很棒……
 reading: 3 min
 dropcap: false
 ---
